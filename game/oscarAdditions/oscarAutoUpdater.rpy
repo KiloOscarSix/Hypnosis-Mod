@@ -20,5 +20,8 @@ init python:
     modConfigPath = os.path.join(os.getcwd(), "game", "oscarAdditions", "modConfig.txt")
 
     def updateChecker():
+        if renpy.variant("mobile"):
+            return False
         if not isUpToDate(modConfigPath, "https://raw.githubusercontent.com/KiloOscarSix/Hypnosis-OscarSix-s-Mod/master/game/oscarAdditions/modConfig.txt"):
             return True
+        return False

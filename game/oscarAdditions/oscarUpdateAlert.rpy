@@ -14,7 +14,7 @@ screen navigation():
 
         if main_menu:
 
-            textbutton _("Start") action Start("oscarUpdateAlert")
+            textbutton _("Start") action Start()
 
         else:
 
@@ -67,8 +67,9 @@ screen modOutOfDate:
             textbutton "Ask Me Later":
                 action Return()
 
-label oscarUpdateAlert:
+label before_main_menu:
+
     if updateChecker():
         call screen modOutOfDate
 
-    jump start
+    return
