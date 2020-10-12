@@ -27885,6 +27885,7 @@ label shmoke:
                 j "Good work."
 
 
+    label galleryScene13:
     scene jkitchen5
     j "What am I doing here?"
     n "Having fun at a pool party."
@@ -28103,6 +28104,7 @@ label shmoke:
     "Jenn began laughing."
     j "Wow."
     j "We really did make a mess."
+    $ renpy.end_replay()
 label haleymarg:
     scene hkitchen6
     with fade
@@ -31054,6 +31056,7 @@ label nowatch:
         l "Shut up."
         n "She is right though, I'm afraid."
         n "I'm not exactly a fourteen year old that has wet dreams."
+        label galleryScene19:
         g "We'll see about that."
         scene fktub2
         with fade
@@ -31437,6 +31440,7 @@ label daphdelicious:
         d "I have no interest in putting anything that nasty anywhere near my face."
 
         "I didn't argue as I came inside."
+        $ renpy.end_replay()
         jump temporary
         menu:
             "Cum inside":
@@ -31503,7 +31507,6 @@ label temporary:
     g "You'll get used to it."
     scene tubclub1
     with dissolve
-
 
     if cory:
         "I called Cory, but as I expected there was no answer."

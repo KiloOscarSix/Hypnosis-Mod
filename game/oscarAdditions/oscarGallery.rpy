@@ -1,18 +1,15 @@
 init python:
-    galleryCharacter = ""
-    galleryPageNumber = 1
-
     def galleryDecreasePageNumber():
         global galleryPageNumber
         galleryPageNumber -= 1
-        return
 
     def galleryIncreasePageNumber():
         global galleryPageNumber
         galleryPageNumber += 1
-        return
 
-    sceneGalleryMenuDict = {
+define galleryPageNumber = 1
+
+define sceneGalleryMenuDict = {
     "galleryMenu": [
     ["Leah", "/images/leah hotel1.webp"],
     ["Ashley", "/images/a room3.webp"],
@@ -49,24 +46,24 @@ init python:
     },
     "Grace": {
     1: [
-    ["threesome", {"name":persistent.galleryName, "nickname":persistent.nickname, "grace":False, "jennmean":True}, "/images/gl tubf10.webp"], # 16741
-    ["throwintowel", {"name":persistent.galleryName, "nickname":persistent.nickname}, "/images/grace couchstand9.webp"], # 18211
-    ["galleryScene9", {"name":persistent.galleryName, "nickname":persistent.nickname}, "/images/grace out7.webp"], # 27292
-    ["galleryScene19", {"name":persistent.galleryName, "nickname":persistent.nickname, "grace":True, "glthreesome":True, "laurarom":True, "daphne":True}, "/images/lfktub2.webp"], # 30902
-    ["galleryScene11", {"name":persistent.galleryName, "nickname":persistent.nickname, "laura":False, "daphne":True}, "/images/gracebr3.webp"], # 32280
-    ["sneakygrace", {"name":persistent.galleryName, "nickname":persistent.nickname, "glthreesome":True, "gcum":True}, "/images/gcruise15.webp"],
+    ["threesome", {"grace":False, "jennmean":True}, "/images/gl tubf10.webp"], # 16741
+    ["throwintowel", {}, "/images/grace couchstand9.webp"], # 18211
+    ["galleryScene9", {}, "/images/grace out7.webp"], # 27292
+    ["galleryScene19", {"grace":True, "glthreesome":True, "laurarom":True, "daphne":True}, "/images/lfktub2.webp"], # 30902
+    ["galleryScene11", {"laura":False, "daphne":True}, "/images/gracebr3.webp"], # 32280
+    ["sneakygrace", {"glthreesome":True, "gcum":True}, "/images/gcruise15.webp"],
     ["galleryscene24", {"hatelaura":True, "callcory":False}, "/images/Episode 11/glbath3.webp"],
     ],
     },
     "Laura": {
     1: [
-    ["didntlaura", {"name":persistent.galleryName, "nickname":persistent.nickname, "laurarom":True}, "/images/lk10.webp"], # 15153
-    ["threesome", {"name":persistent.galleryName, "nickname":persistent.nickname, "grace":False, "jennmean":True}, "/images/gl tubf10.webp"], # 16741
-    ["galleryScene16", {"name":persistent.galleryName, "nickname":persistent.nickname}, "/images/laura bed3.webp"], # 17023
-    ["followlaura", {"name":persistent.galleryName, "nickname":persistent.nickname, "laurarom":True}, "/images/laura br3.webp"], # 25773
-    ["galleryScene19", {"name":persistent.galleryName, "nickname":persistent.nickname, "grace":True, "glthreesome":True, "laurarom":True, "daphne":True}, "/images/lfktub2.webp"], # 30902
-    ["badtimelaura", {"name":persistent.galleryName, "nickname":persistent.nickname}, "/images/lneked1.webp"], # 33294
-    ["timetraveler", {"name":persistent.galleryName, "nickname":persistent.nickname}, "/images/lauraconvo13.webp"], # 33408
+    ["didntlaura", {"laurarom":True}, "/images/lk10.webp"], # 15153
+    ["threesome", {"grace":False, "jennmean":True}, "/images/gl tubf10.webp"], # 16741
+    ["galleryScene16", {}, "/images/laura bed3.webp"], # 17023
+    ["followlaura", {"laurarom":True}, "/images/laura br3.webp"], # 25773
+    ["galleryScene19", {"grace":True, "glthreesome":True, "laurarom":True, "daphne":True}, "/images/lfktub2.webp"], # 30902
+    ["badtimelaura", {}, "/images/lneked1.webp"], # 33294
+    ["timetraveler", {}, "/images/lauraconvo13.webp"], # 33408
     ["galleryscene24", {"hatelaura":True, "callcory":False}, "/images/Episode 11/glbath3.webp"],
     ],
     2: [
@@ -75,17 +72,17 @@ init python:
     },
     "Jenn": {
     1: [
-    ["admitjennsexy", {"name":persistent.galleryName, "nickname":persistent.nickname}, "/images/jenn onknees6.webp"], # 3865
-    ["smart2", {"name":persistent.galleryName, "nickname":persistent.nickname, "jenn":True}, "/images/jenn day12.webp"], # 9068
-    ["galleryScene14", {"name":persistent.galleryName, "nickname":persistent.nickname, "jennice":False}, "/images/jennbr16.webp"], # 23249
-    ["galleryScene13", {"name":persistent.galleryName, "nickname":persistent.nickname, "jennice":False, "jennpreg":True}, "/images/jlsroom5.webp"], # 27825
-    ["galleryScene15", {"name":persistent.galleryName, "nickname":persistent.nickname, "laura":False, "jennpreg":True, "jennice":False}, "/images/jennint18.webp"], # 32735
+    ["admitjennsexy", {}, "/images/jenn onknees6.webp"], # 3865
+    ["smart2", {"jenn":True}, "/images/jenn day12.webp"], # 9068
+    ["galleryScene14", {"jennice":False}, "/images/jennbr16.webp"], # 23249
+    ["galleryScene13", {"jenn":True, "kissgrace":True, "jennice":False, "jennpreg":True}, "/images/jlsroom5.webp"], # 27825
+    ["galleryScene15", {"laura":False, "jennpreg":True, "jennice":False}, "/images/jennint18.webp"], # 32735
     ["galleryScene32", {}, "/images/Episode 12/japartment10.webp"],
     ],
     },
     "Brittany": {
     1: [
-    ["icmi", {"name":persistent.galleryName, "nickname":persistent.nickname, "grace":True}, "/images/b br13.webp"], # 20499
+    ["icmi", {"grace":True}, "/images/b br13.webp"], # 20499
     ["galleryScene6", {"bcum":True}, "/images/bdark3.webp"], # 21089
     ["britbangbang", {}, "/images/britbr2.webp"], # 25996
     ["galleryScene7", {"laurarom":True, "bcum":True}, "/images/britbed2.webp"], # 31465
@@ -100,10 +97,10 @@ init python:
     },
     "Rachel": {
     1: [
-    ["gorachel", {"name":persistent.galleryName, "nickname":persistent.nickname}, "/images/rachdown5.webp"], # 22813
-    ["fuckrachel", {"name":persistent.galleryName, "nickname":persistent.nickname, "rachdrunk":False}, "/images/rachair6.webp"], # 24150
-    ["bullsonparade", {"name":persistent.galleryName, "nickname":persistent.nickname, "rachel":True, "rcum":True}, "/images/rachel fridge3.webp"], # 26743
-    ["galleryScene18", {"name":persistent.galleryName, "nickname":persistent.nickname}, "/images/rachwall1.webp"], # 33154
+    ["gorachel", {}, "/images/rachdown5.webp"], # 22813
+    ["fuckrachel", {"rachdrunk":False}, "/images/rachair6.webp"], # 24150
+    ["bullsonparade", {"rachel":True, "rcum":True}, "/images/rachel fridge3.webp"], # 26743
+    ["galleryScene18", {}, "/images/rachwall1.webp"], # 33154
     ],
     },
     "Other": {
@@ -177,14 +174,14 @@ screen sceneGalleryMenu():
         for i in sceneGalleryMenuDict["galleryMenu"]:
             vbox:
                 imagebutton:
-                    action ShowMenu("sceneCharacterMenu"), Hide("sceneGalleryMenu"), SetVariable("galleryCharacter", i[0])
+                    action [Show("sceneCharacterMenu", galleryCharacter=i[0]), Hide("sceneGalleryMenu")]
                     idle Transform(i[1], zoom=0.2)
                     hover Transform(im.MatrixColor(i[1], im.matrix.brightness(0.2)), zoom=0.2)
                 text i[0]:
                     style "galleryBody"
                     xcenter 0.5
 
-screen sceneCharacterMenu():
+screen sceneCharacterMenu(galleryCharacter="Leah"):
     tag menu
     modal True
     add "#23272a"

@@ -27,7 +27,7 @@ screen navigation():
         textbutton _("Preferences") action ShowMenu("preferences")
 
         if main_menu:
-            textbutton _("Oscars Gallery") action [ui.callsinnewcontext("galleryNameChange"), ShowMenu("sceneGalleryMenu")]
+            textbutton _("Oscars Gallery") action [ui.callsinnewcontext("galleryNameChange"), Show("sceneGalleryMenu")]
 
         if _in_replay:
 
@@ -65,11 +65,11 @@ screen modOutOfDate:
             textbutton "Download Now":
                 action OpenURL("{}".format(modGameLink))
             textbutton "Ask Me Later":
-                action Return()
+                action Hide("modOutOfDate")
 
 label before_main_menu:
 
     if updateChecker():
-        call screen modOutOfDate
+        show screen modOutOfDate
 
     return
