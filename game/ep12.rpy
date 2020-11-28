@@ -920,7 +920,7 @@ label eptwelve:
         "No":
             n "I mean..."
             L "Ooo. He was so close to scoring a point there."
-        a "Yep! Do you like it?"
+        a "Do you like it?"
     L "Are you going to show us this place?"
     n "Follow me."
     scene doorman6
@@ -1512,7 +1512,7 @@ label eptwelve:
         "Bartender" "Howdy Partner. What can I do you for?"
         scene barkeep2
         n "Hey, Barkeep!"
-        "{i}I wonder if my recent hot streak is based on anything beside the watch?{/i}"
+        "{i}I wonder if my recent hot streak is based on anything besides the watch?{/i}"
         "{i}Maybe it's confidence?{/i}"
         n "One day I'll come here and you won't be here."
         scene barkeep3
@@ -2223,6 +2223,11 @@ label eptwelve:
                     scene barkeep4
                     "Bartender" "Thank dog I turned down the other seven guys today."
                     scene barkeep5
+                    n "Dog?"
+                    scene barkeep4
+                    "Bartender" "Yep. I believe dogs secretly control the universe."
+                    scene barkeep5
+                    n "Ah."
                     n "You know what?"
                     n "It's refreshing finding a girl that can outdo me in sarcasm."
                     scene barkeep4
@@ -2471,7 +2476,6 @@ label eptwelve:
                     scene bg black
                     with fadeout
                     "She fell limp in my arms as she came."
-                    $ renpy.end_replay()
     else:
         menu:
             "[gr]Hypnotize the bartender":
@@ -2732,7 +2736,7 @@ label eptwelve:
                 scene graceselfie1
                 with pixellate
                 pause
-                n "Tha black must be slimming."
+                n "The black must be slimming."
                 g "Yeah yeah"
                 g "Fine before you ask..."
                 scene graceselfie2
@@ -3002,7 +3006,7 @@ label eptwelve:
             "The majority of the rest of this update involves taking out Jenn and Haley on dates."
             "Being as how you are not on Jenn's path, the remainder of this update is shortened."
             "If you are not on the Jenn path but want to be, please check the {a=https://docs.google.com/document/d/e/2PACX-1vRb7T2PQcStj74PvxIpczf_tzpr6FpWj6imHC3uqtkZpKhnbB0_6Lmi-QLyELt2xW3YFfAxmrCekoMJ/pub}walkthrough{/a} for more information."
-            jump nojennep12
+        jump nojennep12
     "I called Jenn."
     n "Hey! Are you excited for our date tonight?"
     j "You have no idea."
@@ -4429,7 +4433,7 @@ label eptwelve:
         r "Shut up."
         n "I'm serious."
         n "It means you care about your friends."
-    n "And I assure you, I have no intention of hurting the girl."
+    n "And I assure you, I have no intention of hurting her."
     r "I'm not worried about your intentions."
     r "I'm worried about her starting to fall for you just in time for you to cast her aside."
     n "I appreciate the sentiment."
@@ -4454,11 +4458,17 @@ label eptwelve:
             pause
             r "Fine."
             r "How about tomorrow night?"
-            n "Can't. I have plans."
-            r "With who?"
-            n "A friend."
-            r "Cancel them."
-            r "If you want to take me out, you will make it a priority."
+            if barkeep:
+                n "Can't. I have plans."
+                r "With who?"
+                n "A friend."
+                r "Cancel them."
+                r "If you want to take me out, you will make it a priority."
+            else:
+                n "I don't have any plans."
+                r "Now you do."
+                n "Any preferences on where to go?"
+                r "I'm sure you'll think of something."
             "She hung up."
         "Don't offer":
             $ racheldate = False
@@ -4472,9 +4482,9 @@ label eptwelve:
             "She hung up."
 
     if barkeep:
-        "Strange girl."
-        "Shit, I should call Hottie Bartender."
-        "I also need to find out her damned name."
+        "{i}Strange girl.{/i}"
+        "{i}Shit, I should call Hottie Bartender.{/i}"
+        "{i}I also need to find out her damned name.{/i}"
         "I dialed the number."
         scene apartmentdoor2
         with dissolve
@@ -4506,6 +4516,7 @@ label eptwelve:
         "Bartender" "Thanks, hun."
         "Bartender" "Bye!"
     else:
+        $ tiffany = True
         scene apartmentdoor3
         with dissolve
         "I glared at my phone."
@@ -4556,17 +4567,22 @@ label eptwelve:
         scene apartmentdoor9
         n "At least a few weeks."
         scene apartmentdoor8
+
         t "Well then! Since you have your phone out, how about you take my number?"
         scene apartmentdoor9
+        with dissolve
         n "Okay."
         scene apartmentdoor8
+        with dissolve
         t "Call me if you ever need anything."
         scene apartmentdoor11
+        with dissolve
         n "I appreciate it."
         n "Here, I'll call you right now you so you have my number."
         t "Awesome! I'll save your name right now."
         t "Well, it was nice to meet you, [n]."
         scene apartmentdoor12
+        with dissolve
         n "You as well."
         t "Bye, neighbor!"
 
@@ -5070,7 +5086,7 @@ label eptwelve:
     with fadeout
 
 
-    "We left the apartment, I drove Haley home and she walked on the front door before dark."
+    "We left the apartment, I drove Haley home and she walked in the front door before dark."
 
 
     label nojennep12:
@@ -5889,4 +5905,4 @@ else:
     with fadeout
     "{i}I'm never going to get any sleep.{/i}"
 
-    jump end
+    jump backtoreality
