@@ -2476,6 +2476,7 @@ label eptwelve:
                     scene bg black
                     with fadeout
                     "She fell limp in my arms as she came."
+                    $ renpy.end_replay()
     else:
         menu:
             "[gr]Hypnotize the bartender":
