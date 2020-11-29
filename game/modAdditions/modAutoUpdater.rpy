@@ -20,7 +20,7 @@ init python:
             else:
                 return False
 
-    modConfigPath = os.path.join(config.basedir, "game", "oscarAdditions", "modConfig.txt")
+    modConfigPath = os.path.join(config.basedir, "game", "modAdditions", "modConfig.txt")
 
     def updateChecker():
         try:

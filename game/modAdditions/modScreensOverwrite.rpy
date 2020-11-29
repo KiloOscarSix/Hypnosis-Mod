@@ -1,6 +1,9 @@
-init python:
-    modGame = "{}".format(config.name)
-    modGameLink = "https://www.patreon.com/OscarSix"
+# vbox:
+#     align(0.28, 0.185)
+#     text "{color=#fff}Save Name:{/color}"
+#     input:
+#         yalign 0.05
+#         value VariableInputValue("save_name")
 
 screen navigation():
 
@@ -17,6 +20,7 @@ screen navigation():
             textbutton _("Start") action Start()
 
         else:
+            textbutton _("Mod Options") action Show("modOptions")
 
             textbutton _("History") action ShowMenu("history")
 
@@ -27,7 +31,7 @@ screen navigation():
         textbutton _("Preferences") action ShowMenu("preferences")
 
         if main_menu:
-            textbutton _("Oscars Gallery") action [ui.callsinnewcontext("galleryNameChange"), Show("sceneGalleryMenu")]
+            textbutton _("Oscar's Gallery") action [ui.callsinnewcontext("galleryNameChange"), Show("sceneGalleryMenu")]
 
         if _in_replay:
 
@@ -47,29 +51,15 @@ screen navigation():
             ## The quit button is banned on iOS and unnecessary on Android.
             textbutton _("Quit") action Quit(confirm=not main_menu)
 
-screen modOutOfDate:
-    modal True
-    zorder 100
-    add "#23272a"
+screen save():
 
+    tag menu
+
+    use file_slots(_("Save"))
+    
     vbox:
-        xcenter 0.5
-        ycenter 0.5
-        spacing 50
-
-        text "{size=64}A new version of {b}Oscar's [modGame] Mod{/b} is now available.\nClick the Download Now button to download the new update." text_align 0.5 xcenter 0.5 ycenter 0.5
-        hbox:
-            spacing 100
-            xcenter 0.5
-
-            textbutton "Download Now":
-                action OpenURL("{}".format(modGameLink))
-            textbutton "Ask Me Later":
-                action Hide("modOutOfDate")
-
-label before_main_menu:
-
-    if updateChecker():
-        show screen modOutOfDate
-
-    return
+        align(0.28, 0.185)
+        text "{color=#fff}Save Name:{/color}"
+        input:
+            yalign 0.05
+            value VariableInputValue("save_name")

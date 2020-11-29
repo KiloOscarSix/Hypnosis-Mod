@@ -1,11 +1,3 @@
-init python:
-    gr = "{color=#0f0}"
-    red = "{color=#f00}"
-    blue = "{color=#00f}"
-    BoyfriendPath = "{color=#0f0}[Boyfriend Path]"
-    GoodBoyfriendPath = "{color=#0f0}[Boyfriend/Good Path]"
-    BadassPath = "{color=#0f0}[Badass Path]"
-
 default kissgrace = False
 default groupdate = False
 default jennpreg = True
@@ -36287,7 +36279,7 @@ label aftermath:
         n "Ready for your turn, Grace?"
         g "Yes please."
         if daphne:
-            label galleryscene23:
+            label galleryScene23:
             g "But first, I think it's Daphne's turn."
             scene daphbath8
             with fade

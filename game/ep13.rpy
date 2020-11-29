@@ -1,6 +1,6 @@
 
 
-    
+
 label epthirteen:
     if daphne:
         if hypdaphne:
@@ -28,9 +28,9 @@ label epthirteen:
     a "You know what?"
     a "I'm not complaining or anything..."
     a "...but I seem to sleep a lot more on nights when you aren't here."
-    
-    
-    
+
+
+
     scene ashflated4
     with dissolve
     n "I know what you mean."
@@ -111,7 +111,7 @@ label epthirteen:
         "{i}Shit.{/i}"
     scene bg black
     with fadeout
-    
+
     "An Hour Later"
     with fade
     "The vibration of my phone woke me."
@@ -184,6 +184,7 @@ label epthirteen:
     scene bg black
     with fadeout
     "I jumped in the shower, grabbed a bagel and tried to remember how to get to Grace's house from this direction."
+    label galleryScene33:
     scene 13gracehouse1
     with fadein
     n "Hey."
@@ -268,7 +269,7 @@ label epthirteen:
     g "But for entirely different reasons."
     n "So you expect me to be able to wait for you to get all the way over to that table?"
     g "I mean, you could always pick me up."
-    
+
     image gracehouseani1 = Movie(play="gracehouseani1.webm")
     scene gracehouseani1
     with fade
@@ -291,7 +292,7 @@ label epthirteen:
         g "My heart and my pussy are not the same things."
     else:
         n "I'll make it up."
-        
+
     g "But you know what really hates you right now?"
     n "Your ass?"
     g "My ass is so fucking jealous right now."
@@ -324,9 +325,9 @@ label epthirteen:
     g "Fill me!"
     with vpunch
     g "Ahhh ha ha!"
-    with vpunch 
+    with vpunch
     g "I can feel it!"
-    
+
     scene bg black
     with fade
     "{b}Ten Minutes Later{/b}"
@@ -341,13 +342,13 @@ label epthirteen:
  #   n "It's pretty sexy."
   #  g "Alright, time for that table!"
    # n "I'll carry you there."
-    
+
     scene bg black
     image gracehouseani4 = Movie(play="gracehouseani4.webm")
     scene gracehouseani4
     with dissolve
     pause
-    
+
     g "Shiiiit!"
     g "You know, we didn't quite make it to the table."
     n "Really?"
@@ -365,7 +366,7 @@ label epthirteen:
     image gracehouseani5 = Movie(play="gracehouseani5.webm")
     scene gracehouseani5
     with dissolve
-    
+
     g "Fuuuuckkk!"
     g "A torturous week of waiting, and you did not disappoint."
     g "I love- {w}your dick!"
@@ -379,6 +380,7 @@ label epthirteen:
     scene bg black
     with fade
     g "Here's your coffee, good sir."
+    $ renpy.end_replay()
     image gracehouseani11 = Movie(play="gracehouseani11.webm")
     scene gracehouseani11
     with dissolve
@@ -416,10 +418,10 @@ label epthirteen:
             else:
                 g "Thanks, [n]."
                 g "I really like you too."
-            
+
             g "But that's not exactly the topic I was thinking of."
             n "Really? What were-"
-            
+
         "...keep things the way they are.":
             n "I like you."
             n "I really do."
@@ -453,7 +455,7 @@ label epthirteen:
     g "We should talk it out."
 label graceboringchat:
     g "How are you doing, buddy?"
-    menu: 
+    menu:
         "I'm alright":
             n "I'm alright."
             g "Really?"
@@ -564,7 +566,7 @@ label graceboringchat:
         g "Anyone else would have admitted it by now."
         n "Good point."
     pause
-    
+
     n "Shit, you're tight!"
     n "I'm about to bust."
     g "Not in my pussy!"
@@ -573,7 +575,7 @@ label graceboringchat:
     g "What?"
     n "Are you forgetting blue balls syndrome?"
     g "Oh shut up."
-    
+
     scene 13graceroom1
     with fade
     n "This is it?"
@@ -593,7 +595,7 @@ label graceboringchat:
             n "A shrine."
             g "To what?"
             n "Me, of course."
-            
+
     g "Right."
     "I opened the door."
     scene 13graceroom2
@@ -608,7 +610,7 @@ label graceboringchat:
     n "Guess I'd better get to know you better."
     g "Can I be on top?"
     n "This is why you're the best."
-    
+
     scene bg black
     image gracehouseani7 = Movie(play="gracehouseani7.webm")
     scene gracehouseani7
@@ -708,7 +710,7 @@ label graceboringchat:
             n "You want to have a conversation with cum dripping down your face?"
             g "I already cleaned myself off like three times today."
             g "But seriously."
-            
+
         "Cum on her stomach":
             n "Cum for me!"
             g "AHHHH!"
@@ -728,9 +730,9 @@ label graceboringchat:
             g "But I really think we should talk about this."
             n "Why?"
             g "Because you aren't dealing with the fallout."
-    
+
     g "You are only distracting yourself with sex."
-    
+
     g "How many times would you say you've fucked since I saw you last?"
     n "One more time makes a hundred."
     g "Really?"
@@ -741,10 +743,10 @@ label graceboringchat:
     n "Is that a no?"
     g "My pussy is too sore."
     n "How's your ass?"
-    
+
     g "I'm serious!"
-    
-    
+
+
 
     g "[n]?"
     n "Yes, Grace?"
@@ -814,7 +816,7 @@ label continuegraceboringchat:
             g "Seriously?"
             g "After everything else going on, she still wanted to go under your spell?"
             n "Who am I to say no?"
-            
+
     n "You asked me why I haven't reacted."
     n "I'm worried that if I react, I'm going to find that the experience turned me into an asshole."
     n "I have spent the past week trying to continue my life like everything is normal."
@@ -883,7 +885,7 @@ label continuegraceboringchat:
         g "Something like that."
     g "How are you going to use your power?"
     $ donewithwatch = False
-    
+
     menu:
         "I'm going to start using the watch selfishly [BadassPath]":
             $ good = False
@@ -896,7 +898,7 @@ label continuegraceboringchat:
             n "Did that happen?"
             n "I'm pretty sure you're imagining it."
             g "Mmm hmm."
-            
+
         "I'm going to use the watch for good [GoodBoyfriendPath]":
             $ good = True
             n "I'm going to use the watch for good."
@@ -927,8 +929,8 @@ label continuegraceboringchat:
             n "The lyrics, I mean."
             n "Your vocals are straight garbage."
             g "Like Shirley Manson? I'll take it."
-            
-        "I'm done with the watch [BoyfriendPath] [blue]\[DoneWithWatch\]":
+
+        "I'm done with the watch [BoyfriendPath] [gr]\[DoneWithWatch\]":
             $ good = False
             $ donewithwatch = True
             n "I'm done with the watch."
@@ -939,9 +941,9 @@ label continuegraceboringchat:
             n "Yeah, yeah."
             n "But after that."
             n "I'm done."
-            
-    
-    
+
+
+
     n "You know what?"
     n "You're a lot cooler than I realized."
     g "That's because you never hang out with me alone."
@@ -999,7 +1001,7 @@ label continuegraceboringchat:
     else:
         g "How many slutty things she would do to you."
         n "Oh yeah?"
-        
+
     g "Anyway."
     g "Wanna fuck?"
     n "Actually, no."
@@ -1073,7 +1075,7 @@ label continuegraceboringchat:
         g "Holy shit, that feels so good to say!"
     else:
         menu:
-            "I love you too.":
+            "I love you too. [gr]\[GraceLove\]":
                 n "I love you too."
                 g "Holy shit, that feels so good to say!"
                 $ gracelove = True
@@ -1083,7 +1085,7 @@ label continuegraceboringchat:
                 g "Asshole!"
                 g "I don't even care!"
                 g "That feels so good to say!"
-    
+
     g "And you know what else feels good?"
     g "I'm about to climax for the thirty-seventh time today!"
     n "Ride it."
@@ -1106,8 +1108,8 @@ label continuegraceboringchat:
     g "Mmmmmm."
     pause
     g "Can I keep going?"
-    
-    
+
+
     n "I'm not going to say no."
     g "How about you imagine we are at the resort?"
     n "Is Daphne there?"
@@ -1122,8 +1124,8 @@ label continuegraceboringchat:
     scene gracehouseani15
     with fadein
     pause
-    
-    
+
+
     g "Hey, you know how I mentioned we had plenty of time before my dad came home?"
     n "Yeah?"
     g "Well, our plenty of time is just about up."
@@ -1155,7 +1157,7 @@ label continuegraceboringchat:
     g "You could leave me with all three holes dripping."
     pause
     menu:
-        "Sure":
+        "[gr]Sure":
             g "Proving your bravery, are we?"
             g "Fine with me."
             g "But first, can you do something for me?"
@@ -1174,12 +1176,12 @@ label continuegraceboringchat:
             n "Uh!"
             with vpunch
             n "Fuck!"
-            
+
             with vpunch
             scene bg black
             scene gracehouseani15
             with fade
-            
+
         "Hell no":
             n "Hell no."
             g "Probably a good call."
@@ -1194,11 +1196,11 @@ label continuegraceboringchat:
 label endofgraceconversation:
     scene bg black
     with fade
-                
+
     "I headed back to Ashley's."
     scene bg carmirror2
     with fade
- 
+
     if tiffany:
         jump tifcall
     if barkeep:
@@ -1207,13 +1209,13 @@ label endofgraceconversation:
             "Who should I make plans with?"
             menu:
                 "Rachel":
-                    
+
                     "I called Rachel."
                     r "Hey, [n]."
                     n "Hey! Are we still on for tonight?"
                     r "Sure."
                     n "Cool. I'll call you in a bit."
-                "Hottie Bartender":
+                "Hottie Bartender [red]\[RachelDate\]":
                     $ racheldate = False
                     "I called Hottie Bartender."
                     hb "Hey."
@@ -1249,7 +1251,7 @@ label endofgraceconversation:
                                 n "Do you need anything?"
                                 t "Not exactly."
                                 t "I was just thinking of opening a bottle of wine and seeing if you were around."
-                                
+
                                 if racheldate:
                                     "{i}Shit, I already told Rachel I'd see her tonight.{/i}"
                                     menu:
@@ -1260,8 +1262,8 @@ label endofgraceconversation:
                                             n "Well, I appreciate the offer."
                                             n "Another time?"
                                             t "Sure."
-                                            
-                                        "Cancel with Rachel":
+
+                                        "Cancel with Rachel [gr]\[TiffanyDate\] [red]\[RachelDate\]":
                                             $ tiffanydate = True
                                             $ racheldate = False
                                             n "You know what?"
@@ -1281,8 +1283,8 @@ label endofgraceconversation:
                                             r "It's tonight or never."
                                             n "Well, call me if you change your mind."
                                             "I hung up."
-                                             
-                                        "[blue]\[Recommend\] Try to do both":
+
+                                        "Try to do both [gr]\[TiffanyDate\]":
                                             $ tiffanydate = True
                                             n "That sounds like fun."
                                             n "I'm meeting with a friend for dinner, maybe I could drop by after?"
@@ -1291,11 +1293,11 @@ label endofgraceconversation:
                                             n "I know the feeling."
                                             n "Cool, I'll call you when I'm done with dinner and see if you're still awake."
                                             t "Sounds like a plan."
-                                            
-                                       
+
+
                                 else:
                                     menu:
-                                        "Accept":
+                                        "Accept [gr]\[TiffanyDate\]":
                                             $ tiffanydate = True
                                             n "That sounds like fun."
                                             n "What time works for you?"
@@ -1305,7 +1307,7 @@ label endofgraceconversation:
                                             n "Well, I'm heading back into the city now, so I can be there in about an hour."
                                             t "Sounds good."
                                             t "See you then!"
-                                            
+
                                         "Decline":
                                             n "That sounds fun, but I'm out of town tonight."
                                             t "Oh! That's a shame."
@@ -1313,10 +1315,10 @@ label endofgraceconversation:
                                             t "Maybe another time?"
                                             n "Totally."
                                             t "Okay. Bye, [n]."
-                                               
-                                               
-                            
-                                
+
+
+
+
                             "No":
                                 n "I'm afraid not."
                                 n "I'm meeting up with a friend for dinner."
@@ -1327,7 +1329,7 @@ label endofgraceconversation:
                                 t "Sure."
                     "Decline":
                         "{i}I think I have enough girls at the moment.{/i}"
-                      
+
         else:
             label rachelchance:
             "My phone rang."
@@ -1347,7 +1349,7 @@ label endofgraceconversation:
                 r "Want to come over and fuck me repeatedly?"
                 n "Oh!"
                 menu:
-                    "Sure":
+                    "Sure [gr]\[RachelDate\]":
                         $ racheldate = True
                         n "Sure."
                         r "Cool!"
@@ -1370,7 +1372,7 @@ label endofgraceconversation:
                     else:
                         r "Face it. You're leading her on."
                     menu:
-                        "Ask to meet up":
+                        "Ask to meet up [gr]\[RachelDate\]":
                             $ racheldate = True
                             n "Alright, want to meet up to talk about it?"
                             r "I guess so."
@@ -1381,12 +1383,12 @@ label endofgraceconversation:
                             n "Cool story, bro."
                             n "But you don't need to worry about it."
                             "I hung up."
-                    
+
                 else:
                     r "You haven't asked me out on a date yet."
                     n "Oh!"
                     menu:
-                        "Ask her out":
+                        "Ask her out [gr]\[RachelDate\]":
                             n "I'd like to remedy that."
                             r "Cool."
                             r "How about tonight?"
@@ -1478,7 +1480,7 @@ label endofgraceconversation:
     a "Don't you have to get pissed off with each other first?"
     scene 13ashcouch7
     n "We'll work on that."
-    
+
     B "Is that [n]?"
     scene 13ashcouch6
     a "Yeah, he just got home."
@@ -1535,7 +1537,7 @@ label endofgraceconversation:
     scene 13beth7
     n "Umm..."
     menu:
-        "Accept":
+        "Accept [gr]\[BethCreamed\]":
             $ bethcreamed = True
             n "Sure."
             scene 13beth8
@@ -1546,7 +1548,7 @@ label endofgraceconversation:
             scene bg black
             with fade
             "I took the bottle of creamer into the bathroom to top it off, the thought of Beth drinking it later helping me with my cause."
-    
+
         "[gr]Decline":
             if bethfacial:
                 n "Isn't that a bit..."
@@ -1600,7 +1602,7 @@ label endofgraceconversation:
                         a "You totally don't have to."
                         n "No, it's fine."
                         a "Is that alright?"
-                        n "Anything for you."  
+                        n "Anything for you."
                         a "Alright, how about I blow you, then I'll spit in the creamer?"
                         n "Works for me."
                         scene bg black
@@ -1623,14 +1625,14 @@ label endofgraceconversation:
                         n "Thank you."
                         a "No problem."
                 jump aftercream
-                
+
             else:
-                
+
                 n "I'm sorry."
                 n "I'm not comfortable with that."
                 "She flinched and I recognized the sound of desperation in her voice."
                 scene 13beth8
-                
+
                 B "Please?"
                 B "I... {w}I need it."
                 scene 13beth7
@@ -1648,8 +1650,9 @@ label endofgraceconversation:
                 scene 13beth8
                 B "{i}I'll do it right now.{/i}"
                 scene 13beth7
-                menu: 
-                    "Accept":
+                menu:
+                    mod "Save Here (Scene Incomplete)"
+                    "Accept [gr]\[Beth\]":
                         $ beth = True
                         $ bethbj = True
                         n "{i}Holy shit.{/i}"
@@ -1701,8 +1704,8 @@ label endofgraceconversation:
                         scene 13beth8
                         B "{i}You're a good kid.{/i}"
                         jump bottleservice
-                            
-                            
+
+
     scene bg black
     with fadeout
     "I returned to Ashley."
@@ -1735,7 +1738,7 @@ label endofgraceconversation:
             n "And it's a short song."
             a "You suck."
             n "Oooo, yeah."
-            
+
         "Lie":
             n "She asked me to help around the house."
             a "Seriously?"
@@ -1751,13 +1754,13 @@ label endofgraceconversation:
             a "You can fall asleep inside of me again."
             a "And then keep blasting loads into me as we both sleep."
             n "Tempting."
-                
-            
+
+
 label aftercream:
     a "Anyway!"
     a "What are your plans for the evening?"
     n "I'm going to meet up with a friend."
-    
+
     a "Try not to cum inside him or her."
     n "I'll try."
     a "You don't need to create another addict to stalk you."
@@ -1875,7 +1878,7 @@ label aftercream:
                 a "Damn right! I'm scrappy."
     else:
         menu:
-            "Tell her about last night":
+            "Tell her about last night [gr]\[ToldAshley\]":
                 $ toldashley = True
                 n "Alright, here it goes."
                 "I dropped my voice."
@@ -1903,7 +1906,7 @@ label aftercream:
                 a "Whyyyy?"
                 n "No reason."
                 a "Sure."
-    
+
     n "Anyway, I didn't really have lunch."
     n "Or breakfast."
     a "There's leftovers."
@@ -1929,9 +1932,10 @@ label aftercream:
         r "Yeah, okay."
         n "Cool."
         n "I'll pick you up in an hour."
-    
-        
+
+
         if rcum:
+            label galleryScene34:
             scene rachelhouse1
             with fadehold
             pause
@@ -1963,7 +1967,7 @@ label aftercream:
             with dissolve
             pause
             r "Coming?"
-            scene rachelhouse8 
+            scene rachelhouse8
             with fade
             r "It was only yesterday that my hand stopped shaking."
             r "But when I realized you were coming over to pick me up...{p}...and my parents aren't home..."
@@ -2010,7 +2014,7 @@ label aftercream:
             r "The only conversation happening is between your cock and my pussy."
             scene rachelhouse19
             with dissolve
-            pause 
+            pause
             r "Now, let's converse."
             n "If you want this dick..."
             "I stood up."
@@ -2022,6 +2026,7 @@ label aftercream:
             r "You'd better not be fucking serious."
             "I smacked her ass."
             n "Let's go!"
+            $ renpy.end_replay()
         scene rachelpark1
         with fadehold
         pause
@@ -2033,11 +2038,11 @@ label aftercream:
         r "Oh!"
         r "Lucky!"
         r "Any longer and you would have had to carry me."
-        if rcum: 
+        if rcum:
             n "With my dick."
         scene rachelpark3
         with dissolve
-        
+
         n "Here we go."
         r "This is it?"
         r "[n]!"
@@ -2075,7 +2080,7 @@ label aftercream:
             with dissolve
             r "That just gave me shivers."
             scene rachelpark7
-        
+
             with dissolve
             pause
             scene rachelpark8
@@ -2099,14 +2104,14 @@ label aftercream:
             scene rachelpark9
             with dissolve
             r "It's never a good thing."
-        
+
         n "Shall we sit?"
         r "Fine."
         scene bg black
         image rachelparkani1 = Movie(play="rachelparkani1.webm")
         scene rachelparkani1
         with fade
-        if rcum: 
+        if rcum:
             r "So..."
             r "What do you want to talk about?"
             n "Two things."
@@ -2115,7 +2120,7 @@ label aftercream:
             r "There is no us."
             n "That's what you keep saying."
             n "But when I show up today, you look at me like I'm your meth dealer."
-            
+
             r "I'm fine with things the way they are."
             r "You're just great dick."
             r "I'd rather have you more than once a week, but I'll still take what I can get."
@@ -2158,7 +2163,7 @@ label aftercream:
         r "What about when there is a great view?"
         menu:
             "Make a joke":
-                
+
                 n "I only brought you up here in case I wanted to kill you."
                 r "Why would you want to do that?"
                 n "It depended on this conversation."
@@ -2287,12 +2292,12 @@ label aftercream:
                     image rachelparkani2 = Movie(play="rachelparkani2.webm")
                     scene rachelparkani2
                     with fadehold
-            
+
                     pause
                     r "Fuuuuuuuck yes!"
                     n "Damn, girl!"
                     r "I've been waiting for this for so fucking long."
-                    
+
                 "Turn her down":
                     n "You know what?"
                     n "You might be right. Maybe I do have a bigger responsibility."
@@ -2326,7 +2331,7 @@ label aftercream:
             r "Yep."
             n "Good to know."
             menu:
-                "Ask her to prove it":
+                "[gr]Ask her to prove it":
                     n "Prove it."
                     r "Right now?"
                     n "No, I meant-"
@@ -2444,12 +2449,13 @@ label aftercream:
         with dissolve
         pause
         r "Well?"
+        $ renpy.end_replay()
         menu:
             "Stay with Rachel":
                 n "Who am I to say no?"
                 r "Let's go."
                 jump stayrachel
-            "Leave [blue]\[Bartender / Tiffany\]":
+            "Leave [blue]\[Bartender/Tiffany\]":
                 n "Sorry, beautiful."
                 n "I have plans."
                 scene bg black
@@ -2458,8 +2464,8 @@ label aftercream:
                 scene bg car
                 with fade
                 jump afteracheldate
-            
-            
+
+
     else:
         label afteracheldate:
         if tiffanydate:
@@ -2487,9 +2493,9 @@ label aftercream:
                 jump bartenderdate
             else:
                 jump nightnight13
-            
+
     #                                   Hottie Bartender Date
-    
+
 label stayrachel:
     scene rachelbed1
     with fadehold
@@ -2751,8 +2757,8 @@ label stayrachel:
     r "Mmmmmm."
     pause
     jump end
-    
-    
+
+
     # the topic of power. She's a bad influence.
 label bartenderdate:
     scene hb20
@@ -2908,7 +2914,7 @@ label bartenderdate:
     scene hb21
     with dissolve
     pause
-    
+
     gg "Here are your drinks."
     scene hb22
     with dissolve
@@ -3045,7 +3051,7 @@ label bartenderdate:
                                 with fade
                                 "I grabbed the drinks and went back to the table."
                                 jump michelle
-                        
+
                     n "Well played."
                     "I returned."
                 "[gr]Laugh it off":
@@ -3060,7 +3066,7 @@ label bartenderdate:
                     K "Well, she is about three-quarters of the way done with her drink."
                     K "So I suppose I should let you off easy."
                     K "Besides, if Bailey is going to date someone, I'd prefer that they can put up with my bullshit."
-                    
+
                     n "Fair enough."
                     if kate:
                         K "And you even put up with my bitchy act when you came in."
@@ -3151,7 +3157,7 @@ label bartenderdate:
             with fade
             "I downed both drinks before heading out."
             jump nightnight13
-    
+
     if toldoffkate:
         label michelle:
         scene bg black
@@ -3210,7 +3216,7 @@ label bartenderdate:
         ba "Wait, it does what now?"
         n "-but that's something within the abilities of the human mind."
         n "If you can use hypnosis to quit smoking, adjusting your hormone levels and causing growth isn't that big of a stretch."
-        
+
     ba "Sure, sure."
     n "Well, technically, it causes a big stretch, but..."
     n "Anyway."
@@ -3437,12 +3443,12 @@ label bartenderdate:
             n "Yep!"
             ba "This is going to be fun."
             scene bg black
-            
+
             image hbani10 = Movie(play="hbani10.webm")
             scene hbani10
             with fadehold
             pause
-            
+
         "No thank you!":
             n "No thank you!"
             ba "Straight to the point, huh?"
@@ -3450,7 +3456,7 @@ label bartenderdate:
             ba "You want to watch these big fake tits bounce while I ride you, is that it?"
             n "Yes please."
             jump baileybounce
-            
+
     ba "Fuuuuck this is a nice big cock!"
     n "I'm glad you're enjoying the ride."
     ba "We can try all the weird positions where you can still reach me from across the room!"
@@ -3539,14 +3545,14 @@ label bartenderdate:
     pause
     scene bg black
     with fadeout
-    
+
     if evil:
         "That is the end of this update."
         "You played the 'evil path in this version of the episode."
         "In the 'good' path, things go a bit differently."
         "In Episode 12, you would chat with the neighbor at your uncle's apartment instead of talking to Hottie Bartender on the phone."
         "She calls you and invites you over to her place for a glass of wine and you meet her there after your date with Rachel."
-        
+
         "The option to join the 'good' path is all the way back in Episode Ten."
         "Would you like to skip to the date with Tiffany?"
         menu:
@@ -3556,9 +3562,9 @@ label bartenderdate:
                 jump nightnight13
     else:
         jump nightnight13
-    
-    
-    
+
+
+
     #                                   Tiffany Date
 label tifdate:
     scene apartmentdoor
@@ -3702,7 +3708,7 @@ label tifdate:
                 n "Not exactly."
             n "I only wanted to tell you my fact that scares people off."
             n "Well, actually, it's been having the opposite effect lately."
-            
+
             t "The girls won't stay away from you?"
             n "Actually, yeah."
             n "But that's for an unrelated issue."
@@ -3722,7 +3728,7 @@ label tifdate:
             n "Like, the girl I'm staying with-"
             t "Your friend's little sister?"
             n "No, her friend."
-            if both: 
+            if both:
                 n "But they hook up too."
                 t "Like a love triangle?"
                 n "Kind of, yeah. And I helped bring them together."
@@ -3845,7 +3851,7 @@ label tifdate:
                             t "Is that a warning?"
                             n "Definitely."
                             n "I'm an animal, after all."
-                            
+
                         "Hold back":
                             n "Hard to say."
                             n "They keep changing places."
@@ -3854,8 +3860,8 @@ label tifdate:
                     t "Guys don't have a 'friend zone'. There is only fuckable and unfuckable."
                     t "That's the theory, anyway."
                     t "And I have yet to see it contradicted."
-                    
-                    
+
+
                 "Disagree":
                     n "I disagree."
                     t "Oh?"
@@ -3897,7 +3903,7 @@ label tifdate:
                         "No":
                             n "Probably not."
                             t "Figures."
-                
+
         "Just the cliffnotes":
             n "My grandfather was a magician."
             n "He passed on his magical pocket watch that lets me hypnotize people."
@@ -3913,14 +3919,14 @@ label tifdate:
             n "I hypnotized my friend's little sister with my grandpa's pocket watch."
             n "I told her tits would grow bigger."
             n "And they did."
-            
+
             $ tiflong = False
             jump tiffy
-        
-        
-        
+
+
+
     menu:
-        "Challenge her theory":
+        "Challenge her theory [gr]\[TiFriendZone\]":
             $ tifriendzone = True
             n "You know what?"
             n "I think that I can prove to you that I'm capable of being 'just friends' with a girl."
@@ -3958,8 +3964,8 @@ label tifdate:
             n "Okay, but now that you mention it..."
             n "...have your tits been growing since we started this conversation?"
             t "Oh, absolutely."
-            
-        "Let her have this one":
+
+        "Let her have this one [red]\[TiFriendZone\]":
             $ tifriendzone = False
             n "I could buy it."
             t "So you're saying that if, given the chance, you would fuck me?"
@@ -3999,9 +4005,9 @@ label tifdate:
             t "I figured I would wait until we finished the bottle of wine, and here we are."
             t "I'm a mom."
             t "I have a daughter."
-                
-        
-        
+
+
+
     t "I pumped a few hours ago, and they have been slowly swelling ever since."
     n "Huh."
     t "So, that brings this conversation full circle."
@@ -4035,7 +4041,7 @@ label tifdate:
             n "Let me start by saying that if you want to call it a night, I totally understand and I will head back across the hall."
             n "But if you are under the impression that I'm not fully enjoying your company, you are dead wrong."
             n "I don't judge, but if I did, I wouldn't consider either of the life choices you mentioned as poor ones."
-            
+
     n "You make a good living by looking so good that guys literally throw money at you? Good for you."
     n "You have a daughter? That's awesome. You should never apologize for bringing a life into this world."
     n "And your personality is anything but shitty."
@@ -4055,7 +4061,7 @@ label tifdate:
     t "But I really do need to go pump."
     t "It usually takes about fifteen minutes, and if you want, you can wait out here and watch TV or something."
     t "I'm sorry, I know it's gross, but it's my life."
-    menu:
+    menu galleryScene36:
         "Sounds good.":
             n "Sounds good."
             t "Okay."
@@ -4107,9 +4113,9 @@ label tifdate:
             n "Nah."
             n "My mind is made up."
             scene bg black
-            with fade 
+            with fade
             "Ten Minutes Later"
-            
+
         "Actually... [blue]\[Lactation\]":
             n "Actually... {w}I don't think it's gross at all."
             t "What do you mean?"
@@ -4171,7 +4177,7 @@ label tifdate:
             n "I can see that."
             t "So...{w} what do you think?"
             menu:
-                "I think it's sexy":
+                "I think it's sexy [gr]\[Lactation\]":
                     $ lactation = True
                     n "I think it's sexy as fuck."
                     t "Really?"
@@ -4219,14 +4225,14 @@ label tifdate:
                     t "Don't forget the other one!"
                     scene tifhome23
                     with dissolve
-                    pause       
+                    pause
                     t "Fuck, this is so hot!"
                     t "After all the wine I drank, I wonder if my milk would be enough to get you tipsy?"
                     t "How does it taste?"
                     image tifani5 = Movie(play="tifani5.webm")
                     scene tifani5
                     with dissolve
-                    
+
                     n "It's surprisingly sweet."
                     t "I wonder if that's the wine?"
                     pause
@@ -4281,7 +4287,7 @@ label tifdate:
     scene tifani9
     with dissolve
     pause
-    
+
     t "HOLY SHIT!"
     t "And you live right across the hall?"
     t "I think you found yourself your own private stripper!"
@@ -4329,7 +4335,7 @@ label tifdate:
     image tifani8 = Movie(play="tifani8.webm")
     scene tifani8
     with dissolve
-    pause 
+    pause
     t "Holy shit!"
     t "That was..."
     t "Wow."
@@ -4346,7 +4352,7 @@ label tifdate:
     with fade
     pause
     "One Minute Later"
-    
+
     scene bg black
     image tifani11 = Movie(play="tifani11.webm")
     scene tifani11
@@ -4398,8 +4404,8 @@ label tifdate:
     else:
         n "I aim to please."
     pause
-    
-    
+    $ renpy.end_replay()
+
 label nightnight13:
     scene bg black
     with fadehold
@@ -4430,6 +4436,3 @@ label nightnight13:
                 "Right on."
                 "Thanks for playing the beta version!"
     jump end
-        
-        
-    
