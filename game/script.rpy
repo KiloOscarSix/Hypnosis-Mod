@@ -3,6 +3,7 @@ init python:
     red = "{color=#f00}"
     blue = "{color=#00f}"
     BoyfriendPath = "{color=#0f0}[Boyfriend Path]"
+    GoodBoyfriendPath = "{color=#0f0}[Boyfriend/Good Path]"
     BadassPath = "{color=#0f0}[Badass Path]"
 
 default kissgrace = False
@@ -36,7 +37,6 @@ default metaera = False
 default controlfreak = False
 default loveleah = False
 default endingtwo = False
-default hypnodaphne = True
 default hypbrit = False
 default barkeep = False
 default hypdaphne = False
@@ -44,15 +44,35 @@ default lovelaura = False
 default mybitch = False
 default hatelaura = False
 default intro = False
+default rachelpath = False
+default racheldate = False
+default tiffanydate = False
+default lauraspell = True
+default fuckedaphne = False
+default ashleymomtruth = False
+default lactation = False
+default tiffany = False
+default bethbj = False
+# initially you walked past her in the hall, but she gave you a beej the next day.
+default bethcreamed = False
+# you came inside the creamer for Beth when she asked in Episode 13
+
+
 # The script of the game goes in this file.
 
 image slideshow:
 
-    "front1" with fade
+    "13ashcouch8" with fade
     pause 3.0
-    "maindaph" with fade
+    "13beth6" with fade
     pause 3.0
-    "front6" with fade
+    "graceblink1" with fade
+    pause 3.0
+    "hb18" with fade
+    pause 3.0
+    "rachelhouse3" with fade
+    pause 3.0
+    "tifhome2" with fade
     pause 3.0
     "laurahyp1" with fade
     pause 2.0
@@ -109,9 +129,25 @@ define B = Character("Beth", color="#f0b27a")
 define d = Character("Daphne", color="#aeb6bf")
 define c = Character("Kassie", color="#f44336")
 define k = Character("Uncle Ken", color="#00aeff")
-
+define K = Character("Kate", color="#F9C058")
+define M = Character("Michelle", color="#F9FB64")
+define ba = Character("Bailey", color="#F9FB64")
+define hb = Character("Hottie Bartender", color="#F9FB64")
+define gg = Character("Girl In Green", color="#00DC7D")
 # The game starts here.
 
+image intro = Movie(play="intro.webm")
+
+label splashscreen:
+    scene black
+    play sound "mixkit-it-hurts-to-fight.mp3" fadein 3.0
+    $ renpy.pause(0.1)
+
+    $ renpy.movie_cutscene("intro.webm")
+    with fade
+    scene bg black
+    with fade
+    return
 
 label start:
 
@@ -264,7 +300,7 @@ label start:
             pause
 
         c "I won't be offended."
-
+    stop sound fadeout 5.0
     scene bg black
     with fade
     centered "Prologue"
@@ -7621,7 +7657,6 @@ menu:
     "[gr]Take Laura on a date":
         jump takeldate
     "Turn her down":
-        $ laurarom = False
         n "Hey, I'm really sorry, but I don't really see you that way."
         "She responded right away."
         l "Ha ha! Good joke."
@@ -7633,6 +7668,7 @@ menu:
             l "I sucked your dick!"
             n "Oh. Right."
         l "You hypnotized me to make my boobs bigger."
+        $ laurarom = False
         n "As a favor to you, yes."
         l "Come on! Take me out to dinner tonight."
         l "I won't bother you again."
@@ -18807,7 +18843,7 @@ label whales:
             n "What is it?"
             L "This lack of jealousy thing is pretty cool."
         else:
-            L "Did you start your new job as bartender?"
+            L "Did you start your new job as a bartender?"
             scene leah bedf2
             n "Yeah."
             scene leah bedf3
@@ -20323,12 +20359,21 @@ label bars:
     C "Ouch!"
     scene cory bar1
     with dissolve
-    "I looked around before spotting a familiar face."
-    "{i}Looks like Laura's sister sitting next to her friend.{/i}"
-    "{i}What the fuck is her name again?{/i}"
-    scene cory bar8
-    with dissolve
-    "{i}I think it started with a B.{/i}"
+    if laurarom:
+        "I looked around before spotting a familiar face."
+        "{i}Looks like Laura's sister sitting next to her friend.{/i}"
+        "{i}What the fuck is her name again?{/i}"
+        scene cory bar8
+        with dissolve
+        "{i}I think it started with a B.{/i}"
+    else:
+        if gracerom:
+            "I looked around before spotting a familiar face."
+            "{i}Looks like Laura's sister sitting next to her friend.{/i}"
+            "{i}What the fuck is her name again?{/i}"
+            scene cory bar8
+            with dissolve
+            "{i}I think it started with a B.{/i}"
     n "Alright, man. This is for you."
     scene cory bar9
     with dissolve
@@ -20341,15 +20386,29 @@ label bars:
     n "Hey! How's it going?"
     scene bs1
     with dissolve
-    "B Name" "Hey there."
+    if laurarom:
+        "B Name" "Hey there."
+    else:
+        "..." "Hey there."
     scene bs6
     with dissolve
-    if chooseleah:
-        n "We met last night briefly."
+    if laurarom:
+        if chooseleah:
+            n "We met last night briefly."
+        else:
+            n "We met the other night."
+        scene bs7
+        "B Name" "Oh, I'm aware."
     else:
-        n "We met the other night."
-    scene bs7
-    "B Name" "Oh, I'm aware."
+        if gracerom:
+            if chooseleah:
+                n "We met last night briefly."
+            else:
+                n "We met the other night."
+        else:
+            "..." "Hey, do you know my sister?"
+            n "Who is your sister?"
+            "..." "Laura."
     scene bs4
     "Other Girl" "Hey Brittany, who's your friend?"
     n "[n]."
@@ -20357,23 +20416,42 @@ label bars:
     n "Nice to meet you."
     s "Wait. Is this the guy that-"
     scene bs3
-    if grace:
-        if laura:
-            b "-that I met as he was getting a blowie from my sweet innocent little sister?"
+    if gracerom:
+        if grace:
+            if laura:
+                b "-that I met as he was getting a blowie from my sweet innocent little sister?"
+            else:
+                b "-that was creeping on my sister?"
+            b "Yeah, this is him."
+            "Shelby looked me up and down."
+            scene bs4
+            s "Interesting."
         else:
-            b "-that was creeping on my sister?"
-        b "Yeah, this is him."
-        "Shelby looked me up and down."
-        scene bs4
-        s "Interesting."
+            if gracerom:
+                b "-that I met as he was in my childhood room doing sexual acts with a high school girl?"
+            s "Yep."
+            b "He's the one. Apparently he is old enough to be in a bar."
+            "Shelby looked me up and down."
+            scene bs4
+            s "Interesting."
     else:
-        if gracerom:
-            b "-that I met as he was in my childhood room doing sexual acts with a high school girl?"
-        s "Yep."
-        b "He's the one. Apparently he is old enough to be in a bar."
-        "Shelby looked me up and down."
-        scene bs4
-        s "Interesting."
+        if laurarom:
+            if laura:
+                b "-that I met as he was getting a blowie from my sweet innocent little sister?"
+            else:
+                b "-that was creeping on my sister?"
+            b "Yeah, this is him."
+            "Shelby looked me up and down."
+            scene bs4
+            s "Interesting."
+        else:
+            if gracerom:
+                b "-that I met as he was in my childhood room doing sexual acts with a high school girl?"
+            s "Yep."
+            b "He's the one. Apparently he is old enough to be in a bar."
+            "Shelby looked me up and down."
+            scene bs4
+            s "Interesting."
     scene bs2
     b "Very."
     scene bs5
@@ -23021,7 +23099,7 @@ label gorachel:
     n "Poor girl."
     scene bg black
     with fade
-    "We kissed again as she took off her pants and started to pull mine off."
+    "We kissed again as we began undressing each other."
     "She fell on the bed, taking me in her mouth in one motion."
     image rachbj = Movie(play="rachbj.webm")
     show rachbj
@@ -23042,7 +23120,7 @@ label gorachel:
     scene rachdown3
     r "It is for Future Rachel."
     n "I agree. Fuck that bitch."
-    "I slid up to face her, dragging my dick along her thighs until it reached her pussy."
+    "I slid up to face her, dragging my dick up along her thighs until they met."
     scene rachdown4
     r "No, she's pretty cool."
     r "I'm just not very good to her when I drink."
@@ -23738,7 +23816,7 @@ label rachelhaley:
     "Silence."
     n "Come on! I never get to be one of the girls."
     n "I want to hear girl talk. Some behind the scenes shit."
-    "Pause."
+    pause
     scene hjrcouch3
     h "So is Valerie upstairs getting fucked by [n]'s friend?"
     n "Yep."
@@ -24298,7 +24376,7 @@ label rachelnorum:
     scene rachair9
     r "That's okay."
     r "Probably for the better."
-    r "Damn I'm drunk."
+    r "Damn, I'm drunk."
     r "It's those shots."
     n "They'll get you."
 
@@ -24822,7 +24900,7 @@ label coh:
         j "Yes!"
     scene jenncum1
     with fade
-    "I flipped her around and stroked myself as I started spurting all over her."
+    "I flipped her around and stroked myself as I started spraying all over her."
     scene jenncum2
     with vpunch
     j "Oh!"
@@ -25028,7 +25106,7 @@ label leaving:
         scene rachelcouch1
         "Rachel glared at me."
         scene rachelcouch2
-        r "That doesn't surprise me, Valerie."
+        r "That doesn't surprise me, Val."
         r "What I was asking was why Haley is holding [n]'s hand."
         scene haleycouch6
         v "Are they?"
@@ -25202,6 +25280,7 @@ label leaving:
     pause
     j "You got Leah pregnant?"
     n "No!"
+    "I gave Rachel a glare."
     scene jenntv3
     n "Yesterday morning Leah found a package at the front door."
     n "There was no shipping label, it just had my name on it."
@@ -25230,6 +25309,8 @@ label leaving:
     r "Still friends?"
     n "If you keep your grubby little fingers out of my personal business, sure."
     r "Deal."
+    n "Alright, everyone."
+    n "We'll see you later."
     "Cory and I headed home."
     $ valerie = True
     $ stayhome = False
@@ -33305,7 +33386,7 @@ label interviewrachel:
         with dissolve
         g "Yeah, I knew that too."
         h "How did you know?"
-        g "Laura called her out about the cum dripping down her leg."
+        g "Laura called her out about [n] dripping down her leg."
         scene intrachel8
         with dissolve
         h "Oh."
@@ -36349,11 +36430,11 @@ label aftermath:
                             scene rachbr1
                             with fade
                             pause
-                            n "Oh!"
+                            n "Oh"
                             scene rachbr2
-                            r "Hey."
+                            r "Hey, [n]."
                             scene rachbr1
-                            n "Holy shit! Hey!"
+                            n "Holy shit! Hey Rachel!"
                             scene rachbr2
                             r "Happy to see me?"
                             scene rachbr1
@@ -36592,6 +36673,7 @@ label aftermath:
                                     scene lauradazed3
                                     l "Yes, Master."
                                 "Stay":
+                                    $ rachelpath = True
                                     scene lauradazed2
                                     with fade
                                     n "Laura, I want you to know that I have the opportunity to escape this situation right now."
@@ -36684,6 +36766,7 @@ label aftermath:
                     show daphnebath2
                     with fade
                     pause
+                    $ fuckedaphne = True
                     d "Mmmm!"
                     d "Ohhhhhhh!"
                     "I had to support her weight as I felt her body fully relax in my arms."
@@ -36745,6 +36828,11 @@ label aftermath:
                             n "Ready?"
                             scene glbath1
                             g "Gimme gimme!"
+                    if rachelpath:
+                        if gracerom:
+                            jump fuckgrace
+                        else:
+                            jump rachel2
 
 
                 "Skip right to it":
@@ -36788,12 +36876,19 @@ label aftermath:
             $ renpy.end_replay()
 
         else:
-
+            if callrachel:
+                if rcum:
+                    scene bg black
+                    with fade
+                    "I sat back for a moment to close my eyes when I heard a voice."
+                    jump thanksrachel
             jump fuckgrace
     else:
         n "Whew!"
     if callrachel:
         if rcum:
+            scene bg black
+            with fade
             "I sat back for a moment to close my eyes when I heard a voice."
             jump thanksrachel
     if hatelaura:
@@ -36836,6 +36931,8 @@ label aftermath:
                 l "That's [p]'s job."
                 g "Yeah it is!"
                 g "Fuck that's good!"
+                if rachelpath:
+                    jump cumface
                 if hatelaura:
                     menu:
                         "Cum on both girls":
@@ -36937,7 +37034,8 @@ label aftermath:
                         pause
 
                         l "Hey!"
-
+                        if rachelpath:
+                            jump rachel2
                     "Keep choking her [BadassPath]":
                         $ hypnolaura = False
                         label hatelaura:
@@ -40936,7 +41034,9 @@ label meetbrit:
     $ threedayslater = True
     scene bg black
     with fade
-
+    if rachelpath:
+        $ lovelaura = True
+        jump rachelsaves
     "{b}Monday{/b}"
     scene ltrapped1
     with fade
@@ -41141,21 +41241,52 @@ label meetbrit:
     n "Oh yeah?"
     scene britroom4
     b "You never hear me coming."
-    scene britroom3
-    n "Disagree."
-    n "I'd say you are on the louder side."
-    scene britroom5
-    b "Oh shush."
+    if brittany:
+        scene britroom3
+        n "Disagree."
+        n "I'd say you are on the louder side."
+        scene britroom5
+        b "Oh shush."
     scene britroom3
     n "So really though..."
     scene britroom7
     with dissolve
+    if brittany:
+        b "I came in here to check on you."
+        if bcum:
+            b "See if I can't save you or whatever."
+            scene britroom6
+            n "That's sweet."
+        else:
+            scene britroom6
+            n "And?"
+            scene britroom7
+            b "And what?"
+            scene britroom6
+            n "Rescue me?"
+            scene britroom7
+            b "Oh. Yeah, I'll do that."
+            b "But only if you fuck me first."
+            scene britroom6
+            n "What?"
+            jump britkindaevil
 
-    b "I came in here to check on you."
-    b "See if I can't save you or whatever."
-    scene britroom6
-    n "That's sweet."
+    else:
+        b "I came to check on you."
+        n "And?"
+        b "And what?"
+        n "You know, rescue me or whatever?"
+        b "What do you need rescuing from?"
+        n "Your sister!"
+        b "I don't know."
+        b "You seem pretty good to me."
+        n "Seriously?"
+        b "Family first, you know?"
+        n "Damn."
+        n "That's cold."
+        jump rachelsaves
     scene britroom7
+
     b "Yeah, well."
     b "I'm a sweetheart."
     b "Unless..."
@@ -41190,7 +41321,28 @@ label meetbrit:
                 scene britroom6
                 n "Not that much time."
                 scene britroom7
-                b "Aww."
+                b "Come on."
+                b "I need it."
+
+                menu:
+                    "Give in":
+                        image britdoggie = Movie(play="britdoggie.webm")
+                        show britdoggie
+                        with fadein
+                        pause
+                        b "Holy fucking shit!"
+                        b "This gets better every time!"
+                        n "Shhh!"
+                        n "She could be back any minute!"
+                        b "I don't care!"
+                        b "All I care about is this diiicccckkkk!"
+                    "Turn her down":
+                        scene britroom6
+                        n "No, you have a good plan."
+                        n "We should stick with it."
+                        "She sighed."
+
+
                 scene bg black
                 with fade
                 "I followed Brittany's instructions."
@@ -41251,24 +41403,6 @@ label meetbrit:
                 n "Oh, Brittany."
                 scene britroom8
                 with dissolve
-                if bcum:
-                    b "So..."
-                    b "You going to fuck me again?"
-                    scene britroom9
-                    n "Not right now."
-                    n "I need to get the fuck out of here."
-                    n "But yes."
-                    n "I'd love to."
-                    scene britroom8
-                    b "Wonderful."
-                    b "Because I have been craving your cock like you wouldn't believe."
-                    scene bg black
-                    with fade
-
-                    "She kissed me."
-                    scene britroom11
-                    with fade
-                pause
                 n "Thanks for being my ninja."
                 scene britroom12
                 b "Anytime."
@@ -41350,6 +41484,7 @@ label meetbrit:
         n "I was in a hurry-"
         scene britroom7
         b "To go get yourself turned into Laura's little boy toy?"
+        label britkindaevil:
         b "You got what you wanted."
         if bcum:
             b "This way I have you waiting around for me."
@@ -41390,14 +41525,21 @@ label meetbrit:
             b "FUCK YES!"
             with vpunch
             b "Just like that!"
+    label rachelsaves:
     scene bg black
     with fadeout
     "{b}Tuesday Afternoon{/b}"
-    image laurafloating = Movie(play="laurafloating.webm")
-    show laurafloating
-    with fadein
-    pause
+
     if lovelaura:
+        label rachel2:
+            if rachelpath:
+                scene bg black
+                with fadeout
+                "{b}The Next Day{/b}"
+        image laurafloating = Movie(play="laurafloating.webm")
+        show laurafloating
+        with fadein
+        pause
         l "How were classes?"
         n "Not bad! You?"
         l "Pretty good."
@@ -41532,6 +41674,22 @@ label meetbrit:
                 l "But I'm afraid you are wrong."
                 n "How so?"
                 l "You do want to live here."
+                if rachelpath:
+                    n "I'm afraid you're mistaken."
+                    l "What?"
+                    n "I'm no longer under your command."
+                    l "How-"
+                    n "Jenn's friend came and saved me."
+                    l "What?"
+                    l "Then why are you here?"
+                    n "I wanted to test you."
+                    n "To give you a chance to redeem yourself."
+                    n "But apparently you think that's okay to control someone against their will."
+                    n "So I'm going to make this quick."
+                    n "Fuck you very much."
+                    n "Never talk to me again."
+                    n "Peace."
+                    jump leahsafe
                 n "Oh."
                 n "Right."
                 l "With me."
@@ -43495,115 +43653,23 @@ label meetbrit:
 
 
 
+
+label backtoreality:
+
+    pause
+    centered "Episode Thirteen Part One"
+    with fade
+    centered "Lucky"
+    jump epthirteen
 label end:
 
 label realend:
     scene bg black
     with fadeout
-    centered "End of Episode Twelve"
+    centered "End of Episode Thirteen Part One"
     with fade
     centered "Save your game before this to continue when the next episode is released."
     with fade
-    centered "Preview for Episode Thirteen"
-    with fade
-    "People keep pointing out that always leaving episodes on cliffhangers is a dick move."
-    "And the next episode won't be out until October, so here is me trying to be less of a dick."
-    pause
-    B "Ash! Get up if you want to shower!"
-    scene ashflated1
-    with fadein
-    B "Ashley!"
-    B "[n], can you shake her for me?"
-    scene ashflated2
-    with dissolve
-    a "Mom!"
-    a "I'm awake."
-    n "Good morning."
-    scene ashflated3
-    with dissolve
-    a "You know what?"
-    a "I'm not complaining or anything..."
-    a "...but I seem to sleep a lot more on nights when you aren't here."
-    scene ashflated4
-    with dissolve
-    n "I know what you mean."
-    n "I'm exhausted."
-    n "And super dehydrated."
-    scene ashflated5
-    with dissolve
-    a "That's funny."
-    a "I seem to have the opposite problem."
-    n "So it would appear."
-    a "So do you like it?"
-    a "Do you like the way I look after you filled me up with so much cum that I still look like this the next morning?"
-    n "I mean..."
-    n "Yeah."
-    scene bg black
-    with fadeout
-    "I got up to drink a bunch of water."
-    "When I finished I lay back down and closed my eyes."
-    with fade
-    B "Ashley!"
-    B "Why is your belly so big?"
-    B "Are you pregnant?"
-    a "No, mom."
-    B "Then I don't understand how-"
-    a "My belly is full of cum."
-    B "..."
-    B "What?!"
-    a "[n] pumped so many loads into me that I have a little cum baby."
-    B "I don't even-"
-    a "Actually, he filled me up from both directions-"
-    B "Okay!"
-    B "I don't not want to hear any more!"
-    B "Get changed!"
-    B "I am not taking you dressed like that!"
-    a "Sheesh."
-    scene ashflated7
-    with fade
-    a "Mom acts like she's never seen a girl that swallowed a gallon of cum before."
-    n "Wait, isn't it Saturday?"
-    a "Yeah, she's taking me to my driving appointment."
-    scene ashflated8
-    with dissolve
-    a "I'm going to get my drivers license!"
-    n "Scary thought."
-    a "Hey! Don't be a racist."
-    n "I'm not. I only say that because you are a woman."
-    scene bg black
-    with fade
-    "I closed my eyes."
-    a "Is this any better?"
-    scene ashflated9
-    with fade
-    pause
-    n "Hardly."
-    a "I can't find anything else that fits."
-    a "I can barely fit in these jeans!"
-    scene bg black
-    with fade
-    "I closed my eyes again."
-    a "Hey, this might be it!"
-    scene ashflated6
-    with fade
-    pause
-    a "What do you think?"
-    n "Perfect."
-    n "Want me to come with you?"
-    a "No."
-    a "Get some sleep."
-    n "You're the best."
-    scene bg black
-    with fadeout
-    "{i}Sleep at last{/i}!"
-    "{i}Wait.{/i}"
-    "{i}Did I have a dream about slapping Ashley's mom in the face with my dick?{/i}"
-    if bethfacial:
-        "{i}Or was that-{/i}"
-        "{i}Beth really gave me a handjob, didn't she?{/i}"
-        "{i}Shit.{/i}"
-    scene bg black
-    with fadeout
     pause
     centered "A big thank you to all you supporters for keeping the game going!"
     centered "For the newest updates, please check out {a=https://patreon.com/expandinguniverse}patreon.com/expandinguniverse{/a}"
@@ -43612,17 +43678,16 @@ label realend:
     centered "Produced by"
     with fade
     centered "Funky Munky"
-    centered "Blobbing"
     centered "Yolanda Calcutt"
-    centered "Thomas McKean"
     centered "Kainan"
-    centered "Jarrod"
-    centered "Mungeye"
-    centered "Chris Baumer"
+    centered "Thomas McKean"
+    centered "Angèle Bolduc"
+    centered "Danielle Fleming"
+    centered "Tobbin"
     centered "Possibly you!"
     centered "Thanks for playing!"
 
-
+    return
     scene survivethenight
     with fade
     pause
