@@ -28723,6 +28723,7 @@ label coolio:
         L "YESSSS!"
         a "Damn, guys!"
     "After filling Leah's guts with a far smaller load than usual I limped my way back toward the party."
+    $ renpy.end_replay()
     if cory:
         scene bg black
         with fade

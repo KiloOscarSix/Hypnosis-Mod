@@ -42,7 +42,7 @@ define unknown = GalleryItem("Leah", 1, "galleryScene3", "al cg8.webp", {"both":
 define unknown = GalleryItem("Leah", 1, "galleryScene17", "leahbed1.webp")
 define unknown = GalleryItem("Leah", 1, "dols", "leahbs.webp")
 define unknown = GalleryItem("Leah", 1, "ml", "lbr2.webp", {"brittany":True})
-define unknown = GalleryItem("Leah", 1, "galleryScene5", "ashdown2.webp")
+define unknown = GalleryItem("Leah", 1, "coolio", "ashdown2.webp")
 define unknown = GalleryItem("Leah", 1, "galleryscene21", "Episode 11/alashleysroom5.webp", {"both":True, "beth":True})
 
 define unknown = GalleryItem("Ashley", 1, "galleryScene1", "ashley tf1.webp")
@@ -50,7 +50,7 @@ define unknown = GalleryItem("Ashley", 1, "galleryScene4", "al beda20.webp")
 define unknown = GalleryItem("Ashley", 1, "bulletproof", "astripes8.webp", {"fashley":True, "chooseleah":True})
 define unknown = GalleryItem("Ashley", 1, "galleryScene3", "al cg8.webp", {"both":True})
 define unknown = GalleryItem("Ashley", 1, "galleryScene2", "a bs3.webp", {"chooseleah":True, "both":True})
-define unknown = GalleryItem("Ashley", 1, "galleryScene5", "ashdown2.webp", {"preg":True})
+define unknown = GalleryItem("Ashley", 1, "coolio", "ashdown2.webp", {"preg":True})
 define unknown = GalleryItem("Ashley", 1, "galleryscene21", "Episode 11/alashleysroom5.webp", {"both":True, "beth":True})
 define unknown = GalleryItem("Ashley", 1, "galleryScene29", "Episode 12/ashcuddle4.webp")
 
