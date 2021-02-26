@@ -1,3 +1,48 @@
+﻿init -20 python:
+    import discord_rpc
+    import time
+
+    def readyCallback(current_user):
+        print('Our user: {}'.format(current_user))
+
+    def disconnectedCallback(codeno, codemsg):
+        print('Disconnected from Discord rich presence RPC. Code {}: {}'.format(
+            codeno, codemsg
+        ))
+
+    def errorCallback(errno, errmsg):
+        print('An error occurred! Error {}: {}'.format(
+            errno, errmsg
+        ))
+
+label before_main_menu:
+    python:
+        # Note: 'event_name': callback
+        callbacks = {
+            'ready': readyCallback,
+            'disconnected': disconnectedCallback,
+            'error': errorCallback,
+        }
+        discord_rpc.initialize('785666348155011132', callbacks=callbacks, log=False)
+        start = time.time()
+        print(start)
+        discord_rpc.update_connection()
+        discord_rpc.run_callbacks()
+        discord_rpc.update_presence(
+            **{
+                'details': 'Main Menu',
+                'start_timestamp': start,
+                'large_image_key': 'Hypnosis'
+            }
+        )
+        discord_rpc.update_connection()
+        discord_rpc.run_callbacks()
+
+    return
+
+default evilpoints = 1
+default showered = False
+
 default kissgrace = False
 default groupdate = False
 default jennpreg = True
@@ -45,8 +90,15 @@ default ashleymomtruth = False
 default lactation = False
 default tiffany = False
 default bethbj = False
+default honest = True
 # initially you walked past her in the hall, but she gave you a beej the next day.
+
+default fuckedtif = False
+default fuckedbailey = False
+default addictive = True
 default bethcreamed = False
+default goback = True
+default fuckedbeth = False
 # you came inside the creamer for Beth when she asked in Episode 13
 
 
@@ -126,7 +178,13 @@ define M = Character("Michelle", color="#F9FB64")
 define ba = Character("Bailey", color="#F9FB64")
 define hb = Character("Hottie Bartender", color="#F9FB64")
 define gg = Character("Girl In Green", color="#00DC7D")
+define A = Character("Aera", color="#F9C058")
+define lyd = Character("Lydia", color="#FFFFFF")
 # The game starts here.
+
+
+init python:
+    mp = MultiPersistent("expanding.universe.games")
 
 image intro = Movie(play="intro.webm")
 
@@ -142,7 +200,27 @@ label splashscreen:
     return
 
 label start:
+    python:
+        callbacks = {
+            'ready': readyCallback,
+            'disconnected': disconnectedCallback,
+            'error': errorCallback,
+        }
+        discord_rpc.initialize('785666348155011132', callbacks=callbacks, log=False)
+        start = time.time()
+        discord_rpc.update_connection()
+        discord_rpc.run_callbacks()
+        discord_rpc.update_presence(
+            **{
+                'details': 'Taking Ass and Kicking Names!',
+                'state': 'Chillin',
+                'large_image_key': 'Hypnosis',
+                'start_timestamp': start
+            }
+        )
 
+        discord_rpc.update_connection()
+        discord_rpc.run_callbacks()
     # Show a background. This uses a placeholder by default, but you can
     # add a file (named either "bg room.png" or "bg room.jpg") to the
     # images directory to show it.
@@ -514,7 +592,7 @@ label now:
 
     python:
         if not persistent.name:
-            persistent.name = "Chad"
+            persistent.name = "Kyle"
         name = renpy.input("What's your name?", default=persistent.name)
         name = name.strip()
         if not name:
@@ -3242,7 +3320,8 @@ menu:
         jump ashleycumontits
 
 label ashleycumonface:
-
+    if _in_replay:
+        $ ashleyswallow = False
     n "I'm going to cum on your pretty little face."
     scene ashley hj1
     image ahj1 = Movie(play="ahj1.webm")
@@ -3267,7 +3346,8 @@ label ashleycumonface:
     jump ashleyafterglow
 
 label ashleycuminmouth:
-
+    if _in_replay:
+        $ ashleyswallow = True
     n "Fuck you're good at this!"
 
     n "Now who can't make word sounds?"
@@ -3290,6 +3370,8 @@ label ashleycuminmouth:
     jump ashleyafterglow
 
 label ashleycumontits:
+    if _in_replay:
+        $ ashleyswallow = False
     scene ashley tfcum1
     with fade
     pause
@@ -3325,15 +3407,14 @@ label ashleyafterglow:
 if ashleyswallow:
     a "Plus you fed me dessert, so I can't complain."
     n "What can I say? I'm a gentleman."
-    $ renpy.end_replay()
     jump ashleyleave
 else:
     n "I guess I owe you one?"
     a "Have you seen my rack? We're good."
-    $ renpy.end_replay()
     jump ashleyleave
 
 label ashleyleave:
+    $ renpy.end_replay()
     a "Well I'd better go back to Leah's room."
     n "No cuddles?"
     a "Mister [n]! If I didn't know better I would say you were starting to like me."
@@ -9380,7 +9461,7 @@ label jenn3:
         j "Wouldn't you like to know, Daddy?"
 
     else:
-        j "Wouldn't you like to know, Master?"
+        j "Wouldn't you like to know?"
 
     n "Only if the answer is yes."
     $ renpy.movie_cutscene("jennday2.webm", loops=8)
@@ -9450,7 +9531,7 @@ label jenncovered:
         j "I love it."
 
     else:
-        j "No, Master."
+        j "No."
         j "I'm not mad."
         j "I love it."
 
@@ -9483,7 +9564,7 @@ label jenngetnaked:
     if daddy:
         j "Okay Daddy."
     else:
-        j "Okay Master."
+        j "Okay."
 
     "I pressed against her, grinding against her slit until it gave way."
     scene jenn fuck3
@@ -9519,7 +9600,7 @@ label jennpullout:
         j "Yes, Daddy."
 
     else:
-        j "Yes, Master."
+        j "Yes."
 
     scene jenn fuck1
     $ renpy.movie_cutscene("jennfuck3.webm")
@@ -13768,11 +13849,13 @@ label threeamigos:
 
 menu:
     "Tell them the basics":
+        $ honest = False
         jump tellbasics
     "Tell them everything":
         jump telleverything
 
 label telleverything:
+    $ honest = True
     n "Okay, so I started saying things trying to get a reaction from you."
     scene l bed4
     L "Tell us."
@@ -18757,6 +18840,7 @@ label graceowned3:
     "Grace jumped in next to me and we fell asleep."
     scene bg black
     with fade
+    $renpy.end_replay()
     "I woke up to someone shaking me."
     l "Hey!"
     l "[n]!"
@@ -19643,7 +19727,6 @@ label galleryScene17:
     $ brittany = False
     $ haley = False
     $ rachel = False
-    $ jenn = True
     $ bcum = False
     $ hcum = False
     $ rcum = False
@@ -26174,6 +26257,7 @@ label followlaura:
                     l "Fine."
                     n "Promise?"
                     l "Totally."
+                    $renpy.end_replay()
                     jump lauraendone
                     scene bg black
                     with fade
@@ -26187,6 +26271,7 @@ label followlaura:
             n "Alright."
     n "See you downstairs."
     l "Sure thing, [p]."
+    $renpy.end_replay()
     jump bitties
 
 label staybrittany:
@@ -27571,6 +27656,7 @@ label lamegrace:
     "{i}I will.{/i}"
     n "Well, I guessed it."
     n "Now I get to fuck you."
+    label galleryScene9:
     g "Fine. You can fuck me when we get back."
     scene grace out11
     with fade
@@ -27672,6 +27758,7 @@ label gracespussy:
 label nogracefun:
     scene bg nicehouse
     with fade
+    $ renpy.end_replay()
     pause
     "Back at the house we went in the backyard through the side gate."
     scene aftergrace1
@@ -31514,7 +31601,6 @@ label daphdelicious:
         d "I have no interest in putting anything that nasty anywhere near my face."
 
         "I didn't argue as I came inside."
-        $ renpy.end_replay()
         jump temporary
         menu:
             "Cum inside":
@@ -31565,6 +31651,7 @@ label daphdelicious:
                 centered "You have reached an early ending."
 
                 jump end
+    $ renpy.end_replay()
 label temporary:
     scene bg black
     with fade
@@ -34149,11 +34236,11 @@ label aftermath:
     b "I can be there in twenty."
 
     menu:
-        "[gr]Meet up with Brittany":
+        "[gr]Meet up with Brittany \[BrittanySex\]":
             n "See you then."
             jump meetbrit
 
-        "Avoid Brittany":
+        "Avoid Brittany [blue]\[More content later\]":
             n "Can you just tell me?"
             b "It's better to show you."
             n "Pass."
@@ -34468,7 +34555,7 @@ label aftermath:
             scene dgltable10
             "{i}What's my best strategy here?{/i}"
             menu:
-                "I love you":
+                "I love you \[BoyfriendPath\]\[LauraPath\]":
                     $ hatelaura = False
                     $ lovelaura = True
                     n "I love you."
@@ -34560,7 +34647,7 @@ label aftermath:
                     l "Well, tough titties."
 
 
-                "I hate you [BadassPath]":
+                "I hate you [BadassPath]\[LauraHate\]":
                     $ hatelaura = True
                     n "I fucking hate you."
                     scene dgltable6
@@ -34892,7 +34979,7 @@ label aftermath:
 
 
 
-                "[blue]\[Recommended\]Call Brittany":
+                "[blue]\[Recommended\] Call Brittany":
                     $ callbrit = True
                     n "I'm going to call Brittany."
                     "I dialed."
@@ -37508,7 +37595,7 @@ label meetbrit:
     b "I saved it."
     b "Here."
     menu:
-        "[blue]\[Recommended\] Watch the video":
+        "[blue]\[More scenes\] Watch the video":
             $ watched = True
             scene bdg12
             with dissolve
@@ -39643,7 +39730,7 @@ label meetbrit:
     scene lhypup5
     l "Do you have feelings for me?"
     menu:
-        "Yes [red]\[LauraHate\]":
+        "Yes [gr]\[LauraLove\][red]\[LauraHate\]":
             $ hatelaura = False
             $ lovelaura = True
             n "Yes."
@@ -39667,7 +39754,7 @@ label meetbrit:
             l "You make me want to be a better person."
 
 
-        "I don't know [red]\[LauraHate\]":
+        "I don't know [red]\[LauraLove\]\[LauraHate\][blue]\[Foursome\]":
             $ lovelaura = False
             $ hatelaura = False
             scene lhypup3
@@ -41528,7 +41615,7 @@ label meetbrit:
             if rachelpath:
                 scene bg black
                 with fadeout
-                "{b}The Next Day{/b}"
+                "{b}Two Days Later{/b}"
         image laurafloating = Movie(play="laurafloating.webm")
         show laurafloating
         with fadein
@@ -41622,10 +41709,10 @@ label meetbrit:
         n "That being said..."
         menu:
             "...I love you too. [blue]\[Laura Cruise Ending\]":
-                n "...I love you too."
-                n "This isn't the life I expected to want a month ago."
+                n "...this isn't the life I expected to want a month ago."
                 n "But your family is super nice and welcoming..."
-                "{i}...especially Brittany...{/i}"
+                if bcum:
+                    "{i}...especially Brittany...{/i}"
                 n "...and the last few days have been amazing."
                 n "I have been really thankful to have this chance to get to know you better."
                 n "You're a smart, talented, motivated, beautiful, sexy and generous girl."
@@ -41662,6 +41749,7 @@ label meetbrit:
                 n "So I'd like to get back to my life."
                 l "..."
                 l "Thank you."
+                label takethewatch:
                 l "Thank you for sharing with me."
                 n "Of course."
                 l "But I'm afraid you are wrong."
@@ -41680,8 +41768,12 @@ label meetbrit:
                     n "But apparently you think that's okay to control someone against their will."
                     n "So I'm going to make this quick."
                     n "Fuck you very much."
+                    n "Oh, and Laura?"
                     n "Never talk to me again."
-                    n "Peace."
+                    scene bg black
+                    with fade
+                    pause
+                    "I grabbed the watch and headed home."
                     jump leahsafe
                 n "Oh."
                 n "Right."
@@ -41692,12 +41784,14 @@ label meetbrit:
                 n "Of course."
                 n "Sorry."
 
-            "...I don't ever want to see you again.":
+            "[blue]\[NoWatch\]{/color} ...I don't ever want to see you again.":
                 n "...I don't ever want to see you again."
                 l "What?"
                 n "I appreciate you trying."
                 n "But it's too little, too late."
                 n "I'm out of here."
+                if rachelpath:
+                    jump takethewatch
                 n "Can I get my watch back?"
                 l "No."
                 l "It's my watch."
@@ -43486,6 +43580,139 @@ label meetbrit:
         B "Why do they always giggle when someone says your name?"
         n "No idea."
 
+
+
+    scene bg black
+    with fadeout
+    pause
+    centered "Episode Twelve"
+    pause
+    centered "Freedom"
+    jump eptwelve
+
+
+
+
+label backtoreality:
+
+    pause
+    centered "Episode Thirteen"
+    with fade
+    centered "Lucky"
+    jump epthirteen
+label end:
+
+label realend:
+    scene bg black
+    with fadeout
+    centered "Save your game before this to continue when the next episode is released."
+    with fade
+    centered "Also, check out the newest addition to Expanding Universe Games:"
+    scene endowed2
+    with fadein
+    pause
+    "All four chapters are currently available free on Patreon, with chapter five expected at the end of February."
+    pause
+    scene bg black
+    with fadeout
+    centered "A big thank you to all you supporters for keeping the game going!"
+    with fade
+    centered "For the newest updates, please check out {a=https://patreon.com/expandinguniverse}patreon.com/expandinguniverse{/a}"
+    label end11:
+    with fade
+
+
+    centered "Produced by"
+    with fade
+    centered "Metermate"
+    centered "Funky Munky"
+    centered "Yolanda Calcutt"
+    centered "Kainan"
+    centered "Deamonmaster"
+    centered "Angèle Bolduc"
+    centered "Danielle Fleming"
+    centered "Allen Loussaert"
+    centered "Robert Baker"
+    centered "Possibly you!"
+    centered "Thanks for playing!"
+
+    return
+    scene survivethenight
+    with fade
+    pause
+    "Also, I would like to introduce you to the new board game I have created."
+    "It's called Survive The Night."
+    "It's a game you can play with your friends (unlike this one)."
+    "More info to come on future updates."
+    "Launching soon on Kickstarter!"
+
+    pause
+    scene bg room2
+    with fade
+    pause
+    return
+
+
+
+
+
+
+
+
+    scene bg black
+    with fade
+    centered "End of Episode Eleven"
+    "If you already finished Episode Ten and are wondering where the new content is, it's the choice to date Laura at the beginning of the episode."
+    "Why does this option exist?"
+    "Episode Ten is heavy on plot and light on the sex scenes, so this new content is the opposite."
+    "When you choose to date Laura, you leave the other girls to help them get over their addiction to you."
+    "You take Laura and Grace on a cruise and... good times ensue."
+    "Are you still pissed off at Laura?"
+    menu:
+        "Yes":
+            "That bitch!"
+            "Maybe pushing her off the pier will help."
+        "No":
+            "Want to go on the cruise?"
+            jump easynow
+    scene push1
+    with fade
+    pause
+    l "Hey!"
+    scene push2
+    with dissolve
+    l "It's beautiful here."
+    scene push3
+    with dissolve
+    l "Thanks for bringing me."
+    l "Hold me?"
+    n "Of course."
+    scene push4
+    with dissolve
+    n "Hey, remember when I pushed your sister in the pool?"
+    l "Ha! Yeah."
+    l "Why?"
+    menu:
+        "Push":
+
+            scene push5
+            with fade
+            pause
+            l "AHHH!"
+            pause
+    label easynow:
+    menu:
+        "Click here to go to the new content":
+            jump lauraending
+        "No thanks":
+            "Really?"
+
+
+
+
+
+
+
     scene bg black
     with fadeout
 
@@ -43571,7 +43798,7 @@ label meetbrit:
                     c "What I was asked to do was to introduce myself as a teaser for the new game coming out called Endowed."
                 c "Want to see my tits?"
 
-            c "It will be coming out in October and is the second visual novel by Expanding Universe Games."
+            c "It is the second visual novel by Expanding Universe Games."
             c "In the game your uncle dies and leaves you his strip club."
             c "I help you run the place."
             c "But you can't fuck me because I'm a lesbian."
@@ -43634,129 +43861,6 @@ label meetbrit:
 
 
         c "I won't be offended."
-
-
-    scene bg black
-    with fadeout
-    pause
-    centered "Episode Twelve"
-    pause
-    centered "Freedom"
-    jump eptwelve
-
-
-
-
-label backtoreality:
-
-    pause
-    centered "Episode Thirteen Part One"
-    with fade
-    centered "Lucky"
-    jump epthirteen
-label end:
-
-label realend:
-    scene bg black
-    with fadeout
-    centered "End of Episode Thirteen Part One"
-    with fade
-    centered "Save your game before this to continue when the next episode is released."
-    with fade
-    pause
-    centered "A big thank you to all you supporters for keeping the game going!"
-    centered "For the newest updates, please check out {a=https://patreon.com/expandinguniverse}patreon.com/expandinguniverse{/a}"
-    label end11:
-    with fade
-    centered "Produced by"
-    with fade
-    centered "Funky Munky"
-    centered "Yolanda Calcutt"
-    centered "Kainan"
-    centered "Thomas McKean"
-    centered "Angèle Bolduc"
-    centered "Danielle Fleming"
-    centered "Tobbin"
-    centered "Possibly you!"
-    centered "Thanks for playing!"
-
-    return
-    scene survivethenight
-    with fade
-    pause
-    "Also, I would like to introduce you to the new board game I have created."
-    "It's called Survive The Night."
-    "It's a game you can play with your friends (unlike this one)."
-    "More info to come on future updates."
-    "Launching soon on Kickstarter!"
-
-    pause
-    scene bg room2
-    with fade
-    pause
-    return
-
-
-
-
-
-
-
-
-    scene bg black
-    with fade
-    centered "End of Episode Eleven"
-    "If you already finished Episode Ten and are wondering where the new content is, it's the choice to date Laura at the beginning of the episode."
-    "Why does this option exist?"
-    "Episode Ten is heavy on plot and light on the sex scenes, so this new content is the opposite."
-    "When you choose to date Laura, you leave the other girls to help them get over their addiction to you."
-    "You take Laura and Grace on a cruise and... good times ensue."
-    "Are you still pissed off at Laura?"
-    menu:
-        "Yes":
-            "That bitch!"
-            "Maybe pushing her off the pier will help."
-        "No":
-            "Want to go on the cruise?"
-            jump easynow
-    scene push1
-    with fade
-    pause
-    l "Hey!"
-    scene push2
-    with dissolve
-    l "It's beautiful here."
-    scene push3
-    with dissolve
-    l "Thanks for bringing me."
-    l "Hold me?"
-    n "Of course."
-    scene push4
-    with dissolve
-    n "Hey, remember when I pushed your sister in the pool?"
-    l "Ha! Yeah."
-    l "Why?"
-    menu:
-        "Push":
-
-            scene push5
-            with fade
-            pause
-            l "AHHH!"
-            pause
-    label easynow:
-    menu:
-        "Click here to go to the new content":
-            jump lauraending
-        "No thanks":
-            "Really?"
-
-
-
-
-
-
-
 
 
 

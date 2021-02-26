@@ -344,6 +344,7 @@ label eptwelve:
     h "So much for being quiet."
     h "Are you done?"
     j "For now."
+    $renpy.end_replay()
     if jennice:
         label nohaleysex:
         h "Finally."
@@ -986,6 +987,7 @@ label eptwelve:
     scene leahapartment1
     with dissolve
     pause
+    label galleryscene37:
     L "I think I might just sit here for a moment."
     L "But don't forget our agreement!"
     scene leahapartment2
@@ -1112,6 +1114,7 @@ label eptwelve:
     L "With my liiiiiiife!"
     scene bg black
     with fadeout
+    $renpy.end_replay()
     "After we smashed I drove the girls home."
     scene bg cardusk
     with fadein
@@ -1192,7 +1195,7 @@ label eptwelve:
     a "How do you know?"
     if watched:
         n "She helped me against Laura."
-        n "She showed me the video of you guys getting hypnotized."
+        n "She showed me the video."
         L "Which, in turn, got you hypnotized."
     else:
         n "I know her."
@@ -1219,7 +1222,22 @@ label eptwelve:
     scene albeth5
     with dissolve
     a "[n], you tell her."
-    n "Alright."
+    menu:
+        "Clue in Beth":
+            n "Alright."
+        "Deny everything.":
+            n "Nothing."
+            n "Ixnay on the hypnosisay."
+            a "Umm..."
+            L "Why is the only person in the room that doesn't seem to know pig latin trying to speak it?"
+            B "Yeah, it should be more like 'ixnay on the osishypnay'."
+            n "But you get my point."
+            B "I do."
+            B "And I'm sorry, [n], but I'm going to request that you tell me."
+            B "I need to feel safe around the guy I'm trusting around my daughter, and in my house."
+            n "Fair enough."
+            n "Alright."
+
     n "I have a pocket watch."
     B "Okay?"
     scene albeth7
@@ -1465,10 +1483,13 @@ label eptwelve:
     with dissolve
     "Oddly, I could have sworn she looked disappointed."
     if nowatch:
+        n "Alright, I need to get going."
+        n "I'll see you all later."
         scene bg black
         $ bringwatch = False
 
     else:
+        n "I should get going."
         scene albeth5
         with dissolve
         a "Are you going to take the watch?"
@@ -1488,19 +1509,23 @@ label eptwelve:
                 a "Hell yeah."
                 a "Use it if you have to."
                 L "But be careful."
-            "Leave it":
-                n "I think I'll be safe and leave it with you guys."
-                L "You trust us?"
-                n "Of course."
-                L "Thank you."
+            "Hide it":
+                n "I think I'll be safe and drop it off somewhere safe on the way."
+                L "That's a great idea."
+                n "Thanks."
                 $ bringwatch = False
-                L "And I think it's a great idea."
             a "What are you going to do, [n]?"
     a "Good luck!"
     scene bg black
     with fadeout
-
-    "I looked for Brittany at the bar."
+    if bringwatch:
+        "I looked for Brittany at the bar."
+    else:
+        if nowatch:
+            "I headed out."
+        else:
+            "On the way to the bar I stopped at my bank and set up a safety deposit box."
+            "I looked around suspiciously before locking up the watch, keeping a lookout for a certain someone."
     $ barkeep = False
     $ hypbrit = False
     if endingone:
@@ -2049,7 +2074,8 @@ label eptwelve:
 
                                 "Be the gentleman":
                                     n "Also, you will help your sister to be less fucked up."
-
+                        else:
+                            n "Also, you will help your sister to be less fucked up."
                     n "Anything else?"
                     scene britcouch5
                     b "Nope."
@@ -2171,14 +2197,20 @@ label eptwelve:
     if barkeep:
         scene barkeep1
         with fade
-        "Bartender" "Bring me back my glasses."
-        "Bartender" "And call me about Sunday."
+        if brittany:
+            "Bartender" "Bring me back my glasses."
+            "Bartender" "And call me about Sunday."
+        else:
+            "Bartender" "Call me about Sunday."
         scene barkeep2
         n "You got it."
-        scene bg black
-        with fade
-        "I followed Brittany."
-        jump dumpsterbrit
+        if brittany:
+            scene bg black
+            with fade
+            "I followed Brittany."
+            jump dumpsterbrit
+        else:
+            jump noalleyfun
     if hypbrit:
         scene barkeep2
         with fade
@@ -2190,24 +2222,31 @@ label eptwelve:
         n "Yeah? You still want to see that magic trick?"
         scene barkeep3
         "Bartender" "You would share your magic with a mere muggle like me?"
-    if evil:
-        scene barkeep2
-        if brittany:
-            n "Why not?"
+        if evil:
+            scene barkeep2
+            if brittany:
+                n "Why not?"
+            else:
+                n "Well..."
         else:
-            n "Well..."
-    else:
-        scene barkeep2
-        n "Love to."
-        scene barkeep5
-        with dissolve
-        n "But I can't keep a lady waiting."
-        scene barkeep4
-        "Bartender" "What a gentleman."
-        scene bg black
-        with fade
-        "I followed Brittany."
-        jump dumpsterbrit
+            scene barkeep2
+            n "Love to."
+            scene barkeep5
+            with dissolve
+            if brittany:
+                n "But I can't keep a lady waiting."
+                scene barkeep4
+                "Bartender" "What a gentleman."
+                scene bg black
+                with fade
+                "I followed Brittany."
+                jump dumpsterbrit
+            else:
+                "I thought about it."
+                "But I decided I really shouldn't be flashing the watch around randomly."
+                n "If it were real."
+                n "See ya!"
+                jump noalleyfun
     if brittany:
         scene barkeep4
         "Bartender" "Keep in mind, you got a hot girl out in the back alley pulling down her pants for you right now."
@@ -2412,7 +2451,7 @@ label eptwelve:
 
                     n "I found you half naked and bent forward assuming the position."
                     n "I wouldn't call it a surprise."
-                    b "With that dick it's always a surprise!"
+                    b "Trust me, it's always going to be a surprise with that dick!"
                     "She moaned."
                     pause
                     n "Fuck, you're tight!"
@@ -2487,11 +2526,18 @@ label eptwelve:
                 n "I don't know if you're ready for this."
                 "Bartender" "Oh, no?"
                 n "You'll thank me later."
-                "I headed home."
+                "I headed out."
 
+label noalleyfun:
     scene bg black
     with fade
-    "{b}An Hour Later{/b}"
+    if nowatch:
+        "{b}An Hour Later{/b}"
+    else:
+        if bringwatch:
+            "On the way home I stopped by a bank and set up a safety deposit box."
+            "After looking around suspiciously, I locked up the watch and drove back to Ashley's."
+        "{b}An Hour Later{/b}"
     scene abcouch1
     with fadein
     n "Thank you for another amazing dinner."
@@ -2533,6 +2579,7 @@ label eptwelve:
     a "Sure."
     scene abcouch7
     with fade
+    label galleryScene38:
     "As soon as Beth left the room Ashley turned to me."
     scene abcouch8
     with dissolve
@@ -2590,6 +2637,7 @@ label eptwelve:
 
     scene bg black
     with fade
+    $renpy.end_replay()
     "{b}Four Minutes Later{/b}"
     scene abcouch7
     with fadein
@@ -2641,7 +2689,7 @@ label eptwelve:
     B "Goodnight Ash."
     B "Sleep well, [n]."
     scene abcouch2
-    with fade
+    with dissolve
     B "Don't keep my daughter up too late, okay?"
     scene abcouch7
     with fade
@@ -3339,7 +3387,7 @@ label eptwelve:
         "[gr]Three":
             n "You aren't nervous about tonight."
             j "Yep."
-            n "I knew it! I read you like a book."
+            n "I knew it! I can read you like a book."
             j "You can read entire books?"
             n "Don't be condescending."
             n "It doesn't suit you."
@@ -3454,6 +3502,7 @@ label eptwelve:
     j "Really?"
     n "Okay, I have a question for you."
     scene jennpark2
+    with dissolve
     n "Would you ever hook up in public?"
     if jennice:
         scene jennpark1
@@ -3486,9 +3535,10 @@ label eptwelve:
     n "What?"
     scene jennpark5
     with dissolve
+    label galleryScene32:
     j "You really want to do this, don't you?"
     n "I really want to do you."
-    j "Okay, this does make me nervous."
+    j "Okay, this just makes me nervous."
     scene jennpark4
     with dissolve
     n "Why?"
@@ -3528,7 +3578,6 @@ label eptwelve:
         n "Yeah?"
         j "HARDER!"
     pause
-    label galleryScene32:
     scene bg black
     with fadeout
     "{b}Twenty Minutes Later{/b}"
@@ -3581,7 +3630,7 @@ label eptwelve:
     scene japartment4
     with dissolve
     j "I don't really know how."
-    n "You go slowly."
+    n "Go slow."
     scene japartment5
     with dissolve
     n "One piece at a time."
@@ -3806,6 +3855,7 @@ label eptwelve:
     n "Hey, Keith!"
     n "Do they ever give you time off?"
     "Keith" "Hardly."
+    "Keith" "I'm covering a shift."
     scene doorman4
     with dissolve
     "Keith" "Did you have a good evening?"
@@ -3895,7 +3945,6 @@ label eptwelve:
     n "Mimosas?"
     h "I've never had one!"
     n "Cool. Give me a minute."
-    "Jenn stayed in bed as I poured Haley and myself drinks."
     scene bg black
     with fade
     n "Here you go."
@@ -4598,6 +4647,14 @@ label eptwelve:
         with fade
         "I headed back inside, grabbed Haley and drove her home."
         jump nojennep12
+    label galleryScene39:
+    if _in_replay:
+        menu:
+            "Yes":
+                $ hcum = False
+            "No":
+                $ hcum = True
+            "\[Mod\] Virgin Haley ?"
     if hcum:
         scene haleybedspread
         with fadein
@@ -5085,6 +5142,7 @@ label eptwelve:
 
     scene bg black
     with fadeout
+    $renpy.end_replay()
 
 
     "We left the apartment, I drove Haley home and she walked in the front door before dark."
@@ -5188,13 +5246,20 @@ label eptwelve:
         n "Oh!"
         n "How is she doing?"
     L "Good!"
-    L "She will be here in three days."
+    L "She will be here in two days."
     n "Seriously?"
     n "That's awesome!"
     n "For how long?"
     L "A week."
     L "That is all she could get away for."
     n "That's awesome!"
+    if metaera:
+        n "I'm surprised she didn't just stay here longer when she came last week."
+        L "She had to get back."
+        n "So you seriously flew her out here to rescue me?"
+        L "Maybe."
+        n "You really do care about me, huh?"
+        L "Maybe."
     n "What are you going to do while she is here?"
     L "I was thinking of taking a few days off from school."
     L "If Laura is doing it, why can't I?"
@@ -5206,11 +5271,13 @@ label eptwelve:
         image leahtf2 = Movie(play="leahtf2.webm")
         show leahtf2
         with dissolve
-    L "And if we get along, I'll go visit her this summer."
+    L "Maybe I'll go visit her this summer."
     n "That sounds awesome!"
     n "I'm sure you both will get along like long lost sisters."
     L "I know!"
     L "I'm so excited!"
+    if metaera:
+        L "We actually get to hang out, relax, and spend some time together."
     L "But why are you so excited while I'm talking about my twin sister?"
     n "Your excitement is infectious."
     L "Good answer."
@@ -5282,6 +5349,7 @@ label eptwelve:
         n "I'll be right there."
     scene bg black
     with fade
+    $renpy.end_replay()
     "I sat down and had an awkward conversation with Leah's parents."
     "It mostly involved them talking with me nodding along."
     "It ended with me clearing the room I was renting and filling my car with my stuff."
@@ -5335,7 +5403,7 @@ label eptwelve:
         scene corytwelve3
         n "It was kind of close, actually."
         scene corytwelve4
-        C "Yeah, you two aren't as quiet as you think you were."
+        C "Yeah, you two aren't as quiet as you think you are."
         scene corytwelve3
         n "Thanks for covering for me."
         scene corytwelve4
@@ -5621,7 +5689,6 @@ label eptwelve:
     n "I need to hydrate."
     n "Want some water?"
     a "Fuck yeah."
-    $ renpy.end_replay()
     scene bg black
     with fade
     "I walked naked into the hall."
@@ -5905,5 +5972,6 @@ else:
     scene bg black
     with fadeout
     "{i}I'm never going to get any sleep.{/i}"
+    $ renpy.end_replay()
 
     jump backtoreality
