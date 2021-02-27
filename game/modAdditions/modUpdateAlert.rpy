@@ -21,10 +21,3 @@ screen modOutOfDate:
                 action OpenURL("{}".format(modGameLink))
             textbutton "Ask Me Later":
                 action Hide("modOutOfDate")
-
-label before_main_menu:
-
-    if updateChecker():
-        show screen modOutOfDate
-
-    return

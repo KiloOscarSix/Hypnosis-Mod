@@ -38,6 +38,9 @@ label before_main_menu:
         discord_rpc.update_connection()
         discord_rpc.run_callbacks()
 
+    if updateChecker():
+        show screen modOutOfDate
+
     return
 
 default evilpoints = 1
