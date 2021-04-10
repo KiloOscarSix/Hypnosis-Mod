@@ -1522,7 +1522,7 @@ label eptwelve:
         "I looked for Brittany at the bar."
     else:
         if nowatch:
-            "I headed out."
+            "I looked for Brittany at the bar."
         else:
             "On the way to the bar I stopped at my bank and set up a safety deposit box."
             "I looked around suspiciously before locking up the watch, keeping a lookout for a certain someone."
@@ -1534,7 +1534,8 @@ label eptwelve:
 
         scene barkeep1
         with fadein
-        "Bartender" "Howdy Partner. What can I do you for?"
+        "Bartender" "Howdy, Partner."
+        "Bartender" "What can I do you for?"
         scene barkeep2
         n "Hey, Barkeep!"
         "{i}I wonder if my recent hot streak is based on anything besides the watch?{/i}"
@@ -2754,7 +2755,7 @@ label noalleyfun:
     if gracerom:
         "My phone vibrated."
         "{b}New Text Message{/b}"
-        g "Hey whats a girl gotta do to get some good dick around here"
+        g "Hey what's a girl gotta do to get some good dick around here"
         "I looked at Ashley asleep in my arms."
         menu:
             "[gr]Respond":

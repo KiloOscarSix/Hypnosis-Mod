@@ -2467,6 +2467,7 @@ label aftercream:
             menu:
                 "[gr]Ask her to prove it":
                     n "Prove it."
+                    $ rcum = True
                     r "Right now?"
                     n "No, I meant-"
                     r "I'm not a slut."
@@ -7858,17 +7859,28 @@ label gymentrance:
     L "What about shrinking?"
     a "I don't want you to-"
     L "I meant you."
-    a "But I'm already short. I'm 5'2."
+    a "But I'm already short. I'm five two."
     L "I know! And I love that about you."
-    L "But think how cute you'd look at 5 foot tall."
-    a "I mean…"
-    L "Please?"
-    L "Could we at least try?"
-    a "You don't think it'll work?"
-    n "Nope."
-    a "Then fuck it."
-    a "We can try it."
-    n "Who else?"
+    L "But think how cute you'd look a couple of inches shorter."
+    a "Hmm…"
+    a "What do you think, [n]?"
+    L "Can we try?"
+    menu:
+        "Worth a try":
+            n "I doubt anything will happen."
+            n "But... what the hell."
+            n "Why not?"
+            n "How about I tell Ashley to shrink a couple inches and Leah grows a couple?"
+            a "So Leah could tower over me?"
+            a "Hell yeah."
+            n "We could try."
+            n "Might as well test the limits!"
+        "Not going to happen":
+            $ growth = False
+            n "Sorry, ladies."
+            n "But I like the way you are now."
+            a "Aww."
+    n "What else?"
     L "I want to be smarter."
     a "But you're already the smartest out of all of us."
     L "So? My twin had a much better education than we did."
@@ -7881,20 +7893,65 @@ label gymentrance:
     with dissolve
     pause
     n "How about you, Jenn?"
-    j "I want to be able to lactate."
-    g "Oh! Good one!"
-    g "Damn, girl!"
-    if jenn:
-        if preg:
-            j "I can't wait to be pregnant, so this way I could at least pretend."
-            j "Plus, if I could control my body, I could eat a bunch of food and pretend I'm knocked up without it all going to my boobs."
-            a "There are other ways, too."
-            j "Oh, I know."
-            j "I had a pretty decent belly on Saturday."
-            L "I didn't know you wanted to get pregnant."
-            j "Oh, absolutely."
-            j "I can't wait until I'm carrying [n]'s babies."
-            L "Wait, what?"
+    j "I actually have an idea."
+    if preg:
+        jump jennlactation
+    else:
+        if jennpreg:
+            label jennlactation:
+                n "Hit me."
+                j "I always kind of..."
+                "She blushed."
+                n "Go ahead, Jenn."
+                j "Would you think it was hot if I could..."
+                j "...lactate?"
+                j "Sorry. It's stupid."
+                menu:
+                    "Sounds hot":
+                        $ jennlactate = True
+                        n "Jenn. You're a genius!"
+                        j "Yeah?"
+                        n "That would be sexy as fuck."
+                        "She smiled."
+                        j "I can't wait to be pregnant, so this way I could at least pretend."
+                        j "Plus, if I could control my body, I could eat a bunch of food and pretend I'm knocked up without it all going to my boobs."
+                        a "There are other ways, too."
+                        j "Oh, I know."
+                        j "I had a pretty decent belly on Saturday."
+                        L "I didn't know you wanted to get pregnant."
+                        j "Oh, absolutely."
+                        j "I can't wait until I'm carrying [n]'s babies."
+                        L "Wait, what?"
+                    "Not my thing":
+                        $ jennlactate = False
+                        n "If that's what you want, sure."
+                        n "But it's not really my thing."
+                        j "Nevermind!"
+                        j "I was just..."
+                        j "...nevermind."
+        else:
+            n "Hit me."
+            j "I always kind of..."
+            "She blushed."
+            n "Go ahead, Jenn."
+            j "Would you think it was hot if I could..."
+            j "...lactate?"
+            n "Oh?"
+            j "Sorry. It's stupid."
+            menu:
+                "Sounds hot":
+                    $ jennlactate = True
+                    n "Actually, yeah."
+                    n "That sounds pretty damn hot."
+                    j "Really?"
+                "Not my thing":
+                    $ jennlactate = False
+                    n "If that's what you want, sure."
+                    n "But it's not really my thing."
+                    j "Nevermind!"
+                    j "I was just..."
+                    j "...nevermind."
+
     n "Anything else?"
     j "Yes."
     "She paused."
@@ -8300,11 +8357,9 @@ label gymentrance:
                 scene bg black
                 with fadeout
                 pause
-                centered "Bonus Episode:"
+                centered "The BEnding"
                 with fade
-                centered "The Huge Titty Ending"
-                with fade
-                jump beending
+                jump bending
     "I pulled out my watch and dangled it in front of them."
     L "Wait-"
     "All of the girl's eyes glazed over."
@@ -8446,11 +8501,16 @@ label justlikethat:
         n "You don't have to be in my harem unless you want to."
         n "You don't have to do anything I say unless you want to."
     n "Leah, you will become even more intelligent."
-    n "Ashley, you will grow shorter."
+    if growth:
+        n "And you will grow taller, stopping after a few inches."
+        n "Ashley, you will grow shorter and you will become a great actress."
+    else:
+        n "Ashley, you will become a great actress."
     n "Your cosplay skills will now be unmatched and you will become great in everything you do."
     n "Grace, your singing, musical ability and songwriting will become unparalleled."
     n "You will become sure of yourself and your abilities, and you will become a very talented pop star."
-    n "Jenn, you now have the ability to lactate."
+    if jennlactate:
+        n "Jenn, you now have the ability to lactate."
     "I took another breath."
     scene laurabalcony4
     with fade
@@ -8477,6 +8537,9 @@ label justlikethat:
     n "Although..."
     n "If I were to break bad, this would be that moment."
     pause
+    if master:
+        $ almaster = True
+    $ master = False
     menu:
         "Listen to your heart":
             $ badguy = False
@@ -8535,6 +8598,12 @@ label justlikethat:
             n "Or command Ashley to let me fuck her mom..."
             n "Huh."
             n "Looks like she saved me some time here."
+            menu:
+                "Call me Master":
+                    n "Also, all of you will feel the urge to call me Master and none of you will realize it."
+                    $ master = True
+                "That's it":
+                    n "And that's it."
 
 
     "Suddenly I felt surprisingly tired."
@@ -8546,10 +8615,10 @@ label justlikethat:
     n "Any questions?"
     g "Yeah."
     "Grace began to sing."
-    g "{i}I'm twenty two, don't know what I'm supposed to do.{/i}"
-    g "{i}Or how to be, to get some more out of me!{/i}"
-    g "{i}I'm twenty two, so far away from all my dreams.{/i}"
-    g "{i}I'm twenty two, twenty two, feeling blue!{/i}"
+    g "{b}I'm twenty two, don't know what I'm supposed to do.{/b}"
+    g "{b}Or how to be, to get some more out of me!{/b}"
+    g "{b}I'm twenty two, so far away from all my dreams.{/b}"
+    g "{b}I'm twenty two, twenty two, feeling blue!{/b}"
 
     pause
     g "How did that sound?"
@@ -8588,7 +8657,10 @@ label justlikethat:
         g "Yeah, because you are taking his dick every night."
         L "And I'm going to go get my stuff."
         L "I'll be ready in five."
-        L "So that probably leaves you time to screw one of them, right, [n]?"
+        if master:
+            L "So that probably leaves you time to screw one of them, right, Master?"
+        else:
+            L "So that probably leaves you time to screw one of them, right, [n]?"
     else:
         if jenn:
             j "I could use some dick."
@@ -8627,7 +8699,10 @@ label triochoice:
             n "So how was your day?"
             g "Your dick. {w}Inside me. {w}Right now."
             n "Hey, it's my old locker!"
-            g "[n]!"
+            if master:
+                g "Master!"
+            else:
+                g "[n]!"
 
             scene bg black
             image glockerani1 = Movie(play="glockerani1.webm")
@@ -8731,7 +8806,10 @@ label triochoice:
             n "Yessss!"
             with flash
             pause
-            g "[n]!"
+            if master:
+                g "Master!"
+            else:
+                g "[n]!"
             g "You're..."
             g "Amazing."
             pause
@@ -8774,7 +8852,10 @@ label triochoice:
             h "Does that make me a slut?"
             n "I hope so."
             n "As long as you're my slut."
-            h "Oh, I'm yours, [n]."
+            if master:
+                h "Oh, I'm yours, Master."
+            else:
+                h "Oh, I'm yours, [n]."
             pause
             scene bg black
             image hlockerani2 = Movie(play="hlockerani2.webm")
@@ -8840,7 +8921,10 @@ label triochoice:
             g "Damn it."
             g "Can I join?"
             n "I mean..."
-            j "[n]!"
+            if master:
+                j "Master!"
+            else:
+                j "[n]!"
             g "Alright, you two crazy kids get started!"
             g "I'll join ya in a minute."
             scene locker1
@@ -9141,7 +9225,13 @@ label skipthisonecaptain:
     n "You both look a lot alike."
     A "No way! I didn't realize."
     n "I meant..."
-    L "[n], did you know that Aera and I were also born on the same day?"
+    if master:
+        L "Master, did you know that Aera and I were also born on the same day?"
+    else:
+        if almaster:
+            L "Master, did you know that Aera and I were also born on the same day?"
+        else:
+            L "[n], did you know that Aera and I were also born on the same day?"
     A "Crazy!"
     "The girls giggled at my expense."
     n "Holy shit, there are two of you."
@@ -9189,7 +9279,40 @@ label skipthisonecaptain:
     A "They didn't serve peanuts."
     A "Why do you ask?"
     n "Leah was tasting nuts earlier."
-    L "[n]!"
+    if master:
+        L "Master!"
+        A "Alright, I gotta ask."
+        A "What's that about?"
+        L "Huh?"
+        A "Why do you keep calling him 'Master'?"
+        L "Huh?"
+        L "I did not."
+        A "You just did."
+        L "I call him Master."
+        L "Not Master."
+        A "What kind of power do you have over her?"
+        L "Are you guys fucking with me?"
+        L "Did I seriously call you Master, Master?"
+        n "No?"
+    else:
+        if almaster:
+            L "Master!"
+            A "Alright, I gotta ask."
+            A "What's that about?"
+            L "Huh?"
+            A "Why do you keep calling him 'Master'?"
+            L "Huh?"
+            L "I did not."
+            A "You just did."
+            L "I call him Master."
+            L "Not Master."
+            A "What kind of power do you have over her?"
+            L "Are you guys fucking with me?"
+            L "Did I seriously call you Master, Master?"
+            n "No?"
+        else:
+            L "[n]!"
+
     "The Barista" "Order for [n]!"
     L "Alright, I'm going to use the bathroom."
     n "Do you want to sit?"
@@ -9380,7 +9503,14 @@ label skipthisonecaptain:
     L "Ashley probably has it with her other costumes."
     A "If she has it, I'm wearing it!"
     L "Hell yeah!"
-    L "I bet you'd like that, right, [n]?"
+
+    if master:
+        L "I bet you'd like that, right, Master?"
+    else:
+        if almaster:
+            L "I bet you'd like that, right, Master?"
+        else:
+            L "I bet you'd like that, right, [n]?"
 
     scene leahaeraocean3
     with dissolve
@@ -9509,10 +9639,13 @@ label skipthisonecaptain:
     if master:
         a "Please, Master?"
     else:
-        a "Please, [n]?"
-        a "Ohhh shit!"
-        a "I love hearing your name!"
-        a "And now I know why it turns me on so much!"
+        if almaster:
+            a "Please, Master?"
+        else:
+            a "Please, [n]?"
+            a "Ohhh shit!"
+            a "I love hearing your name!"
+            a "And now I know why it turns me on so much!"
     a "Please cum inside me?"
     a "I need it!"
     a "This girl needs your cum!"
@@ -10217,15 +10350,6 @@ label ashleyunderstanding:
 label end13b:
     scene bg black
     with fadeout
-    if goback:
-        "If you played the beta testing version of the game, it's recommended that you go back to the beginning to replay the update."
-        "There are several markers that were added in this version that will be needed to play future updates."
 
-    jump end
-
-
-
-    jump end
-
-
+    jump fakeend
 
