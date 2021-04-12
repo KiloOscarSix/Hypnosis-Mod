@@ -9632,9 +9632,9 @@ label jenncuminside:
     scene jenn fuck8
     with dissolve
 menu:
-    "Yes.":
+    "Yes. [red]\[Pregnant\]":
         jump jennplanb
-    "No.":
+    "No. [gr]\[Pregnant\]":
         jump jennnoplanb
 label jennplanb:
     $ jennpreg = False

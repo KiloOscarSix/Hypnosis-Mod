@@ -6333,7 +6333,7 @@ label bending:
             $ bacon = False
             "{i}Here we go.{/i}"
             "{i}I don't want the girls thinking I'm trying to make them any bigger.{/i}"
-        "Bacon":
+        "Bacon [gr]\[Huge breasts\]":
             $ bacon = True
             "{i}You can't mess up bacon.{/i}"
             "{i}But I'll also grab some chicken sausage.{/i}"
@@ -6843,6 +6843,7 @@ label bending:
     scene bg black
     with fadeout
     pause
+    label galleryScene66:
     "{b}An Hour Later{/b}"
     scene bg black
     image jgpoolani1 = Movie(play="jgpoolani1.webm")
@@ -7035,6 +7036,7 @@ label bending:
     j "Oww!"
     with vpunch
     j "You're biting my lip!"
+    $renpy.end_replay()
     pause
     scene bg black
     with fadeout
@@ -7095,6 +7097,7 @@ label bending:
         h "[n]."
         scene hapt5
         n "Yeah?"
+        label galleryScene64:
         scene hapt8
         h "Sorry for interrupting, but are the girls asleep?"
         scene hapt7
@@ -7166,6 +7169,7 @@ label bending:
                 pause
                 scene hapt6
                 with fadehold
+                $renpy.end_replay()
 
 
             "No":
@@ -7301,7 +7305,7 @@ label bending:
         h "Not just big."
         h "Huge."
         menu:
-            "Admit it":
+            "Admit it [gr]\[Huge breasts\]":
                 $ huge = True
                 "I smiled at her."
                 h "No!"
@@ -7465,7 +7469,7 @@ label bending:
     a "Good point."
     a "What about you, [n]?"
     menu:
-        "Burgers":
+        "Burgers [blue]\[Miss Leah & Ashley sex opportunity\]":
             $ burgers = True
             n "I can make burgers."
             a "Not better."
@@ -7961,6 +7965,7 @@ label bending:
 
 
     else:
+        label galleryScene65:
         "I went upstairs to meet up with Leah."
         scene lapt1
         with fadein
@@ -8094,6 +8099,7 @@ label bending:
         L "Remember when neither of us could fit [n] inside of us?"
         L "Now look at us."
         n "My girls."
+        $renpy.end_replay()
         pause
 
     scene bg black
@@ -8169,7 +8175,7 @@ label bending:
     a "We only want to know if you are going to be loyal to your girls sitting right here."
 
     menu:
-        "Of course":
+        "[gr]Of course":
             n "Of course."
             n "You girls are amazing."
             g "So no more other girls, even if they throw themselves at you?"
@@ -8207,7 +8213,7 @@ label bending:
             h "Yep, sounds about right."
 
 
-        "I can't promise that":
+        "[red]I can't promise that":
             n "I can't promise that."
             scene bg black
             scene aptani7
@@ -8551,7 +8557,7 @@ label bending:
     n "I'm going back upstairs."
     "Girl" "You do that."
     menu:
-        "Hit on her":
+        "Hit on her [gr]\[Big Titty Goth Girl\]":
             n "If you get bored, feel free to come up."
             "Girl" "Tooootally."
             $ btgg = True
@@ -8583,7 +8589,7 @@ label bending:
         b "Want company?"
         n "Uhh..."
         menu:
-            "Yes":
+            "Yes [blue]\[Brittany Side\]":
                 "I'm not hooking up with any new girls."
                 "That should be fine, right?"
                 n "Sure."
@@ -8671,7 +8677,7 @@ label bending:
                 n "Are you sure you don't want to stay?"
                 scene bapt4
                 b "I got my fill."
-
+                $renpy.end_replay()
                 b "You gave me my two loads."
                 b "That's worth the drive right there."
                 scene bapt3
@@ -8726,7 +8732,7 @@ label bending:
                 centered "But I still need to finish up the rest of the ending."
                 jump end
                 menu:
-                    "Deal":
+                    "Deal [blue]\[Laura Side\]":
                         $ lauraside = True
                         n "Deal."
                         n "But only under one more condition."
@@ -8797,7 +8803,7 @@ label bending:
                 n "Uhh..."
                 b "I won't tell anyone."
                 menu:
-                    "Okay":
+                    "Okay [blue]\[Brittany Side\]":
                         n "...fine."
                         b "See you soon."
                         jump okaybrit
@@ -8854,7 +8860,7 @@ label bending:
                 l "Plus, I already know you moved into your uncle's place."
                 l "I just need... {w}your dick."
                 menu:
-                    "Okay":
+                    "Okay [blue]\[Laura Side\]":
                         $ lauraside = True
                         n "I guess."
                         if fuckedtif:
@@ -8896,7 +8902,7 @@ label bending:
             n "Sounds like a pretty good reason to me."
             t "Right?"
             menu:
-                "Invite her in":
+                "Invite her in [blue]\[Tiffany Side\]":
                     $ tifside = True
                     n "Would you care for a tour?"
                     t "Why, yes!"
@@ -8938,7 +8944,7 @@ label bending:
             ba "I'm serious."
             ba "I can't seem to get you out of my head."
             menu:
-                "Invite her in":
+                "Invite her in[blue]\[Bailey Side\]":
                     n "I wouldn't mind getting back in there."
                     ba "What?"
                     label onbailey:
@@ -9019,7 +9025,7 @@ label bending:
     "Girl" "Not around you, no."
     n "Smart."
     menu:
-        "Invite her inside":
+        "Invite her inside [gr]\[Big Titty Goth Girl\]":
             $ btgg = True
             n "So..."
             n "Want a tour?"
@@ -9108,7 +9114,7 @@ label bending:
                 "Donna":
                     n "Donna."
                     "Girl" "Close."
-                "Lydia":
+                "[gr]Lydia":
                     n "Lydia."
                     lyd "See?"
                     lyd "I knew you were fucking with me."
@@ -9155,6 +9161,7 @@ label bending:
                     n "Groupies."
                     lyd "But I'm so fucking curious."
                     n "Alright, here's the only move I'll make."
+                    label galleryScene67:
                     "I dropped my pants."
                     lyd "Fuck."
                     lyd "That's for me?"
@@ -9206,6 +9213,7 @@ label bending:
                     with flash
                     lyd "Mmmmmmm."
                     pause
+                    $renpy.end_replay()
                     scene bg black
                     with fadeout
                     centered "That's all, folks!"

@@ -7875,7 +7875,7 @@ label gymentrance:
             a "Hell yeah."
             n "We could try."
             n "Might as well test the limits!"
-        "Not going to happen":
+        "Not going to happen [red]\[Growth\]":
             $ growth = False
             n "Sorry, ladies."
             n "But I like the way you are now."
@@ -7907,7 +7907,7 @@ label gymentrance:
                 j "...lactate?"
                 j "Sorry. It's stupid."
                 menu:
-                    "Sounds hot":
+                    "Sounds hot [gr]\[Lactate\]":
                         $ jennlactate = True
                         n "Jenn. You're a genius!"
                         j "Yeah?"
@@ -7922,7 +7922,7 @@ label gymentrance:
                         j "Oh, absolutely."
                         j "I can't wait until I'm carrying [n]'s babies."
                         L "Wait, what?"
-                    "Not my thing":
+                    "Not my thing [red]\[Lactate\]":
                         $ jennlactate = False
                         n "If that's what you want, sure."
                         n "But it's not really my thing."
@@ -7939,12 +7939,12 @@ label gymentrance:
             n "Oh?"
             j "Sorry. It's stupid."
             menu:
-                "Sounds hot":
+                "Sounds hot [gr]\[Lactate\]":
                     $ jennlactate = True
                     n "Actually, yeah."
                     n "That sounds pretty damn hot."
                     j "Really?"
-                "Not my thing":
+                "Not my thing [red]\[Lactate\]":
                     $ jennlactate = False
                     n "If that's what you want, sure."
                     n "But it's not really my thing."
