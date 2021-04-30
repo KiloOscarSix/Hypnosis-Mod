@@ -24,7 +24,7 @@ init python:
 
     def updateChecker():
         try:
-            if not isUpToDate(modConfigPath, "https://raw.githubusercontent.com/KiloOscarSix/GAME-Mod/master/game/oscarAdditions/modConfig.txt"):
+            if not isUpToDate(modConfigPath, "https://raw.githubusercontent.com/KiloOscarSix/Hypnosis-Mod/master/game/modAdditions/modConfig.txt"):
                 return True
             else:
                 return False

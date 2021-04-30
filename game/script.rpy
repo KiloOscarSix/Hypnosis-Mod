@@ -95,7 +95,7 @@ default tiffany = False
 default bethbj = False
 default honest = True
 # initially you walked past her in the hall, but she gave you a beej the next day.
-
+default cumhaley = True
 default fuckedtif = False
 default fuckedbailey = False
 default addictive = True
@@ -106,14 +106,15 @@ default jennlactate = True
 default growth = True
 default almaster = False
 default finished = False
-
+default ashleygay = True
+default callme = False
 # you came inside the creamer for Beth when she asked in Episode 13
 
 
 # The script of the game goes in this file.
 
 image slideshow:
-    "dance1" with fadein
+    "dancer1" with fadein
     pause 3.0
     "13ashcouch8" with fade
     pause 3.0
@@ -203,9 +204,17 @@ label splashscreen:
     $ renpy.pause(0.1)
 
     $ renpy.movie_cutscene("intro.webm")
+    scene brokenwatch
+    with fadein
+    pause 4.0
+    scene testingversion
     with fade
+    pause 4.0
+    scene disclaimer
+    with fade
+    pause 4.0
     scene bg black
-    with fade
+    with fadeout
     return
 
 label start:
@@ -19707,6 +19716,7 @@ label galleryScene17:
     scene bg house2
     with fade
     pause
+    $ cumhaley = False
     $ brittany = False
     $ haley = False
     $ rachel = False
@@ -24759,6 +24769,7 @@ menu:
         jump cumhaley
 
 label cumhaley:
+    $ cumhaley = True
     $ hcum = True
     with vpunch
     "I burst inside her, filling the girl as we continued to kiss."
@@ -43609,6 +43620,8 @@ label realend:
     menu:
         "Yes":
             "You got it."
+            scene bg room
+            with fade
             jump skiptobending
         "No":
             "In that case, see you next time!"

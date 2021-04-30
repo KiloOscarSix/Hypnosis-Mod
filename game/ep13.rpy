@@ -8070,7 +8070,8 @@ label gymentrance:
     if nowatch:
         jump defendyourself
     menu:
-        "Try to defend yourself":
+        "Defend yourself [gr]\[Ashley come out\]":
+            $ ashleygay = True
             label defendyourself:
             n "Leah, go take a shit on the half court line."
             pause
@@ -8149,7 +8150,8 @@ label gymentrance:
                 g "Then why did we just spend fifteen minutes talking about it instead of testing it?"
                 n "Uhh..."
                 "I held up my phone and played the video."
-        "Hypnotize them":
+        "Hypnotize them [red]\[Ashley come out\]":
+            $ ashleygay = False
             n "The thing is..."
             if nowatch:
                 "I held up my phone and played the video."
@@ -8220,8 +8222,105 @@ label gymentrance:
         l "I'll give it back to you."
         l "Under two conditions."
         n "And they are?"
-        l "That you let me command the girls something first."
-        n "Umm..."
+        l "First, that you let me command the girls something first."
+        menu:
+            "Let her continue":
+                n "And the second thing?"
+
+            "Cut her off (choose this to play one of the endings)":
+                n "Fuck no."
+                n "I'm not letting you say another word."
+                l "Don't you want the watch back?"
+                n "Oh, you aren't leaving here without it."
+                pause
+                l "Please."
+                n "I'm not going to lie to you."
+                n "And I'm not playing your stupid games."
+                n "Give me my watch, Laura."
+                scene bg black
+                with fade
+                "She looked at the ground as she reached for her pocket."
+                "I held out my hand."
+                "She took a step, putting all her effort into throwing my watch as hard as she could."
+                "I watched helplessly as it hit the wall and exploded into a cloud of dust."
+                "There was nothing left."
+                scene bg black
+
+                scene gymlaurani1
+                with fade
+                pause
+                n "Fuck!"
+                "I glared at her."
+                n "At the very least, you need to command these girls' boobs to stop growing."
+                l "Fine."
+                scene bg black
+                scene gymlaurani2
+                with dissolve
+                pause
+                l "You are all no longer addicted to [n]."
+                l "I free you!"
+                l "And that is all."
+                l "Now, wake up, bitches."
+                "The girls all looked around with various degrees of surprise and confusion."
+                scene bg black
+                scene gymaniu1
+                with fade
+                pause
+                a "What-"
+                l "Hey, ladies."
+                l "[n] just guaranteed that you are all going to need parachutes for bras."
+
+                l "Good luck finding wheelbarrows to keep you mobile."
+                scene lauragym1
+                with fade
+                pause
+                l "Laura out."
+                scene bg black
+                with fade
+                "I debated running after her before realizing there was no point."
+                "My watch was gone."
+                scene gymaniu1
+                with fade
+                pause
+                g "That cunt."
+                j "Grace!"
+                g "What happened, [n]?"
+                n "She snuck up behind me when I was showing you all the video."
+                n "Out of curiosity, did the video work?"
+                g "Not for me."
+                j "No."
+                L "I don't think so."
+                n "Shit."
+                a "Why?"
+                n "Because she just threw my watch against the wall."
+                n "I told her to at least stop your boobs from growing but she refused."
+                h "What a cunt."
+                g "Girl! You and I really need to hang out more."
+                L "So... what do we do now?"
+                n "Can you try this video one more time?"
+                scene bg black
+                with fade
+                "I played the video as I held it up in front of her."
+                scene gymalaniu
+                with fadein
+                pause
+                L "I don't feel any different..."
+                n "Leah, your boobs will now stop growing."
+                L "Yeah..."
+                L "I really hope so."
+                L "Or we are in for a wild ride."
+                scene bg black
+                with fadeout
+                pause
+                with fade
+                centered "The Broken Watch"
+                with fade
+                centered "Or..."
+                with fade
+                centered "The Tig Ol' Bitty Ending"
+                with fade
+                jump bending
+        l "One moment."
         scene bg black
         scene gymani2
         with dissolve
@@ -8250,6 +8349,7 @@ label gymentrance:
                 n "Okay."
                 n "So, can I have my watch back now?"
                 l "Not yet."
+                label laurapower:
                 l "I need you to meet up with me tomorrow."
                 l "So we can talk."
                 l "I'm sorry, [n]."
@@ -8281,85 +8381,15 @@ label gymentrance:
                 l "But-"
                 l "Don't you want the watch back?"
                 n "Oh, you aren't leaving here without it."
-                pause
-                l "Please."
-                n "I'm not going to lie to you."
-                n "And I'm not playing your stupid games."
-                n "Give me my watch, Laura."
-                scene bg black
-                with fade
-                "She looked at the ground as she reached for her pocket."
-                "I held out my hand."
-                "She pulled out the watch and took a step, putting all her effort into throwing the watch as hard as she could."
-                "I watched helplessly as it hit the wall, shocking us with a small explosion."
-                "There was nothing left."
-                scene bg black
-
-                scene gymlaurani1
-                with fade
-                pause
-                n "Fuck!"
-                "I glared at her."
-                n "At the very least, you need to command these girls' boobs to stop growing."
-                l "No."
-                l "Actually, I don't."
-                scene bg black
-                scene gymlaurani2
-                with dissolve
-                pause
-                l "Wake up, girls."
-                "The girls all looked like they had various degrees of surprise and confusion."
-                scene bg black
-                scene gymaniu1
-                with fade
-                pause
-                a "What-"
-                l "Hey, girls."
-                l "[n] just guaranteed that you are all going to need parachutes for bras."
-
-                l "Good luck finding wheelbarrows to keep you mobile."
-                scene lauragym1
-                with fade
-                pause
-                l "Laura out."
-                scene bg black
-                with fade
-                "I debated running after her before realizing there was no point."
-                scene gymaniu1
-                with fade
-                pause
-                g "That cunt."
-                j "Grace!"
-                g "What happened, [n]?"
-                n "She snuck up behind me when I was showing you all the video."
-                n "Out of curiousity, did the video work?"
-                g "Not for me."
-                j "No."
-                L "I don't think so."
-                n "Shit."
-                a "Why?"
-                n "Because she just threw my watch against the wall."
-                n "I told her to at least stop your boobs from growing, and she simply said, 'no' before waking you all up."
-                h "Damn."
-                h "What a cunt."
-                g "Girl! You and I need to hang out more."
-                L "So... what do we do now?"
-                n "Can you try this video one more time?"
-                scene bg black
-                scene gymalaniu
-                with dissolve
-                "I played the video as I held it right in front of her."
-                L "I don't feel any different..."
-                n "Leah, your boobs will now stop growing."
-                L "Yeah..."
-                L "I really hope so."
-                L "Or we are in for a wild ride."
-                scene bg black
-                with fadeout
-                pause
-                centered "The BEnding"
-                with fade
-                jump bending
+                l "Come on."
+                l "Girls, if [n] tries to take the watch, tackle him and return it to me."
+                "Girls" "Yes, Laura."
+                l "Call me Mistress."
+                "Girls" "Yes, Mistress."
+                l "Now, I'm not going to require you to make me your second command."
+                l "Or even to ever see me again."
+                l "But if you want your watch back..."
+                jump laurapower
     "I pulled out my watch and dangled it in front of them."
     L "Wait-"
     "All of the girl's eyes glazed over."
@@ -8598,6 +8628,7 @@ label justlikethat:
             n "Or command Ashley to let me fuck her mom..."
             n "Huh."
             n "Looks like she saved me some time here."
+
             menu:
                 "Call me Master":
                     n "Also, all of you will feel the urge to call me Master and none of you will realize it."
