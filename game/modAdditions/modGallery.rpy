@@ -149,6 +149,9 @@ init python:
     GalleryItem("Other", "onbailey", "Episode 13/bailey6.webp")
     GalleryItem("Other", "galleryScene72", "Endings/haleyjd8.webp")
     GalleryItem("Other", "galleryScene75", "Episode 13/btgg3.webp")
+    GalleryItem("Other", "galleryScene76", "Endings/ghcouch9.webp")
+    GalleryItem("Other", "tifanending", "Endings/tifkitchen1.webp")
+    GalleryItem("Other", "lauraccepted", "Endings/aptpool30.webp")
 
 define galleryMenu = [
     ["Leah", "/images/leah hotel1.webp"],

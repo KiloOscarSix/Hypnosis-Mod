@@ -1,4 +1,4 @@
-﻿init -20 python:
+init -20 python:
     import discord_rpc
     import time
 
@@ -93,13 +93,14 @@ default ashleymomtruth = False
 default lactation = False
 default tiffany = False
 default bethbj = False
-default honest = True
 # initially you walked past her in the hall, but she gave you a beej the next day.
+default honest = True
 default cumhaley = True
 default fuckedtif = False
 default fuckedbailey = False
 default addictive = True
 default bethcreamed = False
+# you came inside the creamer for Beth when she asked in Episode 13
 default goback = True
 default fuckedbeth = False
 default jennlactate = True
@@ -108,7 +109,8 @@ default almaster = False
 default finished = False
 default ashleygay = True
 default callme = False
-# you came inside the creamer for Beth when she asked in Episode 13
+default lydiaside = False
+
 
 
 # The script of the game goes in this file.
@@ -230,8 +232,8 @@ label start:
         discord_rpc.run_callbacks()
         discord_rpc.update_presence(
             **{
-                'details': 'Taking Ass and Kicking Names!',
-                'state': 'Chillin',
+                'details': 'Prologue',
+                'state': 'Taking Ass and Kicking Names',
                 'large_image_key': 'Hypnosis',
                 'start_timestamp': start
             }
@@ -239,17 +241,13 @@ label start:
 
         discord_rpc.update_connection()
         discord_rpc.run_callbacks()
-    # Show a background. This uses a placeholder by default, but you can
-    # add a file (named either "bg room.png" or "bg room.jpg") to the
-    # images directory to show it.
 
     scene bg room
-
-    # This shows a character sprite. A placeholder is used, but you can
-    # replace it by adding a file named "eileen happy.png" to the images
-    # directory.
-
-    "Every character in this game is over the age of 18. Are you?"
+    with dissolve
+    pause
+    "Every character in this game is over the age of 18."
+    "Are you?"
+    with dissolve
     menu:
         "Yes":
             jump over18
@@ -43628,10 +43626,20 @@ label realend:
 
 
 label end:
+    scene bg black
+    with fadeout
     centered "Please save your game before this."
-    with fade
 label afterend:
+    scene bg black
+    with fade
+    centered "Dedicated to Deamonmaster"
 
+    centered "1990 - 2021"
+    centered "Rest in peace, Chris."
+
+    centered "Thanks for all the feedback and support."
+    centered "Coming soon - the Deamonmaster Ending"
+    with fade
     centered "Also available from Expanding Universe Games"
     with fade
     scene endowed2
