@@ -1467,8 +1467,15 @@ label skipgrace:
     scene bg black
     with fade
     centered "You have reached Laura's first ending!"
-    centered "More to come in future updates."
-    jump end
+    if finished:
+        jump endings
+    else:
+        "Would you rather head back to the main storyline or the opening menu?"
+        menu:
+            "Main Story":
+                jump backtosmallness
+            "Opening Menu":
+                return
 
 
 
@@ -1481,6 +1488,7 @@ label lauraendtwo:
     scene bg black
     with fade
     "I did some research and found a week long cruise special."
+label cruisending:
     image laurafloat = Movie(play="laurafloat.webm")
     show laurafloat
     with fade
@@ -4353,6 +4361,7 @@ label goodgrace:
     pause
     l "I figured out why I kept throwing up."
     n "Oh yeah?"
+    l "Morening sickness."
     n "You're pregnant?"
     l "Actually..."
     scene lauranews4
@@ -4365,8 +4374,6 @@ label goodgrace:
     scene lauranews6
     with dissolve
     n "Seriously."
-    n "So it was-"
-    l "Morning sickness."
     n "Wow."
     scene lauranews4
     with dissolve
@@ -4398,7 +4405,7 @@ label goodgrace:
     if preg:
         scene bg black
         with fade
-        "{b}A Month Later{/b}"
+        "{b}Two Weeks Later{/b}"
         scene bg laurakitchen3
         with fade
         pause
@@ -4594,7 +4601,7 @@ label goodgrace:
         if brittany:
             scene bg black
             with fade
-            "{b}A Month Later{/b}"
+            "{b}Two Weeks Later{/b}"
             scene bg laurakitchen4
             with fade
             pause
@@ -4690,7 +4697,7 @@ label goodgrace:
                 scene bg black
 
                 with fade
-                "{b}A Month Later{/b}"
+                "{b}Two Weeks Later{/b}"
                 with fade
                 scene backseat
                 pause
@@ -4971,6 +4978,8 @@ label goodgrace:
                     with fade
                     "I tossed her back on the bed and continued ravaging the girl."
                     pause
+                    scene bg black
+                    with fade
                 $ renpy.end_replay()
 
 
@@ -4992,7 +5001,7 @@ label goodgrace:
     scene bg black
 
     with fade
-    "{b}Two Months Later{/b}"
+    "{b}Two Weeks Later{/b}"
     scene backseat
     with fade
     pause
@@ -5026,7 +5035,6 @@ label goodgrace:
 
     if lifeboat:
         label galleryScene28:
-            scene backseat
         n "So where is the graduation party?"
         l "About that."
         n "Yeah?"
@@ -5504,6 +5512,7 @@ label goodgrace:
         with dissolve
         L "I wanted you to know."
         pause
+    $ bwending = False
     label toots:
     scene bg black
     with fade
@@ -5959,13 +5968,16 @@ label goodgrace:
     with dissolve
     h "But isn't that not supposed to start until you're actually married?"
     n "I guess."
-    n "Anything I can do for you?"
-    h "Just the obvious answer."
-    scene haleyhuge11
-    n "Find the watch?"
-    h "And make me shrink back down again."
-    h "At least to the point where I could walk for longer than it takes to go to the bathroom."
-    h "I can't even stand up for a full shower anymore."
+    if bwending:
+        n "It'll work out."
+    else:
+        n "Anything I can do for you?"
+        h "Just the obvious answer."
+        scene haleyhuge11
+        n "Find the watch?"
+        h "And make me shrink back down again."
+        h "At least to the point where I could walk for longer than it takes to go to the bathroom."
+        h "I can't even stand up for a full shower anymore."
     scene haleyhuge10
     with dissolve
     if lifeboat:
@@ -5990,7 +6002,7 @@ label goodgrace:
         n "What were you going to tell me at the graduation party?"
         scene haleyhuge9
         with dissolve
-        h "Oh that?"
+        h "Oh, that?"
         if haley:
             h "Laura was right."
             h "I was going to tell you that I loved you."
@@ -6041,7 +6053,15 @@ label goodgrace:
     $renpy.end_replay()
     pause
     centered "Thanks for playing the ending!"
+    if finished:
+        "Would you like to return to play a different ending, or would you rather replay this ending with different variables?"
+        menu:
+            "Take me back to the endings page":
+                jump endings
+            "Explore more options":
+                jump moreoptionscruise
     if ashleyswallow:
+        label moreoptionscruise:
         if glthreesome:
             scene bg black
             with fade
@@ -6062,6 +6082,8 @@ label goodgrace:
                 "Head back to the main storyline":
 
                     jump timetraveler
+                "Main menu":
+                    return
         else:
             scene bg black
             with fade
@@ -6081,16 +6103,212 @@ label goodgrace:
                     jump yeahyeahyeah
                 "Head back to the main storyline":
                     jump timetraveler
+                "Main menu":
+                    return
     jump end
 
 # ------------------------------------------ BE Ending --------------------------------------------------------------
 
+label skiptobending:
+    if nowatch:
+        "This ending takes place when Laura confronts you at the gym."
+    else:
+        "This ending takes place on a path where Laura recovered the watch back in Episode Ten."
+        "In this path, you would have met up with Brittany at the bar and avoided looking at the video."
+        "From there you would get the girls together to go to Laura's house to take the watch back."
+        "However, once you recovered the watch, Laura texted Leah and commanded her to steal the watch back and bring it to her."
+        "Much of the story remained the same with Laura disappearing."
+        "At the end of Episode Thirteen you went to the gym to attempt to find a way to hypnotize the girls without needing the watch."
+        "You had the idea to use the video of Laura hypnotizing Leah and Ashley since it worked on Grace when she watched it."
+        "To be safe, you first took the precaution of muting the audio and cropping out Laura."
 
-label beending:
-    centered "This update assumes you are currently dating the main girls."
-    centered "This includes Leah, Ashley, Jenn and Grace."
-    "{b}Four Days Later{/b}"
+    scene bg black
+    scene gymani1
+    with fadehold
+    pause
+    a "So, I'm ready."
+    a "What about you girls?"
+    j "Ready."
+    n "Okay, I'm going to pull out the video."
+    n "By the way, it didn't work on me earlier-"
+    g "What!"
+    g "Then why did we just spend fifteen minutes talking about it instead of testing it?"
+    n "Uhh..."
+    "I held up my phone and played the video."
+    a "Umm..."
+    n "It's not working?"
+    n "Here, let me bring it closer to you guys..."
+    scene bg black
+    scene gymani2
+    with dissolve
+    n "Oh!"
+    n "Did it work?"
+    pause
+    with vpunch
+    l "Not exactly."
+    with vpunch
+    scene bg black
+    image gymlaurani2 = Movie(play="gymlaurani2.webm")
+    scene gymlaurani2
     with fade
+    pause
+    n "SHIT!"
+    n "Where the fuck-"
+    l "Girls, you will listen to me and not [n]."
+    scene bg black
+    image gymlaurani1 = Movie(play="gymlaurani1.webm")
+    scene gymlaurani1
+    with dissolve
+    pause
+    l "Hi, [n]."
+    l "Did you miss me?"
+    pause
+    n "I-"
+    l "Look, I'm here to apologize."
+    n "Then why are you-"
+    l "I know what you want."
+    l "Or at least, I know what you {i}really{/i} want."
+    n "I want my watch back."
+    n "It belonged to my grandfather and I'm very sentimental."
+label redolaura:
+    l "Relax, [n]."
+    l "I'll give it back to you."
+    l "Under two conditions."
+    n "And they are?"
+    l "First, that you let me command the girls something."
+    menu:
+        "Allow it":
+            n "I'll allow it."
+            l "Good!"
+            l "Wait, I thought you were here to play the new content?"
+            n "I mean..."
+            pause
+            centered "Rewinding"
+            centered "..."
+            jump redolaura
+        "Cut her off (choose this to continue the ending)":
+            n "Fuck no."
+            n "Laura, there's no chance of us being together."
+            l "I know you think that now, but-"
+            n "No."
+            n "I'm telling you right now that things are over between us."
+            n "Do you understand?"
+            l "But-"
+            l "Don't you want the watch back?"
+            n "Oh, I'm not leaving here without it."
+            pause
+            l "Please."
+            n "I'm not going to lie to you."
+            n "And I'm not playing your stupid games."
+            n "Give me my watch, Laura."
+            scene bg black
+            with fade
+            "She looked at the ground as she reached for her pocket."
+            "I held out my hand."
+            "She took a step, putting all her effort into throwing my watch as hard as she could."
+            "I watched helplessly as it hit the wall and exploded into a cloud of dust."
+            "There was nothing left."
+            scene bg black
+
+            scene gymlaurani1
+            with fade
+            pause
+            n "Fuck!"
+            "I glared at her."
+            n "At the very least, you need to command these girls' boobs to stop growing."
+            l "Fine."
+            scene bg black
+            scene gymlaurani2
+            with dissolve
+            pause
+            l "You are all no longer addicted to [n]."
+            l "I free you!"
+            l "And that is all."
+            l "Now, wake up, bitches."
+            "The girls all looked around with various degrees of surprise and confusion."
+            scene bg black
+            scene gymaniu1
+            with fade
+            pause
+            a "What-"
+            l "Hey, ladies."
+            l "[n] just guaranteed that you are all going to need parachutes for bras."
+
+            l "Good luck finding wheelbarrows to keep you mobile."
+            scene lauragym1
+            with fade
+            pause
+            l "Laura out."
+            scene bg black
+            with fade
+            "I debated running after her before realizing there was no point."
+            "My watch was gone."
+            scene gymaniu1
+            with fade
+            pause
+            g "That cunt."
+            j "Grace!"
+            g "What happened, [n]?"
+            n "She snuck up behind me when I was showing you all the video."
+            n "Out of curiosity, did the video work?"
+            g "Not for me."
+            j "No."
+            L "I don't think so."
+            n "Shit."
+            a "Why?"
+            n "Because she just destroyed my watch."
+            n "I told her to at least stop your boobs from growing but she refused."
+            h "What a cunt."
+            g "Girl! You and I need to hang out more."
+            L "So... what do we do now?"
+            n "Can you try this video one more time?"
+            scene bg black
+            with fade
+            "I played the video as I held it up in front of her."
+            scene gymalaniu
+            with fadein
+            pause
+            L "I don't feel any different..."
+            n "Leah, your boobs will now stop growing."
+            L "Yeah..."
+            L "I really hope so."
+            L "Or we are in for a wild ride."
+            scene bg black
+            with fadeout
+            pause
+            with fade
+            centered "The Broken Watch"
+            with fade
+            centered "Or..."
+            with fade
+            centered "The Tig Ol' Bitty Ending"
+            with fade
+
+label bending:
+    "This update assumes you are currently dating the main girls."
+    with fade
+    "This includes Leah, Ashley, Jenn and Grace."
+    python:
+        start = time.time()
+        discord_rpc.update_connection()
+        discord_rpc.run_callbacks()
+        discord_rpc.update_presence(
+            **{
+                'details': 'The Broken Watch Ending',
+                'state': 'Things are getting pretty wild!',
+                'large_image_key': 'Hypnosis',
+                'start_timestamp': start
+            }
+        )
+
+        discord_rpc.update_connection()
+        discord_rpc.run_callbacks()
+    with fade
+    pause
+    "{b}Four Days Later{/b}"
+    scene market1
+    with fadein
+    pause
     "I called Grace."
     g "Hey! We're on our way!"
     n "Cool."
@@ -6098,52 +6316,78 @@ label beending:
     g "Why? I thought we were going out for dinner."
     n "This is for breakfast."
     g "Oh! Good idea."
+    scene market2
+    with dissolve
     n "Do you want any snacks?"
     g "[n]! You know we are trying to cut calories."
     n "There are healthy options."
     g "But healthy snacks suck."
-    n "I guess you've never had avacado toast."
+    n "I guess you've never had avocado toast."
     g "Really, [n]?"
-    g "You are talking to me about ava-calorie toast?"
+    scene market3
+    with dissolve
+    g "You are talking to me about avo-calorie toast?"
     n "But it's the good fats."
     g "That's the kind my tits love!"
     g "Tossing it on carbs? Great idea."
     n "There are some corn dogs here..."
     g "No!"
+    scene market5
+    with dissolve
     n "Pizza pockets?"
     g "You're killing me!"
     n "Alright, I'm picking up breakfast meat."
     g "Just get some chicken sausage."
+    scene market4
+    with dissolve
     n "Sounds good."
     g "Alright, see you in a few."
     "I hung up."
 
-    "Alright. Which direction to go?"
+    "{i}Alright. Which direction to go?{/i}"
     menu:
         "Chicken sausage":
             $ bacon = False
-            "Here we go."
-            "I don't need the girls thinking I'm trying to make them any bigger."
-        "Bacon":
+            "{i}Here we go.{/i}"
+            "{i}I don't want the girls thinking I'm trying to make them any bigger.{/i}"
+        "Bacon [gr]\[Huge breasts\]":
             $ bacon = True
-            "You can't mess up bacon."
-            "But I'll also grab some chicken sausage."
-            "And some snacks, obviously."
+            "{i}You can't mess up bacon.{/i}"
+            "{i}But I'll also grab some chicken sausage.{/i}"
+            "{i}And some snacks, obviously.{/i}"
+    scene bg black
+    with fadeout
+    pause
+    "{b}Thirty Minutes Later{/b}"
 
-    "Thirty Minutes Later"
-    g "We're here!"
-    n "Right on."
-    n "I'll come down to meet you."
-    g "Jenn says she knows where you live."
-    n "But you need someone to let you up the elevator."
-
+    scene jgentrance1
+    with fadein
+    pause
     n "Ladies."
+    n "You made it!"
+    scene jgentrance2
+    with dissolve
+    pause
+    g "Barely."
     if jenn:
         j "[n]!"
-        "She gave me a big kiss."
+        scene jgentrance3
+        with dissolve
+        "I threw my arms around Jenn and she gave me a big kiss."
+    pause
+    scene jgentrance4
+    with dissolve
+    "When I reached for Grace she seemed to pull her face back, so I only gave her a hug."
+    pause
+    scene jgentrance5
+    with dissolve
+    pause
     g "Hey."
-    "Girl" "Ahem."
-    g "Hey, is this Big Titty Goth Girl?"
+    n "Did you run into troubles?"
+    g "Hey, is that Big Titty Goth Girl?"
+    image jgentranceani = Movie(play="jgentranceani.webm")
+    scene jgentranceani
+    with fade
     "Girl" "Wait, you told them about me?"
     n "Of course."
     g "Do you have a name?"
@@ -6180,10 +6424,10 @@ label beending:
     g "Would you?"
     lyd "Would I what?"
     g "Would you go bigger if you could?"
-    "Lydia was speechless for the first time that I'd seen."
+    "Lydia was speechless for the first time I knew of."
     lyd "Uhh..."
     g "It's okay, you can tell us."
-    g "I know that must girls wouldn't want to admit it in front of polite society."
+    g "I know that most girls wouldn't want to admit it in front of polite society."
     g "But you seem like the kind of girl that isn't afraid to show her true colors."
     lyd "Would I have to suck [n]'s dick?"
     g "Sure."
@@ -6194,18 +6438,40 @@ label beending:
     g "Let's go upstairs and give you a double BJ."
     n "Uhh..."
     lyd "Have fun."
-    "We hadn't got quite out of earshot when Grace continued at full volume."
+    scene jgentrance6
+    with fade
+    pause
     g "She totally wants to suck your dick."
-
-
+    n "Pretty sure she heard you."
+    g "I'm aware."
+    scene aptdoor1
+    with fade
+    g "So this is it?"
+    n "Yep."
+    g "The infamous [n] party pad?"
+    n "Yep."
+    g "Well, are you going to let us in?"
+    scene apt1
+    with fade
+    n "And here we have the entrance."
+    n "It's okay if your pants fall off."
+    scene apt2
+    with dissolve
     g "Nice place."
     n "Thanks."
+    scene apt3
+    with dissolve
     j "You really haven't been here before?"
     g "No."
     j "I thought you were pulling my leg."
+    scene apt4
+    with fade
     n "So how was your ride over?"
     g "A couple of guys were staring at us the entire time."
     g "It was creepy."
+    image jgaptani2 = Movie(play="jgaptani2.webm")
+    scene jgaptani2
+    with fade
     j "I'm going to get some pepper spray."
     n "Then I'm glad you came together."
     n "Girl power and all that."
@@ -6226,6 +6492,7 @@ label beending:
     g "So you didn't get to explore the city much."
     g "We can do that tonight!"
     g "Maybe go out to a club?"
+
     j "You want to go dancing?"
     g "Why not?"
     j "I was thinking we could just stay here."
@@ -6241,41 +6508,78 @@ label beending:
     g "Alright. Where's the bathroom?"
     n "I believe in you."
     g "You're no help!"
-
+    scene bg black
+    with fade
+    "Grace went exploring."
+    scene apt5
+    with fade
     n "So..."
     n "Are you two getting along?"
+    scene apt6
     j "Yeah, we have been having fun."
     j "It's a bit weird, her going from bullying me to trying to be my best friend in a couple of weeks."
+    scene apt5
     n "Did she actually bully you?"
+    scene apt6
     j "She didn't stop it from happening."
+    scene apt5
     n "Hmm."
     n "Do you trust her?"
+    scene apt6
     j "I trust her as much as I need to."
     j "I don't get bothered by things the same way anymore."
+    scene apt5
     n "That's good."
+    scene apt6
     j "So...."
     j "Think I could blow you before she gets back?"
+    scene apt5
     n "Pretty sure you could just take off your top and I'd start blasting."
+    scene apt6
     j "Really?"
     j "Shall we try?"
-
+    scene apt7
+    with fade
+    pause
     n "Damn."
-    g "Jenn! You have your tits out already?"
+    scene apt8
+    j "You like?"
+    scene apt7
+    n "I-"
+    g "Jenn!"
+    g "You have your tits out already?"
     g "We just got here!"
+    scene apt9
+    with dissolve
+    pause
     n "That took too long if you ask me."
     n "In fact, I should instigate a naked rule."
+    scene apt10
     g "You first."
+    scene apt9
     n "Yeah?"
+    j "But Grace!"
+    scene apt11
+    with dissolve
     j "You are the one that wants to go out."
     j "If we do that, I'm going to need some love."
+    scene apt12
     g "Now, Jenn, we talked about this."
-    g "It's not good to confuse love and sex."
+    g "You shouldn't confuse love with sex."
+    scene apt11
     j "We did?"
-    g "There's a difference between [n] loving you and loving to fuck you."
-    n "Grace."
+    scene apt12
+    g "There's a difference between [n] loving you and him loving to fuck you."
+    scene apt11
+    n "Grace!"
     n "I thought you were done with bullying."
+    scene apt12
     g "[n]."
-    g "There are more than one kind of bullying."
+    scene bg black
+    image jgaptani1 = Movie(play="jgaptani1.webm")
+    scene jgaptani1
+    with fade
+    g "There is more than one kind of bullying."
     g "Leading a girl on while still fucking all of her friends is one of them."
     n "She is fully aware-"
     g "Oh, I know."
@@ -6289,11 +6593,10 @@ label beending:
     g "Then why have you only given me dick once in almost two weeks?"
     n "What are you talking about?"
     n "You got like five rounds!"
-    j "I do not want to hear this."
+    j "I really don't want to hear this."
     g "It doesn't count when you don't leave the bed!"
-    n "We did! There was your entrance way, the staircase, the-"
+    n "We did! There was your entranceway, the staircase, the-"
     j "La la la la!"
-    g "Right."
     g "I'm just saying."
     g "You have never taken me out on a date."
     n "What?"
@@ -6304,7 +6607,7 @@ label beending:
     n "We went for coffee-"
     g "Same."
     n "Huh."
-    n "Shit."
+    n "Crap."
     n "Alright, let's go out to dinner."
     j "Without me?"
     n "Of course not."
@@ -6316,7 +6619,7 @@ label beending:
         g "And I'll blow you under the table."
         n "Perfect."
     else:
-        g "And Jenn can blow you ounder the table."
+        g "And Jenn can blow you under the table."
         n "Perfect."
         j "Hey!"
 
@@ -6331,18 +6634,24 @@ label beending:
     n "Maybe the command will wear off."
     g "You think?"
     n "Maybe when Laura broke the watch it broke the spell."
-    g "Then why has Jenn gained another two cup sizes since then?"
+    g "Then why have I gained another two cup sizes since then?"
     n "That's a good point."
+    g "And even Jenn looks bigger."
     j "What?"
-    j "I just wanted to get a little bigger."
+    j "Okay, just a little bit."
     j "Now I'm happy where I'm at."
     j "Honest."
     g "Then are you going to stop eating every meal like it's your last?"
     j "Are you?"
     g "...shut up."
-
-
-    "An Hour Later"
+    scene bg black
+    with fade
+    pause
+    "{b}An Hour Later{/b}"
+    scene bg black
+    image gdinnerani1 = Movie(play="gdinnerani1.webm")
+    scene gdinnerani1
+    with fadein
 
     g "So..."
     g "How was your week?"
@@ -6399,7 +6708,7 @@ label beending:
     n "It's just you and me sitting here."
     g "So nothing else is distracting you right now?"
     n "Nope."
-    g "Not even Jenn's lips underneath the table wrapped around your cock?"
+    g "Not even Jenn underneath the table with her lips wrapped around your cock?"
     n "Oh, that?"
     n "I forgot she was there."
     g "Your face says otherwise."
@@ -6428,48 +6737,60 @@ label beending:
     g "But I know you think I'm better."
     g "If you don't, keep a straight face for the next ten seconds."
     n "Sure."
-    "I do my best not to react."
-    "But Jenn's tongue works it's magic and I'm soon blasting a full load into the back of her throat."
+    "I did my best not to react."
+    "But Jenn's tongue worked its magic and I was soon blasting a full load into the back of her throat."
     with vpunch
 
     g "Ha!"
     with vpunch
     g "I win!"
     n "Technically, Jenn won this one."
+    scene jgdinner1
+    with fade
     g "What! No fair."
-    "Jenn sat up next to Grace."
     n "Good girl."
+    scene jgdinner2
+    with dissolve
     n "Did you do what I told you?"
-    "Jenn nodded her head."
+    j "Mmm hmm."
     n "Excellent."
     n "Now, kiss Grace."
+    scene jgdinner3
+    with fade
     g "What?"
     g "No!"
+    scene jgdinner4
+    with dissolve
     g "Ah!"
     n "That's it."
     n "Share the load."
     n "How's this for a boring date?"
     g "Mmmm."
+    n "Yeah, lick her face clean."
     n "She's a good kisser, isn't she?"
     g "Hmm."
     n "Who is the better kisser, you ask?"
     n "Well, I don't know."
-    n "Jenn as kissed me several times since she got here."
+    n "Jenn has kissed me several times since she got here."
+    scene jgdinner5
+    with dissolve
     n "But Grace hasn't kissed me in..."
     g "You're the one that hasn't kissed me, asshole."
     n "Is that it?"
+    scene bg black
+    scene gdinnerani1
+    with fade
     g "Yes."
     g "I'm not Jenn."
+    g "You have to come to me."
     g "No offense, Jenn."
-    g "But you have to come to me."
     n "Interesting."
-    n "I didn't really think you were the game playing type."
+    n "I didn't think you were the game playing type."
     g "I'm not."
     g "But sometimes I want to be chased."
-    "She turned to Jenn."
     g "Don't you want to be treated special, Jenn?"
     j "Of course."
-    g "You can't treat us the same, [n[."
+    g "You can't treat us the same, [n]."
     g "Because we are different people."
     n "Fair point."
     n "So what do you want, Grace?"
@@ -6477,18 +6798,19 @@ label beending:
     g "I don't want to say."
     j "Come on!"
     j "You can tell us."
-    "She looked at me."
     n "I genuinely want to know."
     g "It's stupid."
     n "Tell me."
-    g "I want to be at your arm."
+    g "I want to be on your arm."
     g "I want to sit next to you and... {p}I want everyone to know that I'm your girl."
     n "Sounds good to me."
     n "Is that alright with you, Jenn?"
     j "Of course!"
     j "Get over there."
-    g "Okay."
-
+    scene bg black
+    image gdinnerani2 = Movie(play="gdinnerani2.webm")
+    scene gdinnerani2
+    with fade
     n "How's this?"
     g "It's nice."
     pause
@@ -6528,23 +6850,50 @@ label beending:
     g "Alright, I'm convinced."
     g "Plus, I want Jenn to have fun too."
     n "Excellent."
-    j "Oh! Here comes our food!"
+    j "Oh! Here comes the waiter!"
     "Waiter" "Welcome back, Miss."
     j "Thanks."
-    "Waiter" "I don't mean to be rude, but you have something on your chin there."
+    "Waiter" "I wanted you to know that your food will be out shortly."
+    "Waiter" "And I don't mean to be rude, but you have something on your chin there."
     j "Wha-"
     j "[n]!"
-
+    scene bg black
+    with fadeout
+    pause
+    label galleryScene66:
+    "{b}An Hour Later{/b}"
+    scene bg black
+    image jgpoolani1 = Movie(play="jgpoolani1.webm")
+    scene jgpoolani1
+    with fadein
 
     j "This is nice."
     j "Are you sad we didn't go dancing, Grace?"
-    g "I have no complaints."
-    g "This is actually perfect."
+    g "I'll deal."
+    g "As long as we go tomorrow night."
+    j "I'll go!"
+
+    g "Then I have no complaints."
+    g "This is pretty perfect."
+
+
+    j "So, Grace. Did you get enough face time with [n] on the way home?"
+    g "I don't know what you're talking about."
+    j "Oh yeah?"
+    j "No idea why it took us thirty minutes to walk two blocks?"
+    j "Don't remember stopping to make out with [n] every three feet?"
+    g "Nope."
+    j "My mistake."
+    n "Alright, ladies."
     n "Who wants a back rub first?"
     g "I'm good for now."
-    g "You were right about making them weightless."
+    g "You were right about them feeling weightless."
     n "Jenn?"
     j "Why not."
+    scene bg black
+    image jgpoolani2 = Movie(play="jgpoolani2.webm")
+    scene jgpoolani2
+    with fade
     "I began rubbing her neck and shoulders."
     j "Mmmmmmm."
     j "Maybe they are getting too big."
@@ -6555,90 +6904,345 @@ label beending:
     j "Right?"
     j "I'm pretty sure these things could be in my lap and he wouldn't be satisfied."
     n "Of course I would."
-    n "They are already huge."
+
     j "But are they big enough?"
     n "Sure."
-    g "Be honest."
-    n "If there was more of you to love-"
+    j "Be honest."
+    j "Wouldn't you rather me catch up to Grace?"
+    n "I mean..."
+    n "She is looking pretty great."
     g "Yeah, yeah."
-    j "So what is our sleeping arrangement tonight?"
+    j "Hey, what is our sleeping arrangement tonight?"
     n "It's a big bed."
     g "Ooo! I haven't seen it yet."
     j "So... all three of us?"
     n "I call the middle!"
     g "Aww."
     g "I'll flip you for it."
-
-    "Sex scene in tub"
-    "Sex scene in bed"
+    n "Nope."
+    n "My bed, my rules."
+    g "Like with your naked rule?"
+    n "Hey, yeah!"
+    n "What's going on with that?"
+    j "Sometimes wearing clothes can be hotter."
+    g "Speaking of, doesn't Jenn wear the shit out of my swimsuit?"
+    n "I'd still rather you be skinny dipping with me."
+    g "But once again... {w}you're clothed."
+    n "I can change that."
+    j "But if we both take off our bottoms you are going to end up inside me."
+    n "Nahhhh."
+    scene bg black
+    with fadeout
+    pause
+    "{b}Three Minutes Later{/b}"
+    scene bg black
+    image jgpoolani3 = Movie(play="jgpoolani3.webm")
+    scene jgpoolani3
+    with fadein
+    pause
+    g "See?"
+    g "If Jenn was topless, this wouldn't be quite so hot."
+    g "It just makes it dirtier."
+    n "That's not the top."
+    n "It's the fact that in the back of your mind, you feel like we're defiling the flag."
+    g "Hmm."
+    g "More like waving it proudly."
+    n "Let's ask Jenn."
+    n "Are you feeling patriotic?"
+    j "So much."
+    j "But what would happen if I took it off?"
+    n "Only one way to find out."
+    pause
+    scene bg black
+    image jgpoolani4 = Movie(play="jgpoolani4.webm")
+    scene jgpoolani4
+    with fade
+    pause
+    j "Worth it!"
+    n "See my point, Grace?"
+    g "Yeahhh..."
+    g "I can't stop staring at her rack."
+    g "So... {w}bouncy..."
+    pause
+    g "I'm getting hypnotized."
+    g "Quick, [n]!"
+    g "Tell my tits to stop growing."
+    n "No."
+    g "What?"
+    n "I can't."
+    n "The boobies are telling me not to."
+    g "Look away!"
+    n "I... can't..."
+    j "Shhhh."
+    j "Just fuck me."
+    pause
+    g "That looks fun."
+    g "When is it my turn?"
+    j "After I'm finished!"
+    g "Then hurry up!"
+    pause
+    j "What-"
+    j "Grace?"
+    g "I'm just helping things along."
+    j "Grace!"
+    j "That's your finger!"
+    g "Well, yeah."
+    g "[n] can't reach you right now because he's busy holding your legs up."
+    j "But..."
+    j "It feels weird!"
+    g "Good, right?"
+    j "Really good!"
+    g "Excellent."
+    g "Now cum for me."
+    j "For you?"
+    g "So I can have my turn!"
+    j "But I like it!"
+    g "If you cum, I'll make out with you."
+    j "Okay!"
+    j "But keep doing that!"
+    j "Yesss!"
+    with vpunch
+    j "Yesssssssss!"
+    with vpunch
+    j "HOLY FUCK!"
+    with vpunch
+    pause
+    g "My turn!"
+    scene bg black
+    image jgpoolani5 = Movie(play="jgpoolani5.webm")
+    scene jgpoolani5
+    with fade
+    pause
+    j "Mmm!"
+    j "Your fingers are magic!"
+    g "Mmm."
+    g "Not so loud."
+    g "[n]'s cock is going to get jealous."
+    j "It's not even close."
+    g "I know."
+    g "Fuck, I missed this thing."
+    n "Ladies, ladies."
+    n "I'm more than my penis."
+    j "Mmm."
+    pause
+    j "Grace, you're a really good kisser."
+    g "I know."
+    g "I keep trying to tell [n]."
+    "I flipped her over."
+    scene bg black
+    image gracepoolani6 = Movie(play="gracepoolani6.webm")
+    scene gracepoolani6
+    with fade
+    n "It's not my fault!"
+    n "You're the one with the really nice backside."
+    g "I got nothing on Jenn."
+    g "Her booty is fierce!"
+    g "Hey Jenn, remember when [n] was supposed to tell you that?"
+    g "Tell her now, [n]."
+    n "Don't mind if I do."
+    n "Jenn, you have a fat ass."
+    g "And it looks gooood!"
+    j "Thanks guys!"
+    j "I appreciate-"
+    g "Shhhh."
+    g "Quiet now! I have the floor."
+    g "Harder, [n]!"
+    g "Fuuuccccckkkkk meeeeeee!"
+    with vpunch
+    n "Holy shit you feel good!"
+    with vpunch
+    g "Yahhhhhh!"
+    with flash
+    g "Kiss me!"
+    with flash
+    pause
+    scene bg black
+    with fadeout
+    $renpy.end_replay()
+    "{b}The Next Morning{/b}"
+    with fade
 
     "I woke up to the sound of my door knocking."
     n "*mumble mumble*"
+    scene hapt2
+    with fadein
+
     h "Hey."
+    scene hapt1
     n "Hey! How did you get up here?"
+    scene hapt2
     h "The girl at the desk let me up."
+    scene hapt3
     n "Nice."
+    n "Can I get some sugar?"
+    scene hapt4
+    with dissolve
+    pause
+    scene hapt3
+    with dissolve
     n "Come in."
-    h "This is familiar."
-    n "A little bit."
+    scene hapt5
+    with fade
+    pause
     n "So how did things go with the doctor?"
+    scene hapt6
     h "They checked me out."
+    scene hapt5
     n "What did they find?"
+    scene hapt6
     h "These."
-    n "Oh!"
-    n "Damn."
-    h "What you think?"
-    n "I..."
-    n "Damn."
+    scene hapt5
+    n "You aren't even going to gesture to your boobs when you talk about them?"
+    scene hapt6
+    h "No need."
+    scene hapt10
+    n "Fair enough."
+    scene hapt9
     h "They ran some tests and said my hormones were above the normal levels."
     h "But that it should even out soon."
+    scene hapt10
     n "Huh."
+    scene hapt9
     h "Yeah, I told them that basically all my extra fat had gone right to my boobs and my ass."
+    scene hapt10
     n "What did they say?"
+    scene hapt6
     h "They really didn't seem concerned."
+    scene hapt5
     n "Huh."
     if hcum:
         n "So what else-"
+        scene hapt6
         h "[n]."
+        scene hapt5
         n "Yeah?"
+        label galleryScene64:
+        scene hapt8
         h "Sorry for interrupting, but are the girls asleep?"
+        scene hapt7
         n "I think so."
+        scene hapt8
         h "Then..."
+        scene hapt6
         h "Will you fuck me?"
+        scene hapt5
         n "Right now?"
+        scene hapt6
         h "Yes."
+        scene hapt10
         n "On the counter?"
+        scene hapt9
         h "Definitely."
+        scene hapt10
         n "Uh..."
         menu:
             "Sure!":
                 n "Sure!"
+                n "Can I eat you out?"
+                scene hapt6
+                h "No need."
+                h "You had me going when you kissed me at the front door."
+                scene bg black
+                with fade
+                "I picked her up and flipped her back onto the counter before pulling down her pants."
+                "As promised, she was ready to go."
+                "Lucky for her, so was I."
+                image haleyaptani1 = Movie(play="haleyaptani1.webm")
+                scene haleyaptani1
+                with fade
                 h "Yessss!"
+                pause
+                h "Keep sleeping, girls!"
+                h "[n] is just going to fuck me on the kitchen counter real quick!"
+                h "Then we can have breakfast!"
+                pause
+                if hcum:
+                    n "Ohhh shit."
+                    n "I don't think I'm going to last."
+                    n "Where do you want me to-"
+                    h "Go for it."
+                    n "Yeah?"
+                    h "It's safe."
+                    if preg:
+                        h "Even though you'd probably rather I tell you it's not."
+                        n "I don't know what you're talking about."
+                    h "Oh, okay!"
+                    h "[n]?"
+                    n "Yeah?"
+                    h "I want you to cum inside me."
+                    n "Nnnnghhh!"
+                    with flash
+                    n "Fuck!"
+                    with flash
+                    n "Wow."
+                    pause
+                    h "You're still hard?"
+                    n "Well, yeah."
+                    n "I don't want to be selfish."
+                h "Damn, dude!"
+                h "I can't believe how fast that I'm-"
+                h "Haaaaaa!"
+                with vpunch
+                h "You big dicked bastard!"
+                with vpunch
+                pause
+                scene hapt6
+                with fadehold
+                $renpy.end_replay()
+
 
             "No":
                 n "I uhhh...."
+                scene hapt6
                 h "Please?"
+                scene hapt5
                 n "I'm pretty wiped out from last night..."
+                scene hapt9
                 h "You didn't save any for me?"
                 h "Ass."
+                scene hapt10
                 n "Haley!"
+                scene hapt9
                 h "What!"
                 h "I was ready."
+                scene hapt8
                 h "Really ready."
+                scene hapt7
                 n "Sorry."
+                scene hapt8
 
     else:
+        scene hapt5
         n "That's good."
+        scene hapt6
         h "Yep!"
 
-    h "Should we wake up the others?"
+    h "Should we go upstairs to wake up the others?"
+    scene hapt5
     n "I have a better idea."
+
+
     if bacon:
+
         "I went to the fridge and began pulling out eggs, bacon and bread."
+        scene bg black
+        with fade
+        pause
+        "{b}Five Minutes Later{/b}"
+        scene haleyaptani2
+        with fade
         h "Eggs and toast?"
-        n "Omolettes and french toast."
+        n "Omelettes and french toast."
     else:
-        "I went to the fridge and began pulling out the eggs and chicken sausace."
+
+        "I went to the fridge and began pulling out the eggs and chicken sausage."
+        scene bg black
+        with fade
+        pause
+        "{b}Five Minutes Later{/b}"
+        image haleyaptani2 = Movie(play="haleyaptani2.webm")
+        scene haleyaptani2
+        with fade
         h "Breakfast?"
         n "Hell yeah."
     n "I went out and grabbed some groceries."
@@ -6653,10 +7257,18 @@ label beending:
     n "Yeah?"
     h "It's sexy."
     n "Damn, girl!"
+    if bacon:
+        scene bacon
+        with fade
+    else:
+        scene sausage
+        with fade
     n "I'm liking the new confidence."
     h "It's growing."
     h "Just like my boobs."
     "I gave her another appreciative glance."
+    scene haleyaptani2
+    with fade
     h "You really love them, don't you?"
     n "Your rack?"
     h "Yep."
@@ -6673,10 +7285,14 @@ label beending:
         n "Looking to start now, huh?"
         h "Oh, I already started."
         n "Here you go."
+        scene bg black
+        with fade
+        image haleyaptani3 = Movie(play="haleyaptani3.webm")
+        scene haleyaptani3
+        with fade
         h "Mmm."
         h "How much do you have?"
         n "Enough."
-        h "Gimme!"
         pause
         h "Sooo..."
         h "I'm onto you."
@@ -6708,7 +7324,7 @@ label beending:
         h "Not just big."
         h "Huge."
         menu:
-            "Admit it":
+            "Admit it [gr]\[Huge breasts\]":
                 $ huge = True
                 "I smiled at her."
                 h "No!"
@@ -6719,22 +7335,46 @@ label beending:
                 h "Even me?"
                 n "Especially you."
                 h "And you want my help?"
-                n "Sure."
-                h "Then beg me."
-                "I smiled at her again."
-                n "No."
-                h "Please?"
-                n "Are you begging me to beg you right now?"
-                h "Maybe."
-                n "Alright."
-                n "Haley, I beg you to help me with your evil plot."
-                h "That's all I needed!"
+                n "Yes."
+                if hfavor:
+                    h "Okay."
+                    h "But I'm going to count this as your favor."
+                    n "Hmm?"
+                    h "When you first kissed me two weeks ago at Jenn's party."
+                    h "We made a bet on how long it would take Jenn to come in when you kissed me."
+                    n "Oh!"
+                    n "And you lost, so you had to owe me a future favor."
+                    h "Exactly."
+                    h "So..."
+                    h "Are we even?"
+                    n "Even Steven."
+                else:
+                    h "Then beg me."
+                    "I smiled at her again."
+                    n "No."
+                    h "Please?"
+                    n "Are you begging me to beg you right now?"
+                    h "Maybe."
+                    n "Alright."
+                    n "Haley, I beg you to help me with your evil plot."
+                    h "That's all I needed!"
                 h "Consider me your accomplice."
                 n "Welcome aboard."
-                h "Actually, I'm going to need one more thing from you."
+                h "Actually, I'm going to need two more things from you."
                 n "Name it."
-                b "Bacon."
+                h "Bacon."
                 n "Here you go, my accomplice."
+                n "And?"
+                h "Fuck me while you finish making breakfast."
+                n "I'd love to, but..."
+                h "Come on."
+                n "Bacon grease is dangerous."
+                h "Oh, I know."
+                h "I hear it goes right to your boobs."
+                n "I appreciate your faith in my cooking skills, but-"
+                h "I believe in you."
+                n "Alright, if you're up for it..."
+
             "Deny it":
                 n "Haley, don't get me wrong."
                 n "I think you look amazing."
@@ -6745,14 +7385,31 @@ label beending:
                 "I smiled at her."
                 h "Can I still have some more bacon though?"
                 n "Of course."
-
-    "Later That Day"
-
+    scene bg black
+    with fadeout
+    pause
+    "{b}Later That Day{/b}"
+    scene 6apt1
+    with fadein
+    g "Come on! It's a nice day."
+    g "And I don't want to go out there by myself."
+    n "You know my rules-"
     L "Heyo!"
+    scene 6apt2
+    with fade
     a "Ashley and the twins are here!"
     L "Now it's a party!"
+    scene 6apt3
+    with dissolve
     j "Heyyy!"
     g "Sup, bitches!"
+    scene 6apt4
+    with dissolve
+    n "Ladies!"
+    A "[n]!"
+    image aptani1 = Movie(play="aptani1.webm")
+    scene aptani1
+    with dissolve
     if huge:
         h "Hell yeah!"
         h "I'll make us some snacks!"
@@ -6763,14 +7420,7 @@ label beending:
     n "It's fine."
     n "I just jerked off into the toilet."
     j "No!"
-    L "Don't even say that!"
-    n "Heh."
-    n "I love how I can actually use that as a threat."
-    a "Do not let it go to waste!"
-    n "Yeah? Should I make you guys a smoothie?"
-    a "If you jizz in it, sure."
-    g "Why does this conversation not even register as strange?"
-    h "That's the strange part."
+    L "Don't even joke about that!"
     g "Don't judge us, Aera."
     A "It's far too late for that."
     A "You're all a bunch of deviants."
@@ -6778,28 +7428,21 @@ label beending:
     A "You do realize I'm from South Korea, no?"
     j "Umm..."
     A "That's the one that's ran by Samsung, not an evil dictator."
-    j "Oh!"
-    j "That's good."
-    j "Right?"
+    j "Oh."
     A "We have orgies all the time."
-    A "It's mad."
     n "Right."
-    a "Anyway, what's the plan?"
-    a "Are we all going out?"
-    g "Yesss!"
-    g "That's what I wanted to do last night!"
-    L "Did you guys stay in?"
+    a "So what did you guys do last night?"
     g "We went out for dinner."
     g "I had pasta, Jenn had [n]'s dick under the table."
     L "She did not."
-    "Jenn blushed."
     a "Damn, girl!"
     a "You crawled under the table at a restaurant?"
     j "...yeah."
     a "You are going to have to tell me more about that later."
+    L "So what are doing tonight?"
     n "I have an idea."
     L "Yeah?"
-    n "We have dinner here."
+    n "We could have dinner here."
     n "Six people eating out adds up pretty quick, and I'm afraid I don't have enough cash to pay for everyone."
     n "Starving student, remember."
     g "Yeah, yeah. We know."
@@ -6808,81 +7451,903 @@ label beending:
     g "Where?"
     n "A club."
     g "We don't have fake IDs."
-    n "An eighteen and over club."
+    n "I found an eighteen and over club."
     a "Oh!"
     a "Hell yeah!"
-    L "Where you can't drink?"
+    L "Where we can't drink?"
     n "No need."
-    "I reached under the counter."
-    n "We have a bottle of tequila right here."
-    g "Now we're talking!"
-    n "What do you guys say?"
-    j "Sounds good!"
+    n "We have a bottle of tequila."
+    n "What do you girls say?"
     h "To dancing? Shyeah!"
-    "I looked around for glasses."
-    "As I did, my phone's text message sound went off."
-    a "Who's texting you, [n]?"
-    g "Probably Big Titty Goth Girl downstairs."
+    g "Hell yes."
+    "My phone's notification sound went off."
+    with vpunch
+    j "Who's texting you, [n]?"
+    g "Yeah! All your girls are right here."
+    L "Probably Big Titty Goth Girl downstairs."
     a "Really?"
-    a "I thought..."
     n "It's probably Laura."
-    L "Really?"
-    a "Why?"
+    L "Why?"
     n "She's been texting me all week, trying to get me to meet up with her so we can talk."
     g "And you've been ignoring her?"
     n "Yep."
-    n "She stole my watch, then destroyed it before I could help any of you stop growing."
+    n "She stole my watch and then destroyed it before I could use it to help any of you stop growing."
     n "I have nothing to say to her."
     g "Huh."
     n "Too harsh?"
     g "No, understandable."
     h "Hey, I don't mean to be the only fat girl here, but..."
-    h "What are doing for dinner?"
-    n "We make something."
+    h "What we are making for dinner?"
     n "Who is the best cook?"
     L "I can make spaghetti."
     n "Ashley?"
     a "You've had my pasta."
+    n "Mmm."
     g "Pasta? Are you girls kidding?"
     g "I am not trying to carb-load here!"
     a "Good point."
     a "What about you, [n]?"
     menu:
-        "Burgers":
+        "Burgers [blue]\[Miss Leah & Ashley sex opportunity\]":
+            $ burgers = True
             n "I can make burgers."
             a "Not better."
-            n "I could go to the story and get some mushrooms-"
+            n "I could go to the store and get some mushrooms-"
             j "Gross."
-            n "-we already have some bacon and avacado-"
+            n "-some bacon and avocado-"
             L "Not better!"
-            n "-so all we need is cheese and veggies."
+            n "-and we'll pick up cheese and veggies."
             n "With something healthy on the side."
             h "That sounds amazing."
 
 
         "Tacos":
+            $ burgers = False
             n "We already have the tequila. {w}You girls down for some tacos?"
-            a "Umm... I guess?"
-            h "Hell yeah!"
-            n "They are cheap, delicious and nutricious."
+            g "Really?"
+            n "What?"
+            n "They are cheap, delicious and nutritious."
+            g "Fried tortillas, cheese and fatty meat?"
+            n "High protein to keep you full, vegetables for your nutrients..."
             L "Sounds good to me. I'm starving."
             j "Me too."
+            g "Fiiiine."
+
         "Taco salad":
+            $ burgers = False
             n "How about taco salad?"
             a "Ooo! Yes! Yes!"
             g "Now we're talking!"
             h "Could I have a regular taco?"
             n "Of course."
     h "Cool. I'll go shopping with you."
-    n "Sounds good."
+    n "Make yourselves at home, ladies."
+    n "We'll be back."
 
-    "Scene where everyone goes out dancing and has a good time here"
+    scene hwalk1
+    with fadehold
+    pause
+    n "Thanks for coming, Haley."
+    h "Of course."
+    if huge:
+        h "I am your accomplice, after all."
+        n "That's why you're the best!"
+
+    n "So tell me something."
+    h "What?"
+    n "Anything."
+    scene hwalk2
+    with dissolve
+    n "Something you haven't told anyone."
+    if cumhaley:
+        h "Oh."
+        n "Yeah?"
+        h "Okay."
+        scene hwalk3
+        with dissolve
+        h "Can you promise not to tell anyone?"
+        n "That would go without saying, but yes."
+        h "Okay."
+        h "My time of the month was supposed to be four days ago."
+        scene hwalk4
+        with dissolve
+        n "Oh?"
+        h "...yeah."
+        n "So you're saying..."
+        h "...yeah."
+        scene hwalk5
+        with dissolve
+        pause
+        n "Haley, can I see your eyes?"
+        image hwalkani1 = Movie(play="hwalkani1.webm")
+        scene hwalkani1
+        with fade
+        pause
+        h "I haven't told Jenn because she would be freaking out right now."
+        h "She wants you to put a baby in her so bad."
+        h "Which is something I do not understand, by the way."
+        n "So you wouldn't be happy if-"
+        h "No.{w} Definitely not."
+        n "Shit."
+        n "Well then. {w}Should we pick up a test at this place?"
+        n "That way you can rest assured?"
+        h "I guess so."
+        "She sighed."
+        h "I might as well know what I'm in for."
+        h "It's probably nothing."
+        h "But, for the record-"
+        n "You don't want to risk it ever again?"
+        h "Exactly."
+        n "Then why did you tell me to fill you with jizz earlier?"
+        h "Because at this point in my cycle it's impossible."
+        n "Really?"
+        h "Trust me. It's girl stuff."
+        n "If you say so."
+    else:
+        h "Alright."
+        h "I really don't understand why Jenn wants to get pregnant so badly."
+        scene hwalk3
+        with dissolve
+        if preg:
+            n "Oh?"
+            h "You kissed her for the first time, what, three weeks ago?"
+            n "Something like that."
+            h "What's the rush?"
+            scene hwalk4
+            with dissolve
+            n "Good point."
+
+            h "And I also don't understand why you want it."
+
+            n "I'm not sure if I can explain it."
+            n "I just..."
+            scene hwalk5
+            with dissolve
+            n "It's fucking hot."
+            h "That's it?"
+            n "That's it."
+            h "Lordie."
+        else:
+            n "She what?"
+            h "Yeah."
+            h "Watch out for that one."
+            n "Seriously."
+
+    scene market6
+    with fade
+    pause
+    n "Alright."
+    n "What do we need?"
+    h "Not that shit."
+    n "Right."
+    n "Tomatoes, ground beef, onions, lettuce..."
+    scene market7
+    with dissolve
+    n "What do you want to do for a side?"
+    if huge:
+        h "Some chips?"
+        h "What has a lot of calories?"
+        if burgers:
+            h "Cheese dip?"
+        else:
+            h "Sour cream?"
+            n "Less than you'd think."
+            h "Cheese dip?"
+        n "You're evil."
+        scene market8
+        with dissolve
+        h "You like it."
+        h "I'll make a dip to go with the chips."
+        h "And I'll tell them it's low calorie."
+        n "Oh, Haley!"
+    else:
+        if burgers:
+            h "How about barbeque chips?"
+        else:
+            h "Chips and salsa?"
+        n "Sure."
+        h "What kind of dip?"
+        n "Cheese?"
+
+    scene market10
+    with dissolve
+    h "What else?"
+    scene market9
+    n "We should probably grab some more eggs and breakfast food while we're here."
+    n "Do you like bagels?"
+    scene market10
+    h "And cream cheese."
+    scene market9
+    n "Naturally."
+    if huge:
+        scene market10
+        h "How about donuts?"
+    else:
+        scene market10
+        h "How about muffins?"
+    scene bg black
+    with fadeout
+    "When we returned I started making dinner."
+    if burgers:
+        scene burgers
+        with fadein
+    else:
+        scene meat
+        with fadein
+    pause
+    n "{b}How do I get back there, to the place where I fell asleep inside you? How do I-{/b}"
+    L "Hey! Why is [n] in here cooking?"
+    image aptani2 = Movie(play="aptani2.webm")
+    scene aptani2
+    with dissolve
+    L "Can't someone else do it so I can take him upstairs?"
+    n "Sorry, Leah."
+    n "I'm all tapped out for the night."
+    L "For the {i}night{/i}?"
+    L "Bullshit!"
+    L "I know you wouldn't blow your whole load without saving something for me."
+    n "How do you know that?"
+    L "Because you are a nice enough guy to appreciate the fact that you've turned us all into addicts."
+    L "And denying us the D is something we could never forgive."
+    n "That's ominous."
+    if burgers:
+        n "Does anyone want to take over the burgers?"
+        A "I would fuck that up."
+        A "They would turn out like hockey pucks."
+        n "Sorry, Leah."
+        if cumhaley:
+            n "But I'll be right back."
+    else:
+        n "If anyone wants to volunteer, all they would need to do is finish browning up this beef..."
+        A "I could do that."
+        A "If you could explain to me how you are using a pan on a countertop?"
+        n "You don't have this in fancy Korea?"
+        A "We have these things called stoves."
+        L "I... didn't even notice."
+        n "I don't know."
+        n "Something about induction?"
+        n "You can control the temperature here."
+        A "Okay."
+        A "Go stick it in my sister."
+        L "Thanks, Aera!"
+        L "Shall we?"
+        n "Let's!"
+        if cumhaley:
+            n "But first, I'm going to use the bathroom."
+    scene bg black
+    with fade
+    if cumhaley:
+        "I went to check on Haley."
+        scene htest1
+        with fadein
+        pause
+        n "Good news?"
+        scene htest2
+        with dissolve
+        h "Depends."
+        h "What would good news be for you?"
+        scene htest3
+        n "I want what you want."
+        if preg:
+            n "It's not about me. It's-"
+            scene htest2
+            h "Would it make you happy?"
+            scene htest3
+            n "If you were happy, I would be happy."
+            scene htest4
+            h "Okay, let's say I would be."
+            scene htest3
+            n "If you were, I would think it's sexy as fuck."
+            scene htest2
+            h "Why?"
+            scene htest3
+            n "Just the fantasy of imagining you swell up with my child is enough to make me hard."
+            n "But the concept of it being real?"
+            n "I could pick you up right here and fuck you over the sink."
+            scene htest2
+            h "You could do that anyway."
+            scene htest3
+            n "So?"
+            n "What about what you want?"
+            scene htest2
+            h "Then..."
+            scene htest4
+            h "Bad news."
+            scene htest3
+            n "Wait!"
+            n "Don't fuck with me right now."
+            scene htest4
+            h "I mean, it's only one test, but..."
+            h "...see for yourself."
+        else:
+            scene htest4
+            with dissolve
+            h "I am no where near ready to have a child."
+            scene htest3
+            n "Me neither."
+            scene htest4
+            h "Well then."
+            h "Make sure I'm reading this right."
+
+        scene htest5
+        with fade
+        pause
+        scene bg black
+        with fade
+        if preg:
+            "Positive."
+            n "Shit!"
+        else:
+            n "Negative."
+            n "Whew!"
+        "I hugged her."
+        scene htest6
+        with fade
+        n "Haley, I am really sorry."
+        scene htest7
+        if preg:
+            h "But isn't this what you wanted?"
+            h "You do realize how sex works, right?"
+        else:
+            h "I know."
+            h "But promise me we'll use protection from now on."
+        scene htest6
+        n "Yes."
+        scene htest8
+        if preg:
+            n "But that wasn't my decision to make."
+            n "So I apologize."
+        else:
+            n "Should we celebrate?"
+        if preg:
+            scene htest9
+            h "It took both of us to make this choice."
+            scene htest10
+            n "I suppose."
+            scene htest9
+            h "So I can't blame you."
+            scene htest10
+            n "You can."
+        scene htest9
+        h "Maybe a little bit."
+        h "So..."
+        if preg:
+            h "Now that you don't have to imagine this happening anymore, do you still find it sexy?"
+        else:
+            h "Are you relieved?"
+        scene htest10
+        menu:
+            "Yes":
+                n "Of course."
+                scene htest9
+                h "Good."
+                scene bg black
+                with fade
+                "She kissed me."
+                scene htest3
+                with fade
+                n "Are you going to tell Jenn?"
+                scene htest2
+                h "Fuck no."
+                scene htest3
+                pause
+            "No":
+                n "No."
+                scene htest9
+                h "Really?"
+                scene htest10
+                n "Yeah."
+
+                scene htest8
+                if preg:
+                    n "This is freaking me the fuck out."
+                    scene htest2
+                    h "Okay."
+                    h "I'll take care of it."
+                    scene htest3
+                    n "You don't-"
+                    scene htest4
+                    h "Don't worry about it."
+                    "She kissed me."
+                    scene htest3
+                    with fade
+                    n "Are you going to tell Jenn?"
+                    scene htest2
+                    h "Fuck no."
+                else:
+                    h "You are confusing."
+        scene bg black
+        with fadeout
+    if burgers:
+        scene apt13
+        with fadein
+        pause
+        n "Who's hungry?"
+        g "Hell yeah."
+        n "Burgers will be done soon."
+        n "But in the mean time, Haley is going to bring you some appetizers."
+        j "Yay!"
+        scene burgers
+        with fade
+        g "Wait, what the fuck?"
+        n "What?"
+        g "We told you we wanted to eat something healthy, and you make us cheese dip?"
+        h "I made it."
+        g "Haley!"
+        h "It's low calorie."
+        L "Cheese dip with chips being low calorie is a myth."
+        scene apt14
+        with dissolve
+        g "Does anyone else feel like [n] is trying to fatten us up?"
+        a "What do you mean?"
+        g "Do you know what a Feeder is?"
+        n "The hell?"
+        g "It's someone who feeds their girlfriend a bunch of food trying to make them bigger."
+        j "Why would they do that?"
+        g "Because they are into fat girls."
+        j "Really?"
+        g "But with us, it's not fat girls he wants."
+        L "Just fat tits!"
+        scene burgers2
+        with fade
+        a "Ha!"
+        g "Okay, [n]."
+        g "Tell us the truth."
+        g "Are you trying to make us grow even bigger...{w} even though we have specifically told you that we don't want to?"
+        menu:
+            "Maybe":
+                n "...maybe?"
+                L "Wait, really?"
+                a "Seriously?"
+                scene apt14
+                with dissolve
+                a "[n], we have gone out of our way to accomodate your tastes."
+                a "But when we tell you that we are already bigger than any of us want, you seriously need to respect that."
+                j "It's not that big of a-"
+                a "I'm still talking."
+                a "Look, it was all fun and games when you had the watch and we could stop at any point."
+                a "But we're stuck like this."
+                a "Even when I don't eat much, I still grow."
+                a "This is fucking serious."
+                a "And you need to respect us, or we are leaving."
+                a "Right?"
+                L "Yes."
+                g "Yep."
+                A "Yes."
+                "There were nervous giggles."
+                L "Thanks, sis."
+                A "No problem!"
+                L "But Ashley is right."
+                n "Okay."
+                n "I hear you."
+                scene bg black
+                with fade
+                "I grabbed the chips and dip off the table."
+                scene apt15
+                with fade
+                n "And you should know, I was kidding-"
+                a "I don't think you were."
 
 
-    L "So... where is everyone sleeping?"
-    n "The master bed is big enough."
-    n "But if anyone wants, they can sleep in the guest room."
-    g "Is the guest room sound proof?"
+            "No":
+                n "Of course not."
+                g "Better not."
+                g "We already don't know how much we will keep growing."
+                g "And there is no reason to accelerate the process."
+                scene apt14
+                with dissolve
+                n "I just wanted to make a nice meal."
+                if huge:
+                    g "What about you, Haley?"
+                    h "Huh?"
+                    g "Are you trying to over feed us?"
+                    h "No?"
+                    h "Why would I want that?"
+                    h "I like being the biggest."
+                    g "And I'm perfectly alright with that."
+                    g "So let's keep it that way, huh?"
+                    h "Of course."
+                else:
+                    a "Oh, is that all?"
+        scene burgers2
+        with fade
+        if huge:
+            h "Are you girls serious right now?"
+            a "What?"
+            L "Haley, relax."
+            h "No!"
+            pause
+            h "[n] invited all of us over and wanted to make sure everyone gets fed a nice meal."
+            h "He went shopping to get food for everyone and then made us all something delicious."
+            h "By himself, I'll add."
+            scene apt16
+            with dissolve
+            h "Did anyone offer to help?"
+            h "Oh, wait. Just me."
+            h "And not only are you criticizing me for it, you're threatening [n]?"
+            h "Do you really think that if we went out for dinner we'd find anything healthier than what [n] just made you?"
+            h "If you don't like it, don't fucking eat it!"
+            pause
+            g "Holy shit, Haley."
+            n "Alright, the burgers are ready."
+            n "Who wants to help me serve all this food?"
+        else:
+            menu:
+                "Respond casually":
+                    n "Look, I appreciate when you girls call me on my shit."
+                    n "But I just spent the past hour going shopping and cooking dinner for you guys."
+                    n "I told you what I was going to make, and I asked for suggestions."
+                    n "And no one besides Haley even offered to help."
+                    n "So if you don't like what I made, you don't have to eat it."
+                    scene apt14
+                    with dissolve
+                    pause
+                    n "You are acting like a bunch of seven year olds."
+                    n "So either enjoy these burgers, one of the things I make pretty damn well."
+                    n "Or go down the street and get something far worse for you."
+
+                "Defend yourself":
+                    n "Really?"
+                    n "I go out shopping for food after asking what you guys want."
+                    n "Then I take the time to cook up dinner for you."
+                    n "And now you sit around calling me an asshole for it?"
+                    n "See if I offer to make another fucking meal for you."
+                    scene apt14
+                    with dissolve
+                    pause
+                    a ">..."
+                    a "I'm sorry."
+            a "You're right, [n]."
+            a "We are just starting to freak out about this whole situation."
+            n "Well, I don't know what you want from me."
+            scene burgers2
+            with fade
+            n "I've done everything I could to stop you from growing."
+            n "If you have any more ideas, I'm all ears."
+            a "Okay."
+            a "Could we eat now?"
+            n "If one of you gets up off your ass and helps me bring all of this over."
+
+
+    else:
+        label galleryScene65:
+        "I went upstairs to meet up with Leah."
+        scene lapt1
+        with fadein
+        pause
+        n "Well hello."
+        scene lapt2
+        with dissolve
+        n "Damn, it's good to be me!"
+        L "Hey there."
+        scene lapt3
+        with dissolve
+        n "Oh! I see you brought a friend."
+        a "Don't mind me."
+        a "But Leah took off her top sooo..."
+        a "...I'm going to sit here and finger myself while I watch."
+        scene lapt4
+        with dissolve
+        n "...okay?"
+        scene lapt2
+        L "You think she's joking?"
+        scene lapt4
+        a "Are you ready to put on a show for me?"
+        n "That depends."
+        scene lapt3
+        with dissolve
+        n "Are you going to judge us?"
+        a "I'm going to be judging you through orgasm colored glasses."
+        n "Fair enough."
+        L "So..."
+        scene lapt2
+        with dissolve
+        L "You down?"
+        scene lapt4
+        menu:
+            "Yep":
+                n "Do you really need to ask?"
+                a "You're the one asking the redundant questions here."
+                scene bg black
+                image aptani5 = Movie(play="aptani5.webm")
+                scene aptani5
+                with fade
+                pause
+                a "I'm just trying to finger myself while I watch you two fuck."
+
+            "No":
+                n "Uhhh..."
+                a "You want me to leave?"
+                scene bg black
+                image aptani5 = Movie(play="aptani5.webm")
+                scene aptani5
+                with fade
+                pause
+                n "Or... join?"
+                a "Nah, that's for later."
+
+        if both:
+            a "You are going to fuck Leah until you cum inside her."
+            a "Then I'm going to lick the cum out of her as I eat her out..."
+            a "...and you are going to fuck me from behind while I do it."
+            a "Then you creampie me, and Leah and I switch."
+            a "Sound good?"
+            n "I-"
+            a "Good."
+        a "This is going to be fun to watch."
+        image aptani3 = Movie(play="aptani3.webm")
+        scene aptani3
+        with fade
+        pause
+        a "Fuck, that's hot."
+        L "You like that?"
+        a "Leah, your tits are epic."
+        a "You're a fucking goddess."
+        pause
+        a "[n], you look okay too I guess."
+        n "Wait your turn, Ashley."
+        pause
+        if both:
+            a "I can't wait until you fill up her pussy, [n]."
+            a "It's going to taste so fucking good."
+            L "Mmmm."
+            a "It's going to be like mixing my two favorite flavors."
+            L "All you need are some gummy bears to dip in there."
+            a "Yes!"
+            a "Do we have any?"
+        pause
+        a "Are you close, [n]?"
+        n "Very."
+        a "Well, come on now."
+        if both:
+            a "Fill my girlfriend with your cum."
+        a "Pump your load into your best friend's little sister."
+        if both:
+            a "Blow your sperm into her tight little pussy so that I can lick it clean!"
+        n "Nnnnn!"
+        with flash
+        L "YESSS!"
+        with flash
+        a "Fuck yeah!"
+        with flash
+        n "Fuck, Ashley!"
+        a "That's Leah."
+        a "And move over!"
+        if both:
+            scene lapt5
+            with fade
+            pause
+            a "Mmmm."
+            L "FUCK!"
+            L "Ash, I'm so sensitive right now!"
+            a "Mmmm!"
+            L "Slow down!"
+            L "Ahhh!"
+            L "It's starting to tickle!"
+            L "[n], can you get your revenge on the little purple haired girl?"
+            n "My pleasure."
+        scene bg black
+        image aptani4 = Movie(play="aptani4.webm")
+        scene aptani4
+        with fade
+        pause
+        L "Mmm."
+        L "This is fun to watch."
+        a "Fuck, [n]!"
+        a "I thought you already took it out on Leah?"
+        L "Oh, he did."
+        n "But now it's your turn."
+        a "You spoil us!"
+        n "I do my best."
+        pause
+        L "Holy shit, Ashley."
+        L "I think I can see his dick when it pushes out your stomach."
+        a "Can't... talk..."
+        a "Taking... dick..."
+        L "Yeah you are!"
+        L "Like a champ!"
+        L "Remember when neither of us could fit [n] inside of us?"
+        L "Now look at us."
+        n "My girls."
+        $renpy.end_replay()
+        pause
+
+    scene bg black
+    with fadeout
+    pause
+    "{b}Twenty Minutes Later{/b}"
+    image aptani8 = Movie(play="aptani8.webm")
+    scene aptani8
+    with fadein
+    g "That was fucking delicious."
+    if burgers:
+        g "I'm sorry for snapping at you earlier, [n]."
+        g "But my tits are getting so huge it's starting to scare me."
+        L "Yeah they are!"
+        g "I'll try to learn to cook so I can make something next time."
+        n "I'd like that."
+    else:
+        L "Yeah it was!"
+        n "Thank Aera. She cooked the taco meat."
+        g "Yeah girl!"
+    j "Thanks, [n]."
+    n "You're welcome."
+    h "Did everyone get enough?"
+    scene bg black
+    image aptani7 = Movie(play="aptani7.webm")
+    scene aptani7
+    with dissolve
+    h "There's more."
+    a "I'm stuffed."
+    a "It was very good."
+    if burgers:
+        a "And [n], I also apologize for teaming up against you."
+        a "But there's something else that we need to talk about."
+        a "Leah?"
+    else:
+        L "Hey, Ashley and I have something uncomfortable to address."
+    L "Since everyone concerned is here, I think now is a good time to talk about it."
+    n "Okay?"
+    L "Do you know what I'm going to say?"
+    menu:
+        "Guess":
+            n "Umm..."
+            n "You are going to make me decide between you girls?"
+            L "Uh..."
+            L "Not exactly."
+
+        "Don't guess":
+            "{i}I'm not touching this one with a twenty foot pole.{/i}"
+            n "I haven't the foggiest."
+    L "Ashley?"
+    a "You're fucking all of us, [n]."
+    A "Not me!"
+    L "That's because you're the good sister."
+    a "But things have changed."
+    a "We are your responsibility now."
+    a "Five girls set on a path where we could end up immobile."
+    g "You think so?"
+    a "We'll probably make it through graduation."
+    a "But then what?"
+    a "Get jobs as bean bag chairs?"
+    n "So you're asking if I'll do everything I can to take care of you?"
+    n "Because of course I will."
+    L "No."
+    L "We need to know if we are enough."
+    n "What?"
+    L "The five of us right here."
+    L "Are we enough for you?"
+    n "Of course."
+    a "We mean it."
+
+    a "We don't want to worry about you dating anyone else, or what happens when Big Juggs downstairs hits on you."
+    a "Leah and I aren't asking you to break it off with any of us."
+    a "We only want to know if you are going to be loyal to your girls sitting right here."
+
+    menu:
+        "[gr]Of course":
+            n "Of course."
+            n "You girls are amazing."
+            g "So no more other girls, even if they throw themselves at you?"
+            n "Right."
+            n "Not as long as I have you."
+            a "Good."
+            a "I think it's good for us all to hear that."
+            a "Because we shouldn't have to compete against each other."
+            a "I think we can work together."
+            a "Jenn, what do you think?"
+            scene bg black
+            scene aptani8
+            with dissolve
+            j "If I can be honest..."
+            j "I wouldn't mind having [n] to myself."
+            j "But if I'm going to be sharing [n] with anyone, I'd choose you girls."
+            h "As long as there is enough dick to go around."
+            g "Ha!"
+            g "I agree."
+            g "Keep my pussy satisfied, and I have no complaints."
+            g "Plus, I had a great time with Jenn."
+            g "I'd rather keep her around anyway."
+            j "And Haley is great too."
+            n "You should try Ashley and Leah."
+            g "Maybe I will."
+            n "Well now!"
+
+            n "This conversation wasn't too bad."
+            L "I'm glad."
+            a "And I'm proud of us."
+            a "Look at us all being adults about this."
+            A "Too adult for my taste."
+            A "You're all a bunch of sex addicts."
+            j "Guilty."
+            h "Yep, sounds about right."
+
+
+        "[red]I can't promise that":
+            n "I can't promise that."
+            scene bg black
+            scene aptani7
+            with dissolve
+            a "No?"
+            a "Why not?"
+            n "You've never asked that of me."
+            n "And it's something I've never promised."
+            a "Well, we are asking now."
+            n "I understand that."
+            L "[n]."
+            L "Look at the five faces in front of you."
+            L "If this isn't enough for you, then nothing ever will be."
+            L "I'm with her."
+            n "But-"
+            g "Now?"
+            a "No."
+            a "We can still go out and have fun tonight, if that's what you want."
+            a "But after that, I'm going home."
+            L "As am I."
+            n "Jenn and Haley?"
+            h "No, they're right."
+            if jennice:
+                j "I'm with you girls."
+            else:
+                j "I'll stay."
+                h "Come on, Jenn."
+                j "But I'm his slut."
+                h "You are more than that."
+                j "But-"
+                h "I'm making you come with us."
+            g "I'm with them."
+            n "You really don't have to go."
+            n "Nothing has changed."
+            n "What's the difference?"
+            h "What's the difference?"
+            if hcum:
+                h "How about the fucking thing I just told you?"
+                j "What?"
+                h "We'll talk about it later."
+            else:
+                h "Ashley was right."
+                h "If five girls aren't enough for you, then it never will be."
+                h "Honestly, every single girl here should be enough for you."
+
+            scene bg black
+            with fadeout
+            "That wasn't the last I saw of any of the girls."
+            "Every single one of them came back for more rides on the ol' magic stick."
+            "But true to their word, they all ended things with me."
+            "I still fucked the other girls."
+            "But I started to miss my main crew."
+            "Eventually, I realized what I was missing, so I called them all and promised to be loyal."
+            "It was too late."
+            "My life became a mess after that."
+            "I still had an insatiable appetite, but I could never find a girl who could keep up with me."
+            "I spent the majority of my time out on the prowl, getting better at picking up women and bringing them home."
+            "Half the time the girl would be too worn out to continue, and I'd head back out to meet a new one."
+            "I would skip classes to fuck in the bathroom."
+            "I would spend the entire weekend going from one random girl's house to another."
+            "My life had only one focus: getting laid."
+            "And I couldn't seem to stop."
+            with fade
+            centered "The End"
+            with fade
+            pause
+            jump afterend
+
+    j "Alright!"
+    j "So when are we going dancing?"
+    g "My girl!"
+    n "We could leave in a couple hours."
+    scene bg black
+    scene aptani7
+    with dissolve
+    L "Cool. Let's get ready!"
+    L "But before we do, where is everyone sleeping tonight?"
+    L "I call bed!"
+    n "The master bed is big enough for everyone."
+    n "But if anyone wants, there is also a guest room."
+    scene bg black
+    scene aptani8
+    with dissolve
+    g "Is the guest room soundproof?"
     n "I doubt it."
     g "Hmm."
     j "I don't think I'd want to hear you fucking Leah and Ashley all night."
@@ -6892,12 +8357,6865 @@ label beending:
     n "Why not?"
     a "Yeah, why not?"
     a "We are good at sharing."
-    j "I already had my time with [n] today."
+    j "I already had my time with [n] this morning."
     j "I'll give you the opportunity."
+    if burgers:
+        a "Okay!"
+    else:
+
+        a "We did too."
+        j "What!"
+        j "When?"
+        a "When Aera cooked the taco meat."
+        a "You didn't hear us?"
+        j "Uhh..."
+        j "I guess not."
+
+    scene bg black
+    scene aptani7
+    with dissolve
+    j "But don't forget about Haley."
+    h "I'm good."
+    j "You don't want to?"
+    if huge:
+        h "Oh, no. [n] already fucked me in the kitchen."
+        L "[n]!"
+        L "That's where we eat!"
+    else:
+        h "Okay, pull my arm!"
+
     A "I'll happily sleep in the guest room."
+    A "I'm not looking to watch everyone have sex all night."
+    n "Fair enough."
+    g "I'm with Aera."
+    g "So I'll take the couch."
+    L "Hey... I have an idea."
+    n "Yeah?"
+    L "If we are all going to share [n], we should come up with a schedule."
+    L "What about each of us get a weekday, and we share the weekends?"
+    L "That way we all only have to be out for one school night."
+    g "Sounds good to me!"
+    j "I like that."
+    if both:
+        a "Could we share nights sometimes?"
+        L "As long as [n] agrees."
+    L "That way we all get alone time with him as well as time for group activities."
+    if hcum:
+        h "Sounds good!"
+    else:
+        g "Sounds good!"
+    L "Alright!"
+    L "Let's get ready!"
+    scene bg black
+    with fadeout
+    pause
+    "{b}That Night{/b}"
+    scene dancer1
+    with fadein
+    pause
+    scene dancer2
+    with fade
+    pause
+    scene dancer3
+    with fade
+    pause
+    scene dancer4
+    with fade
+    pause
+    scene dancer5
+    with fade
+    pause
+    scene dancer6
+    with fade
+    pause
+    scene dancer7
+    with fade
+    pause
+    scene dancer8
+    with fade
+    pause
+    scene dancer10
+    with fade
+    pause
+    scene dancer9
+    with fade
+    pause
+    label galleryScene68:
+    scene bg black
+    with fadeout
+    pause
+    "{b}That Night{/b}"
+    with fade
+    "..." "Hey..."
+
+    scene haleybwe1
+    with fadein
+    pause
+
+    "..." "[n]?"
+    scene haleybwe2
+    with dissolve
+    pause
+    n "Haley?"
+    h "Any way I could get a ride?"
+    n "You need me to take you home?"
+    n "I guess I could-"
+    scene haleybwe3
+    with dissolve
+    h "Not that kind of ride."
+    n "Ohhh."
+    n "Were you just in the pool?"
+    h "No..."
+    n "Why are you all wet?"
+    h "I was..."
+    h "Taking some time for a little TLC."
+    n "Oh!"
+    n "Why do that when you could jump up here?"
+    h "I was hoping you'd say that..."
+    scene haleybwe4
+    with fade
+    pause
+    h "Hi!"
+    n "Hey there."
+    h "How are you still hard after... earlier?"
+    n "You could hear us, huh?"
+    h "The girl down at the lobby could hear you."
+    n "Were we distracting?"
+    h "Why do you think my skin is glistening?"
+    n "That's right, girls don't sweat."
+    h "A lady glistens!"
+
+    image haleybedani2 = Movie(play="haleybedani2.webm")
+    scene haleybedani2
+    with fade
+
+    n "Shit."
+    n "Mmmm."
+    pause
+    a "Haley!"
+    h "Oh!"
+    h "Sorry to wake you, Ashley."
+    a "I don't mind a bit."
+    a "But I can't believe you are an H cup already."
+    h "Hey, that's... {w}right."
+    scene haleybwe5
+    with fade
+    a "I know."
+    a "One of my superhero powers is that I can tell a bra size just by looking at a naked breast."
+    n "What about in clothing?"
+    a "Plus or minus a cup size."
+    image haleybedani1 = Movie(play="haleybedani1.webm")
+    scene haleybedani1
+    with fade
+    n "So what's Haley's exact bra size?"
+    a "Thirty-six H."
+    a "Because H is for Haley."
+    h "Did you really just do an Elmo voice?"
+    a "Damn right."
+    h "Why am I not weirded out by that?"
+    a "Because you have a little girl crush on me."
+    n "Who doesn't?"
+    h "But... {w}I don't really like...{w} girls."
+    scene bg black
+    scene haleybedani2
+    with fade
+    a "Keep telling yourself that, sweetie."
+    pause
+    n "Was she right, Haley?"
+    h "I think so."
+    h "I can't fit in any of my bras right now."
+    a "We could go get measured tomorrow."
+    n "What bra size is Leah?"
+    a "Thirty-four G."
+    n "And you?"
+    a "Thirty-two F."
+    n "Jenn?"
+    a "Thirty-four F."
+    scene haleybwe5
+    with fade
+    n "She's bigger?"
+    a "Band size is not breast size."
+    n "What?"
+    a "If I gained weight in my torso it would increase my band size."
+    a "But if my boobs got bigger, it would increase my cup size."
+    a "So, proportionately, I'm bigger."
+    scene bg black
+    scene haleybedani1
+    with fade
+    n "Huh."
+    n "Alright, what about Grace?"
+    a "She was Leah's size a couple of days ago."
+    a "But she just grew to a thirty-four H."
+    n "As big as Haley?"
+    a "Almost."
+    n "Damn."
+    h "[n]! Are you going to-"
+    scene bg black
+    scene haleybedani2
+    with fade
+    n "Yep!"
+    h "Wait, I'm not-"
+    n "Train is leaving!"
+    with flash
+    h "Ohh!"
+    with flash
+    h "Ohhhhhhh!"
+    with vpunch
+    h "Yessssss!"
+    pause
+    L "Wha-"
+    scene haleybwe6
+    with fade
+    L "What's happening?"
+    a "Go back to sleep, beautiful."
+    a "It's just Haley riding [n] like a cowgirl."
+    L "Okay."
+    L "Night night."
+    scene bg black
+    with fadeout
+    $renpy.end_replay()
+    pause
+    "{b}The Next Morning{/b}"
+    scene apt17
+    with fadein
+    n "Heyo!"
+    g "Hey."
+    scene apt18
+    with dissolve
+    n "How'd you sleep?"
+    g "Sound really carries in this place."
+    scene apt19
+    with dissolve
+    pause
+    n "Oh yeah?"
+    image aptani6 = Movie(play="aptani6.webm")
+    scene aptani6
+    with fade
+    g "I never realized how undignified sex could sound."
+    n "Yeah?"
+    g "Aww, who am I kidding?"
+    g "It was fucking hot."
+    n "Yeah? Did you beat off?"
+    g "Several times."
+    g "I always cum easier after you fuck me."
+    n "Good to know."
+    n "How did you sleep, Jenn?"
+    j "Alright."
+    j "Not the same as in your bed."
+    n "Hey, the invitation still stands."
+    j "I know."
+    j "But I would feel like I'm intruding."
+    n "Why?"
+    j "I just..."
+    if both:
+        j "I'm not like them."
+        n "Leah and Ashley?"
+        j "Yeah."
+        n "How so?"
+        j "I like boys."
+        g "Trust me, girl."
+        g "They both like dick just fine."
+        j "I know."
+        g "You think it was any different than what you and I did the other night?"
+        j "Yes."
+        n "Why?"
+        j "Because I was drunk."
+        g "So?"
+        g "You didn't like kissing me?"
+        j "I did."
+        g "So what are you worried about?"
+        j "I don't think I want to... {p}...eat it."
+        g "You don't have to."
+        j "But... wouldn't they want me to?"
+        n "Only if you wanted to."
+        j "Oh."
+        g "But just for the record..."
+        g "It tastes amazing."
+        j "Eww."
+    else:
+        j "I don't like to share."
+        g "Fair enough."
+    n "Alright."
+    n "Who wants to help me make breakfast?"
+    g "I don't really know how."
+    n "I'll teach ya."
+    g "Fine."
+    g "Do we have any tequila?"
+    g "My head hurts."
+    n "You drank it all last night, I'm afraid."
+    n "How about some water?"
+    g "Hell yes."
+    g "But also, it really helped my headache when I had another drink."
+    n "And that, my dear, is a warning sign."
+    g "For what?"
+    n "A warning that you have had enough to drink."
+    g "So your head doesn't hurt?"
+    n "Oh, I'm dehydrated as fuck."
+    n "But that might not be for the same reasons."
+    n "You know what I saw in the kitchen?"
+    g "What?"
+    n "Champagne."
+    if bacon:
+        n "I'll pour if you start the bacon."
+        g "Mmm."
+
+    scene bg black
+    with fadeout
+    pause
+    "{b}Twenty Minutes Later{/b}"
+
+    if bacon:
+        scene bacon
+        with fadein
+        if burgers:
+            a "Really? Bacon?"
+            n "Fuck yes, bacon."
+        else:
+            a "Bacon!"
+        a "Do we have any eggs?"
+        n "Of course."
+    else:
+        scene sausage
+        with fadein
+        a "Whatcha makin?"
+        n "Chicken sausage."
+    n "There are also bagels."
+    h "And muffins!"
+    h "Because [n] wouldn't let me get donuts."
+    g "Muffins are just as bad!"
+    h "There's no way that's true."
+    h "Hey, if I heat up that cheese dip from yesterday, who is getting in on it with me?"
+    if burgers:
+        a "You're killing me, Haley."
+    else:
+        a "Damn it."
+        a "It was really fucking good."
+        a "I'm in."
 
 
-    # what next? Take advantage of the girl's drunk state
+    scene bg black
+    with fadeout
+    pause
+    "{b}Two Hours Later{/b}"
+    scene jgentrance5
+    with fadein
+    n "Thanks for coming!"
+    n "Spending the whole weekend with you was pretty great."
+    j "Bye, [n]."
+    n "I love you guys."
+    g "Love you too."
+    scene jgentrance3
+    with dissolve
+    pause
+    "I kissed Jenn softly."
+    scene jgentrance2
+    with dissolve
+    pause
+    n "Don't think you're getting out of it, Grace!"
+    scene jgentrance4
+    with dissolve
+    pause
+    "I gave Grace a big sloppy one."
+    scene jgentrance5
+    with dissolve
+    n "Alright, I heard the horn."
+    g "Bye, [n]."
+    n "Tell Leah not to crash Cory's car, because I don't want Cory to kill her."
+    j "Bye!"
+    scene bg black
+    scene btggani1
+    with fade
+    pause
+    n "What?"
+    pause
+    "Girl" "No comment."
+    n "Somehow I doubt that."
+    n "Hey, what's your name, anyway?"
+    "Girl" "No comment."
+    n "Really?"
+    n "Are you angry with me for some reason?"
+    "Girl" "Not at all."
+    "Girl" "I'm very amused."
+    "Girl" "But I'm also trying to be professional."
+    "Girl" "So I'm biting my tongue."
+    n "Fair enough."
+    n "So how does a guy get your name?"
+    "Girl" "I'm sure you'll think of something."
+    n "Can I get a hint?"
+    scene bg black
+    scene btggani2
+    with fade
+    "Girl" "Sure."
+    "Girl" "I already told it to you when your friend asked."
+    n "Ah."
+    n "I might have been distracted."
+    "Girl" "I guessed."
+    n "Alright."
+    n "I'm going back upstairs."
+    "Girl" "You do that."
+    menu:
+        "Hit on her [gr]\[Big Titty Goth Girl\]":
+            n "If you get bored, feel free to come up."
+            "Girl" "Tooootally."
+            $ btgg = True
+
+        "Leave":
+            n "Later."
+            "Girl" "Toodles!"
+
+
+    $ lydiaside = False
+    $ lauraside = False
+    $ britside = False
+    $ tifside = False
+    $ rachelside = False
+    $ baileyside = False
+    if bcum:
+        scene bg black
+        with fade
+        pause
+        "{b}That Evening{/b}"
+        with fade
+        "I was laying in bed watching TV when I received a phone call."
+        scene aptv
+        with fadein
+        n "Brittany!"
+        b "Hey! Where are you?"
+        n "At my apartment in the city."
+        b "Are you busy?"
+        n "Not particularly."
+        b "Want company?"
+        n "Uhh..."
+        menu:
+            "Yes [blue]\[Cheat with Brittany\]":
+                "I'm not hooking up with any new girls."
+                "That should be fine, right?"
+                n "Sure."
+                n "I'll text you the address."
+                b "Good."
+                b "Because I'm going to deliver this pussy."
+                b "Is this going to put me above all your other sluts?"
+                "Nope."
+                n "Totally."
+                b "Alright, see you in forty."
+                label okaybrit:
+                $ britside = True
+                scene bg black
+                with fade
+                pause
+                "{b}Thirty Minutes Later{/b}"
+                scene bapt1
+                with fadein
+                pause
+                n "Damn! You got here quick!"
+                scene bapt2
+                with dissolve
+                b "No time for talky."
+                b "Only time for bang bang."
+                scene apt1
+                with fade
+                b "Nice place!"
+                b "Where are we fucking first?"
+                b "Ohhh!"
+                b "Have you already done it on the balcony?"
+                scene apt2
+                with dissolve
+                n "Yep."
+                b "Bah."
+                scene apt3
+                with dissolve
+                b "On the staircase?"
+                n "No, actually."
+                b "Dibs!"
+                image baptani1 = Movie(play="baptani1.webm")
+                scene baptani1
+                with fade
+                pause
+
+                b "Nyeeeeaaht!"
+                n "I love it when you talk nonsense to me."
+                b "Then... keep... hitting... it... like... that!"
+                pause
+                scene bg black
+                image baptani2 = Movie(play="baptani2.webm")
+                scene baptani2
+                with fade
+                pause
+                n "So if this is the only time I get with you, how's life?"
+                b "Nyeeesh!"
+                n "Good, good."
+                b "Fuck me, [n]!"
+                n "Nice catching up with you."
+                pause
+                b "I... mmmm... think someone is knocking on your door."
+                n "That's too bad."
+                b "Yeah! Fuck 'em!"
+                n "I kind of hope it wasn't any of the other girls I'm dating."
+                n "I maybe promised them that I wouldn't be fucking anyone else."
+                b "Well that sounds like a stupid thing to tell them."
+                b "They all know my pussy is the best!"
+                n "It's pretty great."
+                n "But I'm more about your ass."
+                b "You want to do anal?"
+                n "I mean..."
+                n "Sure?"
+                b "Next time."
+                n "Deal."
+                b "I'm about to hit that deep dick orgasm!"
+                b "Riiiiiight there!"
+                with vpunch
+                b "Fyaaaaaah!"
+                with vpunch
+                b "Yeeesssss!"
+                pause
+                scene bapt3
+                with fadehold
+                pause
+                n "It was good to see you."
+                n "Are you sure you don't want to stay?"
+                scene bapt4
+                b "I got my fill."
+                $renpy.end_replay()
+                b "You gave me my two loads."
+                b "That's worth the drive right there."
+                scene bapt3
+                n "I get it."
+                n "Still, it would be nice to be able to spend time with you without there being a rush."
+                scene bapt4
+                b "I could make that happen."
+                b "Goodbye, lover."
+                scene bapt5
+                with dissolve
+                pause
+                b "Oh, shit."
+                n "What?"
+                b "I figured out who was knocking on your door."
+                b "And this is where I make my exit."
+                scene bapt6
+                with fade
+                "I peeked my head around the corner to find..."
+                image laptani1 = Movie(play="laptani1.webm")
+                scene laptani1
+                with fade
+                pause
+                l "Hi."
+                n "Hi?"
+                n "What are you doing here?"
+                l "Discovering new things about my sister."
+                n "Didn't expect her in this hallway, huh?"
+                l "I didn't expect to find her coming here to get her brains fucked out."
+                n "Surprise."
+                n "What do you want, Laura?"
+                l "You haven't been answering my calls."
+                n "Yep."
+                l "But I have a couple of important things to tell you."
+                n "Don't care."
+                l "Apparently."
+                n "Yep."
+                "She sighed."
+                l "Alright, how about this instead."
+                l "We don't talk about anything."
+                l "In fact, I don't say a word."
+                l "But you take me inside and show me how much you hate me by fucking me as hard as you can."
+                n "Hmm..."
+                n "You might like that too much."
+                l "So?"
+                menu:
+                    "Deal [blue]\[Cheat with Laura + Pregnancy\]":
+                        $ lauraside = True
+                        n "Deal."
+                        n "But under one condition."
+                        l "Yes?"
+                        n "If you want to come back again another time, you stop calling me ten times a day."
+                        l "Okay."
+                        n "Enter."
+                        scene apartment1
+                        with fade
+                        l "This is nice."
+                        n "Shhhhh."
+                        n "On your knees."
+
+                        image laurakneesani1 = Movie(play="laurakneesani1.webm")
+                        scene laurakneesani1
+                        with fade
+                        pause
+                        n "Good slut."
+                        n "Yes, I'm aware that you can taste your sister's cum."
+                        n "But you're the one that followed her here, aren't you?"
+                        n "So you're going to clean it up."
+                        n "There you go."
+                        n "Mmmmm."
+                        pause
+                        n "You're lucky, because I had a few loads saved up for Brittany."
+                        n "But she had to leave to go home to her future husband."
+                        n "So you can take what she is missing out on."
+                        n "Uhhh-"
+                        with flash
+                        pause
+                        n "Fuck!"
+                        with flash
+                        n "Follow me to the couch."
+                        scene laurabwe5
+                        with fade
+                        n "You were right, this is hot."
+                        n "I like having this kind of control over you."
+                        scene laurabwe6
+                        n "Especially when I tell you that I'm not going to fuck you."
+                        n "I'm going to let you swallow my cum, but we aren't going to fuck."
+                        n "Although you can always come back tomorrow."
+                        scene bg black
+                        image laurakneesani2 = Movie(play="laurakneesani2.webm")
+                        scene laurakneesani2
+                        with fade
+                        pause
+                        n "This is turning you on, isn't it?"
+                        n "You like being submissive to me."
+                        n "That's because this is where you belong."
+                        n "On your knees, tasting your sister's pussy on my dick."
+                        n "Getting her sloppy seconds."
+                        n "But you don't know the half of it."
+                        n "Since I last showered, I've fucked... let's see..."
+                        n "Leah."
+                        n "Ashley."
+                        n "Jenn."
+                        n "Haley."
+                        n "Grace."
+                        n "And Brittany."
+                        "Laura moaned."
+                        pause
+                        n "Actually, you look too comfortable right now."
+                        n "Even though I'm fucking your throat, I think you deserve worse."
+                        n "Lay down."
+                        scene bg black
+                        image laurakneesani3 = Movie(play="laurakneesani3.webm")
+                        scene laurakneesani3
+                        with fade
+                        pause
+                        n "That's better."
+                        n "Girls like you don't deserve to speak."
+                        n "You only deserve to have a big cock in your face."
+                        n "How does it taste to have all of your friend's juices in your mouth right now?"
+                        l "Mmm!"
+                        n "You are drinking Jenn."
+                        n "But don't think about it too hard."
+                        n "Because you're about to drink me."
+                        pause
+                        n "Are you ready?"
+
+                        l "Mmm hmm!"
+                        n "Yessssss."
+                        with flash
+                        n "Fuck yeah, Laura!"
+                        with flash
+                        n "Well hot damn you're a good cocksucker!"
+                        scene laurabwe7
+                        with dissolve
+                        n "Well done."
+                        n "Now get the fuck out of my house!"
+                        scene bg black
+                        with fadeout
+                        "{b}An Hour Later{/b}"
+
+                    "No deal":
+                        n "Fuck off."
+                        scene bg black
+                        with fadeout
+                        "{b}Two Hours Later{/b}"
+                with fade
+                "{i}Knock knock{/i}"
+                scene apartmentdoorway
+                with fade
+                n "Really?"
+                n "If this is Laura I'm going to slap her before I slam the door in her face."
+                image taptani1 = Movie(play="taptani1.webm")
+                scene taptani1
+                with fade
+                pause
+                if tiffany:
+                    n "Oh!"
+                    n "It's a beautiful day in the neighborhood!"
+                    t "Hey, [n]!"
+                    t "Do you have company over?"
+                    n "Nope!"
+                    n "Just me."
+                    t "Oh... okay."
+                    t "I came by earlier, but you sounded... busy."
+                    menu:
+                        "I was watching a movie":
+                            n "I had a movie on."
+                            n "Did you knock?"
+                            t "I did."
+                            n "Shoot! I thought I heard something."
+                            n "Was it too loud? I could always turn it down."
+                            t "A movie, huh?"
+                            t "What kind of movie was that?"
+                            n "I was watching Fight Club."
+                            t "Oh! I love that movie."
+                            t "'I haven't been fucked like that since grade school!'"
+                            n "Hmm?"
+                            t "You know? The line?"
+                            t "From the sex scene in Fight Club?"
+                            n "Oh!"
+                            n "Right!"
+                            menu:
+                                "Invite her inside [blue]\[Cheat with Tiffany + Pregnancy\][red]\[Bad ending\]":
+                                    n "Would you care to come in for a glass of wine?"
+                                    if fuckedtif:
+                                        t "Don't act like you know me, mister!"
+                                        n "I would never."
+                                    else:
+                                        t "Tempting."
+                                        t "But I don't want to interrupt your evening."
+                                        n "You would be welcome company."
+                                        t "Well..."
+                                        t "Okay then!"
+                                    scene apartment3
+                                    with fade
+                                    t "Hey... where's the TV?"
+                                    n "Umm..."
+                                    n "It pops up out of the piano."
+                                    t "Really?"
+                                    n "Have a seat."
+                                    n "I'll pour us a glass."
+                                    scene aptv4
+                                    with fadehold
+                                    n "Here you go."
+                                    t "You fucking with me, huh?"
+                                    n "I don't know, was I?"
+                                    scene aptv3
+                                    with dissolve
+                                    pause
+                                    t "What the-"
+                                    scene aptv2
+                                    with dissolve
+                                    t "Okay, that's the stupidest thing I've ever seen."
+                                    scene aptv1
+                                    with dissolve
+                                    n "Why are you so jealous, Tiffany?"
+                                    n "It's not a good color on you."
+                                    t "Wow."
+                                    t "That is the most uselessly pricey extravagance I've ever seen."
+                                    t "I love it."
+                                    n "Why not just put it on the wall?"
+                                    t "RIGHT?"
+                                    n "What do you want to watch?"
+
+                                    label fucktiffanyapt:
+                                    scene bg black
+                                    with fade
+                                    "Twenty Minutes Later"
+                                    image taptani2 = Movie(play="taptani2.webm")
+                                    scene taptani2
+                                    with fade
+                                    pause
+                                    t "Fuck yes, neighbor!"
+                                    scene bg black
+                                    image taptani3 = Movie(play="taptani3.webm")
+                                    scene taptani3
+                                    with fade
+                                    pause
+                                    t "How long can you keep me up?"
+                                    t "You must really work out!"
+                                    n "I get-"
+                                    n "-my cardio."
+                                    t "This is fucking hot!"
+                                    pause
+                                    t "Fuck, I'm going to cum!"
+                                    n "Mind if I join you?"
+                                    t "Really?"
+                                    with flash
+                                    t "SHIIIIIIT!"
+                                    with flash
+                                    t "You rock my world!"
+                                    pause
+                                    t "Won't you be my neighbor?"
+                                    $renpy.end_replay()
+                                    $ tifside = True
+                                "Say goodnight":
+                                    n "Well, good to see you, Tiffany!"
+                                    t "You too."
+                                    if fuckedtif:
+                                        t "But..."
+                                        n "Yeah?"
+                                        t "How do I put this."
+                                        t "I can't stop thinking about your dick."
+                                        n "Yeah?"
+                                        t "Can I come inside?"
+                                        menu:
+                                            "Sure [blue]\[Cheat with Tiffany + Pregnancy\]":
+                                                n "Why not?"
+                                                jump fucktiffanyapt
+                                            "No":
+                                                n "I'm sorry, Tiffany."
+                                                n "But not tonight."
+                                                t "Damn."
+                                                t "Alright. If you change your mind..."
+                                                t "You know where to find me."
+                                                n "Cheers."
+                        "I had a friend over":
+                            n "I had a friend over."
+                            t "A 'friend', huh?"
+                            t "It sounded like she was having a good time."
+                            n "I try to be a good host."
+                            "She laughed."
+                            t "Carry on, neighbor."
+
+                            menu:
+                                "Invite her inside [blue]\[Cheat with Tiffany + Pregnancy\]":
+                                    n "Would you care to come in for a glass of wine?"
+                                    if fuckedtif:
+                                        t "You think that would work?"
+                                        n "Worth a shot."
+                                        t "Well, you're right."
+                                        jump fucktiffanyapt
+                                    else:
+                                        t "Really?"
+                                        n "Sure."
+                                        t "I like your balls."
+                                        t "But I'm a lady."
+                                        t "Goodnight, [n]."
+                else:
+
+
+                    "Neighbor" "Hi!"
+                    "Neighbor" "Do you live here?"
+                    n "Yep!"
+                    n "Well, I'm staying here."
+                    "Neighbor" "Cool! I'm your neighbor."
+                    n "Right! I've seen you in the halls."
+                    n "I'm [n]."
+                    "Neighbor" "Tiffany."
+                    n "Nice to meet you."
+                    t "So, is this a bad time?"
+                    t "Do you have company over?"
+                    n "Nope!"
+                    n "Just me."
+                    t "Oh... okay."
+                    t "I came by earlier, but you sounded... busy."
+                    menu:
+                        "I was watching a movie":
+                            n "I had a movie on."
+                            n "Did you knock?"
+                            t "I did."
+                            n "Shoot! I thought I heard something."
+                            n "Was it too loud? I could always turn it down."
+                            t "A movie, huh?"
+                            t "What kind of movie was that?"
+                            n "I was watching Fight Club."
+                            t "Oh! I love that movie."
+                            t "'I haven't been fucked like that since grade school!'"
+                            n "Hmm?"
+                            t "You know? The line?"
+                            t "From the sex scene in Fight Club?"
+                            n "Oh!"
+                            n "Right!"
+                        "I had a friend over":
+                            n "I had a friend over."
+                            t "A 'friend', huh?"
+                            t "It sounded like she was having a good time."
+                            n "I try to be a good host."
+                            "She laughed."
+                    t "So..."
+                    t "You know how some neighbors ask each other for butter or sugar or whatever?"
+                    n "Sure."
+                    t "I actually came over here planning to ask your aunt to borrow a bottle of wine."
+                    n "Borrow, huh?"
+                    n "Funny, here I thought you were over twenty-one."
+                    t "Please! I'm already having a shitty night."
+                    n "I... didn't mean that as an insult."
+                    t "Oh."
+                    n "Rough day at work?"
+                    t "You have no idea."
+                    n "Come on in. We'll find you a bottle."
+                    t "Thank you so much!"
+
+                    scene apartment3
+                    with fade
+                    t "Hey... where's the TV?"
+                    n "Umm..."
+                    n "It pops up out of the piano."
+                    t "Really?"
+                    n "Have a seat."
+                    n "I'll go grab you a bottle."
+                    scene aptv4
+                    with fadehold
+                    n "Here you go."
+                    t "You were fucking with me, huh?"
+                    n "I don't know, was I?"
+                    scene aptv3
+                    with dissolve
+                    pause
+                    t "What the-"
+                    scene aptv2
+                    with dissolve
+                    t "That is the most uselessly pricey extravagance I've ever seen."
+                    scene aptv1
+                    with dissolve
+                    t "I love it."
+                    n "Why not just put it on the wall?"
+                    t "RIGHT?"
+                    t "Anyway, I'll get you out of your hair."
+                    t "But do you want to give me your number?"
+                    t "That way I won't show up unannounced."
+                    menu:
+                        "[gr] Sure":
+                            n "Sounds great."
+                            n "I'll walk you out."
+                            $ callme = True
+                        "Not a good idea":
+                            n "I'm having phone issues at the moment."
+                            n "But I'll walk you out."
+
+            "No":
+                n "Actually..."
+                n "I'm not sure we should see each other anymore."
+                b "Ha, ha."
+                b "What's your address?"
+                n "I'm serious."
+                n "I was talking to the other girls today, and I promised them-"
+                b "Them? Like, multiple girls?"
+                n "Yeah."
+                b "So they are okay with you fucking other girls."
+                n "Yes."
+                n "But only each other."
+                b "This is too damn confusing."
+                b "Are you sending me your address or not?"
+                n "Uhh..."
+                b "I won't tell anyone."
+                menu:
+                    "Okay [blue]\[Cheat with Brittany\]":
+                        n "...fine."
+                        b "See you soon."
+                        jump okaybrit
+                    "Sorry":
+                        n "Sorry, Brit."
+                        b "Asshole."
+                        "She sighed."
+                        b "I'm sorry."
+                        b "I'm just..."
+                        n "I know."
+                        b "Call me when you change your mind, okay?"
+                        n "I won't."
+                        b "Damn it."
+                        "I hung up."
+                        scene bg black
+                        with fade
+                        pause
+                        "{b}An Hour Later{/b}"
+                        jump lauracalling
+    else:
+        "{b}Three Hours Later{/b}"
+        label lauracalling:
+
+        scene aptv
+        with fade
+
+        "Laura called me again."
+        menu:
+            "Answer":
+                n "I have nothing to say to you."
+                l "I realize that, [n]."
+                l "I caught on the twelfth time you ignored my call."
+                n "Then why are you still calling?"
+                l "I think you can guess."
+                n "Nope."
+                l "I need you."
+                n "Alright, I'll bite."
+                n "Why do you need me, Laura?"
+                l "I need your dick!"
+                l "It's been two weeks, do you realize that?"
+                l "I can't think of anything else."
+                n "I thought it wore off over time?"
+                l "Why did you think that?"
+                l "Has it happened with anyone else?"
+                n "I guess not."
+                l "Right."
+                l "So..."
+                l "I can come to you."
+                l "You can fuck me and I'll leave."
+                l "We don't even have to talk."
+                n "I don't know..."
+                l "Look, you don't have to worry about me knowing where you live."
+                l "I'm not going to stalk you or anything."
+                l "Plus, I already know you moved into your uncle's place."
+                l "I just need... {w}your dick."
+                menu:
+                    "Okay [blue]\[Cheat with Laura + Pregnancy\]":
+                        $ lauraside = True
+                        n "I guess."
+                        if tiffany:
+                            "There was a knock on my door."
+                            n "Hey, someone is here."
+                            n "And I'm pretty tired."
+                            n "How about you come over tomorrow instead?"
+                            l "Okay!"
+
+                            jump ftif
+                        if fuckedbailey:
+                            "There was a knock on my door."
+                            n "And I'm pretty tired."
+                            n "How about you come over tomorrow instead?"
+                            l "Okay!"
+                            jump fbailey
+                        n "But honestly, I'm just relaxing today."
+                        n "How about you come over tomorrow instead?"
+                        l "Okay!"
+                    "Hang up":
+                        n "Laura, I want to tell you something from the bottom of my heart."
+                        n "Fuck off!"
+                        "I hung up."
+            "Ignore":
+                n "Fuck off."
+        label ftif:
+        if tiffany:
+            scene bg black
+            with fade
+            "I went downstairs to see who was knocking."
+            scene apartmentdoorway
+            with fade
+            pause
+            image taptani1 = Movie(play="taptani1.webm")
+            scene taptani1
+            with fade
+            pause
+            t "Hey!"
+            n "Tiffany!"
+            n "To what do I owe the pleasure?"
+            t "Oh, no reason in particular."
+            if fuckedtif:
+                t "I had a nice night with you and wanted to see if you wanted to do it again."
+            else:
+                t "Just wanted to come over and say hi."
+            n "Sounds like a pretty good reason to me."
+            t "Right?"
+            menu:
+                "Invite her in [blue]\[Cheat with Tiffany + Pregnancy\][red]\[Bad ending\]":
+                    $ tifside = True
+                    n "Would you care for a tour?"
+                    t "Why, yes!"
+                    t "I'm always curious to see how my neighbors live."
+                    n "Right this way."
+                    jump fucktiffanyapt
+
+                "Turn her down":
+                    n "Well I must say I had a lovely time with you as well."
+                    n "Unfortunately, I won't be able to repeat it with you tonight."
+                    t "No problem."
+                    t "I also simply wanted to come over and say hi."
+        else:
+            scene bg black
+            with fade
+            "I went downstairs to see who was knocking."
+            scene apartmentdoorway
+            with fade
+            n "If this is Laura I'm going to slap her before I slam the door in her face."
+            image taptani1 = Movie(play="taptani1.webm")
+            scene taptani1
+            with fade
+            pause
+            "Neighbor" "Hi!"
+            "Neighbor" "Do you live here?"
+            n "Yep!"
+            n "Well, I'm staying here house sitting for my uncle."
+            "Neighbor" "Cool! I'm your neighbor."
+            n "Right! I've seen you in the halls."
+            n "I'm [n]."
+            "Neighbor" "Tiffany."
+            n "Nice to meet you."
+            t "So..."
+            t "You know how some neighbors ask each other for butter or sugar or whatever?"
+            n "Sure."
+            t "I actually came over here planning to ask your aunt to borrow a bottle of wine."
+            n "Borrow, huh?"
+            n "Funny, here I thought you were over twenty-one."
+            t "Please! I'm already having a shitty night."
+            n "I... didn't mean that as an insult."
+            t "Oh."
+            n "Rough day at work?"
+            t "You have no idea."
+            n "Come on in. We'll find you a bottle."
+            t "Thank you so much!"
+            t "And do you want to give me your number?"
+            t "That way I won't show up unannounced."
+            menu:
+                "[gr] Sure":
+                    n "Sounds great."
+                    n "Come on in."
+                    $ callme = True
+                "Not a good idea":
+                    n "I'm having phone issues at the moment."
+                    n "But come on in."
+
+
+
+    scene bg black
+    with fadeout
+    pause
+    "{b}The Next Day{/b}"
+    with fade
+    "{i}Knock Knock{/i}"
+    scene apartmentbed2
+    with fade
+    pause
+    n "What good is having a doorman if she lets everyone up?"
+    image laptani4 = Movie(play="laptani4.webm")
+    scene laptani4
+    with fade
+    pause
+    n "Oh!"
+    "Girl" "Hey."
+    n "I was about to call downstairs and complain about all the visitors coming up unannounced."
+    "Girl" "Has that been a problem for you?"
+    n "Once or twice."
+    "Girl" "Then perhaps I should get back downstairs."
+    "Girl" "I wouldn't want to let you down."
+    n "Well..."
+    n "I'm not {i}that{/i} upset."
+    n "What can I do for you?"
+    if btgg:
+        "Girl" "I don't know, something about a tour?"
+    "Girl" "I have an hour lunch break to burn."
+    n "So we have Keith downstairs protecting us?"
+    "Girl" "Indeed."
+    n "Well then."
+    n "I feel safe."
+    n "How about you?"
+    "Girl" "Not around you, no."
+    n "Smart."
+    menu:
+        "Invite her inside [gr]\[Big Titty Goth Girl\]":
+            $ btgg = True
+            n "So..."
+            n "Want a tour?"
+            "Girl" "Impress me."
+            n "I apologize, but it has to be quick."
+            n "I need to leave for class in about twenty minutes."
+            "Girl" "No worries."
+            "Girl" "This place can't be that big."
+            n "Right."
+            scene apartment4
+            with fade
+            pause
+            "Girl" "Aha, the pool!"
+            "Girl" "It's not that large."
+            n "Only as big as it needs to be."
+            "Girl" "Right."
+            scene apartment5
+            with dissolve
+            n "So, are you allowed to have a drink on your lunch breaks?"
+            "Girl" "I'm not big on drinks."
+            "Girl" "I'm more of an edibles kind of girl."
+            n "Aha."
+            n "That I don't have."
+            n "At least, not that I know of."
+            "Girl" "That's okay, I had one about twenty minutes ago."
+            "Girl" "And it's going to kick in here anytime."
+            n "It takes the edge off at work?"
+            scene apartment9
+            with fade
+            "Girl" "And life."
+            "Girl" "Plus it gives me the courage to do dumb shit like come up here."
+            "Girl" "So, do I get to see the upstairs?"
+            n "I'm afraid that section is saved for the forty minute tour."
+            "Girl" "Riiight."
+            image laptani5 = Movie(play="laptani5.webm")
+            scene laptani5
+            with fade
+            pause
+            "Girl" "So I'm confused."
+            "Girl" "You haven't made a move on me yet."
+            n "That's because I'm a gentleman."
+            "She snorted."
+            "Girl" "So... you probably don't know this."
+            "Girl" "But I've been asking each girl that comes up here what they see in you."
+            n "I'm aware."
+            n "They all think you're obsessed with me."
+            "Girl" "I'm not!"
+            "Girl" "But I could see why they would think that."
+            n "Oh yeah?"
+            "Girl" "I just don't get it."
+            "Girl" "They all know about each other."
+            "Girl" "So why do they all still deal with your bullshit?"
+            n "What do they say?"
+            "Girl" "I've heard a few different answers."
+            "Girl" "One is that you are packing serious weaponry."
+            "Girl" "But the most common one is that your sperm is delicious."
+            "Girl" "I think the short one even said it was addictive."
+            n "Huh."
+            n "No one mentioned my great cooking?"
+            n "Or my generosity or conversation skills?"
+            n "How depressing."
+            "Girl" "So I don't know what I expected coming up here."
+            "Girl" "But I was picturing you trying to throw me against the wall, or at least being all grabby and shit."
+            n "Only on the weekends."
+            "Girl" "Hmm."
+            "Girl" "So what would it take to see your aggressive side?"
+            n "You want me to drop the gentleman persona?"
+            n "Because I don't do that until I learn a girl's name."
+            "Girl" "I forgot about that."
+            "Girl" "Actually, I'm still kind of pissed that you forgot it."
+            "Girl" "How about this:"
+            "Girl" "Guess my name right and I'll stay."
+            n "Do I get a hint?"
+            "Girl" "...no."
+            n "It's-"
+            "Girl" "You only get one guess."
+            menu:
+                "Kathy":
+                    n "Kathy."
+                    "Girl" "Wrong."
+                "Lisa Marie":
+                    n "Lisa Marie."
+                    "Girl" "Yep."
+                    n "Yeally?"
+                    "Girl" "Yeah, no."
+                "Donna":
+                    n "Donna."
+                    "Girl" "Close."
+                "Lydia [blue]\[Cheat with Lydia\]":
+                    n "Lydia."
+                    lyd "See?"
+                    lyd "I knew you were fucking with me."
+                    n "Totally was."
+                    n "I like it."
+                    lyd "Thanks."
+                    pause
+                    lyd "That's it?"
+                    lyd "No references to Beetlejuice?"
+                    n "Careful! That's twice now!"
+                    lyd "Right."
+                    lyd "You're different."
+                    n "You find me mysterious."
+                    n "I almost hate to shatter that for you."
+                    lyd "So you are going to turn out to be boring and ordinary?"
+                    n "Everyone is when you get to know them."
+                    lyd "I disagree."
+                    lyd "You have all these girls coming back."
+                    lyd "I could get a guy to go home with me."
+                    lyd "But getting him to return?"
+                    lyd "I had to get really good at giving head."
+                    lyd "What did you do?"
+                    n "You really want to know?"
+                    lyd "That's why I'm here."
+                    pause
+                    n "Still waiting for me to be the aggressor, huh?"
+                    lyd "That's my nature."
+                    lyd "I'm a sub."
+                    n "I don't believe in the full distinction."
+                    n "Every interaction is a dance of submission and domination."
+                    n "This time, I'm going to let you be the aggressor."
+                    lyd "You want me to dominate you?"
+                    n "No."
+                    n "I want you to be the one to make the first move."
+                    n "And the second. And third."
+                    lyd "Oh."
+                    n "Are you up for that?"
+                    lyd "Somehow, it seems even more submissive."
+                    n "It very well could be."
+                    lyd "Okay."
+                    lyd "Oh, fuck."
+                    lyd "Now I'm nervous."
+                    lyd "I really don't want to turn into one of your tramps."
+                    n "Groupies."
+                    lyd "But I'm so fucking curious."
+                    n "Alright, here's the only move I'll make."
+                    label galleryScene67:
+                    "I dropped my pants."
+                    lyd "Fuck."
+                    lyd "That's for me?"
+                    n "Yep."
+                    lyd "I am so not going to fuck you."
+                    n "No problem."
+                    n "Ten minutes wouldn't be enough for that anyway."
+                    lyd "Mmm."
+                    lyd "I'm going to put that in my mouth."
+                    lyd "And I'm going to give you a better blowjob than any of your girls."
+                    n "That's what they all say."
+                    lyd "Sit."
+                    lyd "On the couch."
+                    scene bg black
+                    image laptani6 = Movie(play="laptani6.webm")
+                    scene laptani6
+                    with fadehold
+                    pause
+                    n "Holy!"
+                    pause
+                    n "Girl, you got talent!"
+                    lyd "Mmm."
+                    n "You're twisting, you're using your tongue in all the right ways..."
+                    n "You even have the right amount of sucking action!"
+                    pause
+                    n "And you're spoiling me for the other girls."
+                    pause
+                    n "You aren't even coming up for air!"
+                    n "Or giving me witty retorts."
+                    pause
+                    n "This just might be the best BJ I've ever-"
+                    scene bg black
+                    image laptani7 = Movie(play="laptani7.webm")
+                    scene laptani7
+                    with fade
+                    pause
+                    n "Fuck me!"
+                    n "You're taking it deep!"
+                    pause
+                    n "How is your throat this good?"
+                    n "Mother fuck!"
+                    n "Lydia!"
+                    lyd "Mmm hmm?"
+                    n "I'm going to cum!"
+                    lyd "Mmm hmm!"
+                    n "You got me-"
+                    with flash
+                    n "AHhhhhhHHHH!"
+                    with flash
+                    lyd "Mmmmmmm."
+                    pause
+                    $renpy.end_replay()
+                    scene bg black
+                    with fadeout
+                    $ lydiaside = True
+                    jump afterlydia
+
+                "Moria":
+                    n "Moria."
+                    "Girl" "You wish."
+                "Raven":
+                    n "Raven."
+                    "Girl" "I like that."
+                    "Girl" "But no."
+            "Girl" "Thanks for playing."
+            "Girl" "Maybe next time."
+            n "Nooo!"
+            scene bg black
+            with fadeout
+
+
+        "Send her away":
+            $ btgg = False
+            n "Well, my apologies, nice Big Titty Goth Girl, but I was just on my way out."
+            "Girl" "Oh?"
+            n "Gotta get to class."
+            "Girl" "That's too bad."
+            "Girl" "Maybe another time, then."
+            n "Maybe!"
+            "Girl" "Interesting."
+            n "Oh?"
+            "Girl" "Just when I thought I had you figured out..."
+            scene bg black
+            with fadeout
+    # What happens next?
+    #  Tiffany comes over for a bang. Laura calls and tries to convince you to fuck her as well. Then Lydia comes to try to suck your dick.
+    #  If you fucked any of the girls besides Laura, you knock them up and the other girls all leave you.
+    #  If burger, the girls grow fairly large by the time of the graduation. Your uncle returns, kicking you out.
+    #  You have nowhere to go, so you end up living with Laura again if you decided to fuck her. If not, you quit school get a part time job to get a shitty apartment
+    #  If not, you let the girls make a bunch of money and you all are able to move out and get a place together.
+    #  There you can watch the girls blow up, fucking them the entire time.
+label afterlydia:
+    $ lauradate = False
+    if lauraside:
+        "{b}That Evening{/b}"
+        if britside:
+
+            scene laurabwe1
+            with fadein
+            pause
+            scene laurabwe2
+            with dissolve
+            l "Hi."
+        else:
+
+            image laptani1 = Movie(play="laptani1.webm")
+            scene laptani1
+            with fade
+            pause
+            l "Hi."
+            l "I have a couple of important things to tell you."
+            n "I don't care."
+            n "You're only here for one reason."
+            menu:
+                "Take it out on her":
+                    n "And for that I'm going to need your consent."
+                    l "Okay."
+                    n "With one condition."
+                    l "Yes?"
+                    n "If you want to come back again another time, you stop calling me ten times a day."
+                    l "Okay."
+                    n "Enter."
+                    label galleryScene69:
+                    scene apartment1
+                    with fade
+                    l "This is nice."
+                    n "Shhhhh."
+                    n "On your knees."
+
+                    image laurakneesani1 = Movie(play="laurakneesani1.webm")
+                    scene laurakneesani1
+                    with fade
+                    pause
+                    n "Good slut."
+                    n "There you go."
+                    n "Mmmmm."
+                    pause
+                    n "Uhhh-"
+                    with flash
+                    pause
+                    n "Fuck!"
+                    with flash
+                    n "Follow me to the couch."
+                    scene laurabwe5
+                    with fade
+                    n "You were right, this is hot."
+                    n "I like having this kind of control over you."
+                    scene laurabwe6
+                    scene bg black
+                    image laurakneesani2 = Movie(play="laurakneesani2.webm")
+                    scene laurakneesani2
+                    with fade
+                    pause
+                    n "This is turning you on, isn't it?"
+                    n "You like being submissive to me."
+                    n "That's because this is where you belong."
+                    n "And just so you know, I didn't shower last night specifically for you."
+                    n "I wanted to give you sloppy seconds."
+                    n "But you don't know the half of it."
+                    n "Since I last showered, I've fucked... let's see..."
+                    n "Leah."
+                    n "Ashley."
+                    n "Jenn."
+                    n "Haley."
+                    n "And Grace."
+                    "Laura moaned."
+                    pause
+                    n "Actually, you look too comfortable right now."
+                    n "Even though I'm fucking your throat, I think you deserve worse."
+                    n "Lay down."
+                    scene bg black
+                    image laurakneesani3 = Movie(play="laurakneesani3.webm")
+                    scene laurakneesani3
+                    with fade
+                    pause
+                    n "That's better."
+                    n "Girls like you don't deserve to speak."
+                    n "You only deserve to have a big cock in your face."
+                    n "How does it taste to have all of your friend's juices in your mouth right now?"
+                    l "Mmm!"
+                    n "You are drinking Jenn."
+                    n "But don't think about it too hard."
+                    n "Because you're about to drink me."
+                    pause
+                    n "Are you ready?"
+
+                    l "Mmm hmm!"
+                    n "Yessssss."
+                    with flash
+                    n "Fuck yeah, Laura!"
+                    with flash
+                    n "Well hot damn you're a good cocksucker!"
+                    scene laurabwe7
+                    with dissolve
+                    n "Well done."
+                    jump fuckinlaura
+                "Go easy":
+                    n "But just so we're clear, after this you stop calling me ten times a day."
+                    n "Got it?"
+                    l "Got it."
+                    n "Enter."
+                    jump fuckinlaura
+        scene laurabwe1
+        n "Shut your mouth."
+        menu:
+            "Treat her badly":
+                $ lauramean = True
+                n "And follow me upstairs."
+                n "But first, take off your clothes."
+                n "You are breaking the naked rule."
+
+            "Have compassion":
+                $ lauramean = False
+                "I sighed."
+                n "Get in here."
+                n "I still don't want to talk yet."
+                n "I'm not ready."
+                n "I only want to take out my anger on you."
+                n "And I want to do it using sex."
+                n "Cool?"
+                n "You can answer."
+                scene laurabwe2
+                l "I can't wait."
+                scene laurabwe1
+                n "Good."
+                n "Now strip."
+        scene laurabwe2
+        l "You want me to take off my dress right here?"
+        scene laurabwe1
+        n "Damn right."
+        scene bg black
+        $ renpy.movie_cutscene("lauradropani1.webm")
+        with dissolve
+        scene laurabwe3
+        with fade
+        n "That's better."
+        n "Who is the last guy you were with?"
+        scene laurabwe4
+        l "You."
+        scene laurabwe3
+        n "Really?"
+        scene laurabwe4
+        l "Yes."
+        scene laurabwe3
+        n "Good."
+        n "Here's what is going to happen."
+        n "We're going to watch some porn."
+        n "And we are going to act it out."
+        n "I was watching a couple of scenes last night that involved some hard spanking and choking."
+        n "I haven't really tried any of that shit before."
+        n "But something about seeing you really brings it out of me."
+        n "The safe word is cactus."
+        n "But I should warn you..."
+        n "Use of the safeword will not go unpunished."
+        n "Any questions?"
+        "She whimpered."
+        scene laurabwe4
+        l "No."
+        scene laurabwe3
+        n "Good."
+        label fuckinlaura:
+        scene bg black
+        image laurabedani1 = Movie(play="laurabedani1.webm")
+        scene laurabedani1
+        with fade
+        pause
+
+        l "I MISSED THIS SO MUCH!"
+        scene bg black
+        image laurabedani6 = Movie(play="laurabedani6.webm")
+        scene laurabedani6
+        with fade
+        pause
+
+        l "I thought you were going to choke me?"
+        n "Got my hands full at the moment."
+        l "What if I say the safe word?"
+        n "See what happens."
+        l "Cactus!"
+        scene bg black
+        image laurabedani5 = Movie(play="laurabedani5.webm")
+        scene laurabedani5
+        with fade
+        pause
+
+        l "I'll behave."
+        pause
+        l "Promise we'll do this again and I'll do whatever you want."
+        scene bg black
+        image laurabedani2 = Movie(play="laurabedani2.webm")
+        scene laurabedani2
+        with fade
+
+        l "Ahhh yesss!"
+        l "That's so deep!"
+        l "You are so hard right now."
+        pause
+        l "Does that mean-"
+        n "Fuck!"
+        with flash
+        l "YESSS!"
+        with flash
+        pause
+        scene bg black
+        image laurabedani3 = Movie(play="laurabedani3.webm")
+        scene laurabedani3
+        with fade
+        pause
+        l "I think you just fucked the crazy out of me."
+        $renpy.end_replay()
+        n "Alright, you can talk."
+        n "But the moment you say anything to try to win me back is the minute I kick you out."
+        n "Got it?"
+        l "Got it."
+        n "Where did you go?"
+        l "On a cruise."
+        n "With who?"
+        l "My mom."
+        n "Why?"
+        l "I wanted everything to cool down."
+        l "I knew you would come back for the watch, and I wanted to keep it."
+        n "Why?"
+        l "It was the only leverage I had on you."
+        l "I wanted to keep you in my life and I figured that without it you had no reason to ever talk to me again."
+        l "I know I fucked up, and I-"
+        n "Enough."
+        n "I'm not looking for apologies."
+        n "This is not us making up."
+        n "This is me taking out my frustrations out on you."
+        l "Got it."
+        l "Can I tell you why I like you so much?"
+        n "No."
+        l "Can there ever be anything between us?"
+        n "You stole the most valuable object I'll ever own in my life."
+        n "And then, instead of giving it back to me when I asked, you destroyed it."
+        n "I'd almost rather you disappear and try to use it to take over the world."
+        l "Heh."
+        n "But the worst thing you did was to these girls."
+        n "They are stuck growing bigger tits with no way to stop them."
+        n "And you did it intentionally."
+        l "No. I-"
+        n "You knew exactly what you were doing."
+        l "I also did it to myself."
+        n "You didn't have someone use it on you before you destroyed it?"
+        l "I didn't plan on destroying it."
+        l "I knew you could take it from me, so I just threw it."
+        l "It was metal."
+        l "How was I supposed to know it would turn into dust?"
+        "I chuckled."
+        n "So you're stuck with the same fate as these girls?"
+        l "Yes."
+        n "Serves you right."
+        l "I know."
+        scene bg black
+        image laurabedani4 = Movie(play="laurabedani4.webm")
+        scene laurabedani4
+        with fade
+        pause
+        l "I even tried using it on myself in the mirror."
+        n "That sounds ridiculous."
+        l "It was."
+        n "What else would you have changed?"
+        l "I would have stopped my ass from growing."
+        l "This thing is plenty big now."
+        l "I'm always bumping into things."
+        n "I bet."
+        n "What else?"
+        l "I would have made myself less of a bitch."
+        n "Oh?"
+        l "Or, I would have asked you to."
+        l "It's something I've tried to change about myself."
+        l "But I haven't been very successful."
+        if lauramean:
+            n "Yeah, yeah."
+        else:
+            n "Hey, Laura?"
+            l "Yeah?"
+            n "Are you okay?"
+            l "I am right now."
+            l "But only because I'm near you."
+        l "I mean, don't get me wrong, the cum feels amazing."
+        l "The other girls may be free of it, but to me that shit is still fully addictive."
+        l "But you have always had a calming influence for me."
+        l "You make me feel like I can be the best version of myself."
+        n "Then why did you do the shit at your party?"
+        l "I caught you fucking almost every single one of my friends."
+        l "I knew you were dating Leah and maybe Ashley, sure."
+        l "But I had no idea."
+        l "Up until then, I thought I had a chance."
+        l "That was a terrible day for me."
+        l "That's why I kept the watch when I found it."
+        l "I figured it was my only chance to win you back."
+        n "I'm not a prize, Laura."
+        l "I know."
+        l "You're a person."
+        l "But I always thought you were my person."
+        n "Always?"
+        l "Since middle school."
+        n "Seriously?"
+        l "Yeah."
+        l "The moment when-"
+        n "Enough."
+        n "I mean, I asked."
+        n "But I've had enough of this for today."
+        n "I'm still all sorts of pissed off at you."
+        l "I get it."
+        l "Want to fuck me in my ass?"
+        n "..."
+        n "Without lube."
+        l "What!"
+        l "..."
+        l "...okay."
+        n "I'm just fucking with you."
+
+
+        l "Hey, I know this was just revenge for you or whatever."
+        l "But do you think we can do this again sometime?"
+        l "It doesn't have to be tomorrow, or even next week."
+        l "Just... sometime."
+        l "I'll take whatever I can get."
+        l "But if I know I don't get to see you again, it's going to crush me."
+        menu:
+            "Okay [gr]\[Laura in harem\]":
+                $ lauradate = True
+                n "I can't promise anything."
+                n "But something tells me our paths will cross again."
+                l "Yay!"
+                l "Can I kiss you?"
+                n "Get the fuck out of here."
+            "No":
+                $ lauradate = False
+                n "I got everything I needed."
+                n "Now fuck off."
+        if lauramean:
+            n "Actually..."
+            n "Before you go, I'm going to take that ass."
+            n "I hope you're ready to leave here with marks."
+            "Laura whimpered."
+        scene bg black
+        with fadeout
+
+    if huge:
+        "{b}A Week Later{/b}"
+    else:
+        "{b}Two Weeks Later{/b}"
+
+    with fade
+    "{b}Tuesday - Ashley's Day{/b}"
+    image ashchairani2 = Movie(play="ashchairani2.webm")
+    scene ashchairani2
+    with fadein
+    a "Hey, do my tits look bigger to you?"
+    n "Not at all."
+    a "That's because you saw them yesterday."
+
+
+    if huge:
+        a "Here, look at this picture from only a week ago."
+        scene ashelfie1
+        with fade
+        n "Huh."
+    else:
+        a "Here, look at this picture from only two weeks ago."
+        scene ashelfie1
+        with fade
+        n "Huh."
+    n "Wait, you take a topless selfie every day?"
+    a "Of course."
+    n "Can I have this?"
+    scene ashchairani2
+    with fade
+    a "You wish."
+    n "Wait... why not?"
+    a "That picture is to document my progress."
+    a "You can almost see a difference between each day's photo."
+
+    n "How long have you been doing this?"
+    a "Since I started growing."
+    a "But I wasn't trying to be sexy in them."
+    a "Well, except for the ones I already sent you."
+    n "Doesn't matter if you were trying."
+    n "Posing is overrated."
+    a "The point is, I'm still growing."
+    a "All the girls are."
+    n "I'm sorry."
+    a "Are you?"
+    a "I feel like you still enjoy it."
+    menu:
+        "I do":
+            n "I do, yes."
+            n "But not if it makes you miserable."
+            a "I'm not there yet."
+            a "But I am worried."
+            if huge:
+                a "I'm not saying I've been all that careful about what I'm eating."
+                a "But I've reached the point where I should be."
+
+            else:
+                a "I've been careful about what I eat."
+                a "But all I'm doing is slowing down the growth."
+
+        "I did":
+            n "I did, yes."
+            if bigtits:
+                n "But you girls are getting top-heavy enough for my taste."
+                a "Getting?"
+                a "Haven't reached it yet?"
+            else:
+                n "But you are already huge."
+                a "Too huge?"
+
+
+    n "I think you look amazing."
+    a "Does that mean I should start dieting and hit the gym?"
+    n "If that's what you think you should do."
+    a "I do."
+    if huge:
+        a "But first..."
+        a "I need to catch up to Grace."
+        n "Oh?"
+        a "Did you just get hard?"
+        a "Picturing me... {w}bigger?"
+        n "Maybe."
+        a "Noted."
+        n "So you aren't going to beat Haley?"
+        a "Oh hell no."
+        a "No one is catching up with that girl."
+
+    scene bg black
+    image ashchairani1 = Movie(play="ashchairani1.webm")
+    scene ashchairani1
+    with fade
+    a "So how was your week, [n]?"
+    n "I'm going to need to find a job."
+    n "All my savings are used up and I'm starting to regret signing up for a credit card."
+    a "What are you thinking?"
+    n "Maybe bartending?"
+    a "But then you'll be busy on nights and weekends."
+    a "Which is the only time I get to see you."
+    n "Yep."
+    a "Boo."
+
+
+    a "I have an idea for money."
+    n "Yeah?"
+    n "Tell me."
+    a "We take advantage of these giant freakin' racks."
+    n "How do we do that?"
+    a "Exactly the way you expect."
+    n "Stripping?"
+    a "That's old school!"
+    a "Did you know I have been taking pictures of myself every day to track my development?"
+    n "Everyone knows that."
+    a "What if Leah and I made an Instagram?"
+    a "We could probably get a ton of followers."
+    n "Don't you already have one?"
+    a "Yeah, but we haven't really posted any recent photos."
+    n "So you get a lot of followers. Then what?"
+    a "We promote influences!"
+    n "What would you be influencing?"
+    a "I don't know. Skincare products or some bullshit."
+    n "What if you make a Twitter account?"
+    a "Why?"
+    n "You could tie your boob size to your follower count."
+    n "More retweets and follows, more boobies."
+    a "Would that ever work?"
+    n "Of course."
+    a "How do you know?"
+    n "No comment."
+    a "Oh really?"
+    a "Alright, we could try it."
+    n "Cool, I'll start promoting you right now."
+    "I stood up."
+    scene cityskyline
+    with fade
+    pause
+    a "What are you doing?"
+    n "Attention, everyone!"
+    "She giggled."
+    n "Do you see this girl sitting next to me?"
+    a "You are crazy!"
+    n "Follow {a=https://twitter.com/ashleyremingto8}Ashley's Twitter Account{/a} to watch her tits grow with each follow, like and retweet!"
+    a "And my friend's tits too!"
+    scene bg black
+    scene ashchairani2
+    with fade
+    a "So..."
+    a "This is the spot."
+    n "Right?"
+    a "Do I really have to go back home tonight?"
+    n "Not if I wake up early and drive you to school."
+    a "You'd do that for me?"
+    n "If you made me."
+    a "Ha!"
+    a "It's okay."
+    a "The train is good times."
+    n "What happened to convincing your mom to buy you a car?"
+    a "What does it matter?"
+    a "My tits are going to get so big I won't be able to fit behind a steering wheel soon."
+    n "Well not with that attitude."
+    a "I can't wait until I graduate."
+    n "Yeah?"
+    a "Then I could stay here whenever I want."
+    a "It's almost a month away."
+    n "That sounds awesome."
+    a "Actually, how long can you stay here?"
+    a "Have you heard from your uncle?"
+    n "Yeah, he called to check in last week."
+    n "He's taking my aunt down to Africa to go on a safari."
+    a "Awesome!"
+    a "Did he tell you to do anything?"
+    n "Yeah, he asked me not to let anyone come over except for my girlfriend."
+    a "I assume you didn't tell him that you have multiple girlfriends?"
+    n "Is that not normal?"
+    a "Mmm hmm."
+    label galleryScene70:
+    a "Hey, want to go another round?"
+    n "You still aren't sore?"
+    a "Magic pussy."
+    n "That's right!"
+    n "So... balcony sex?"
+    a "I'm not Leah."
+    a "How about you fuck me on the piano?"
+    n "Don't tell my uncle."
+    scene bg black
+    image ashpianoani1 = Movie(play="ashpianoani1.webm")
+    scene ashpianoani1
+    with fade
+    pause
+    a "Fuck, [n]!"
+    a "Leah is going to be so jealous!"
+    n "You don't have to tell her."
+    a "How wrong you are."
+    $renpy.end_replay()
+
+    if fuckedbailey:
+        scene bg black
+        with fade
+        "{b}The Next Day{/b}"
+        "There was a knock on my door."
+        label fbailey:
+        image hbaptani1 = Movie(play="hbaptani1.webm")
+        scene hbaptani1
+        with fade
+        pause
+        ba "Hey."
+        n "Hey!"
+        n "Hottie Bartender!"
+        ba "I do have a name."
+        n "Bailey!"
+        ba "Better."
+        n "You came back."
+        n "How did you get upstairs?"
+        ba "Please."
+        n "I guess I'm going to have to raise my security."
+        ba "Aren't you more impressed that I found your place again, despite being entirely drunk the last time I was here?"
+        n "Kind of, yeah."
+        ba "I don't know what it is."
+        ba "But I've been craving you all week."
+        n "You flatter me!"
+        ba "I'm serious."
+        ba "I can't seem to get you out of my head."
+        menu:
+            "Invite her in [blue]\[Cheat with Bailey\]":
+                n "I wouldn't mind getting back in there."
+                ba "What?"
+                label onbailey:
+                $ baileyside = True
+
+                n "Come on in."
+                ba "Thanks."
+                scene apartment1
+                with fade
+                n "So can I get you anything to drink or-"
+                ba "Got any jizz?"
+                n "You know what? I believe I do."
+                ba "Hit me with it."
+                n "Right here?"
+                ba "Fuck yes."
+                image baileystandani1 = Movie(play="baileystandani1.webm")
+                scene baileystandani1
+                with fade
+                pause
+                ba "[n]!"
+                ba "Why is your dick so good?"
+                n "Magic?"
+                ba "I want to argue..."
+                ba "...but it really is."
+                pause
+                ba "I'm not usually a cum slut!"
+                ba "So how come I'm craving yours so much?"
+                n "Oh, I'm sure that after this time..."
+                n "...you'll be satisfied."
+                ba "Something tells me..."
+                ba "...you're wrong!"
+                n "Only one way to find out."
+                pause
+                scene bg black
+                image baileystandani1 = Movie(play="baileystandani1.webm")
+                scene baileystandani1
+                with fade
+                pause
+
+                ba "Yesssss."
+                ba "You're going to blast my insides?"
+                n "I usually like to let the lady go first..."
+                ba "Don't worry about me!"
+                ba "I'm sure that your orgasm will set mine off."
+                n "Yeah?"
+                ba "Let's try."
+                pause
+                n "Alright, I'm-"
+                "I grunted."
+                with flash
+                ba "Ohhhhhh yes!"
+                with flash
+                ba "HaaaaaaaaaaAAA!"
+                with flash
+                ba "MORE!"
+                with flash
+                ba "Fuck!"
+                pause
+                $renpy.end_replay()
+
+            "I can't":
+                n "I get that a lot."
+                ba "So, are you going to invite me in?"
+                n "Actually..."
+                n "I can't."
+                ba "Oh?"
+                n "I'm starting to get serious with someone."
+                ba "Is it the blonde?"
+                n "No, actually."
+                n "It's..."
+                n "A few people."
+                ba "Oh?"
+                ba "Then I won't bother you."
+                ba "Unless..."
+                n "Hmm?"
+                ba "We've already had the 'first time ever' sex."
+                ba "I thought it was pretty amazing."
+                n "It was."
+                ba "So we could always have 'last time ever' sex."
+                n "When would we do that?"
+                ba "We could take a vote."
+                ba "I vote now."
+                menu:
+                    "Accept [blue]\[Cheat with Bailey\]":
+                        n "Aye."
+                        jump onbailey
+
+                    "Decline":
+                        n "Looks like a draw."
+                        n "Thanks for coming by, Bailey."
+                        n "It was fun."
+                        ba "It was indeed."
+                        ba "Bye, [n]."
+
+    # JDAT
+
+
+    scene bg black
+    with fade
+
+    "{b}Thursday - Jenn's Day{/b}"
+    scene jennicecream1
+    with fadein
+    pause
+    n "Want to find a table?"
+    j "Sure!"
+    scene jennicecream2
+    with fade
+
+    n "Are you sure you didn't spoil your dinner?"
+    j "That's not going to be a problem."
+    scene jennbwe2
+    with fadein
+    scene jennbwe1
+    with dissolve
+    j "Thanks for coming out here!"
+    scene jennbwe2
+    n "Actually, it's nice to get away from the apartment for a bit."
+    n "Plus, this place is pretty sweet."
+    n "How often do these people leave town, anyway?"
+    scene jennbwe1
+    j "Every time they go to their vacation home in Hawaii."
+    scene jennbwe2
+    n "So... every other weekend?"
+    scene jennbwe1
+    j "Pretty much."
+    j "But they go for a week at a time."
+    scene jennbwe2
+    n "Legit!"
+    scene jennbwe3
+    with dissolve
+    j "I'm going to get changed."
+    scene jennbwe4
+    n "Can I watch?"
+    scene jennbwe3
+    j "I'd rather leave a little mystery."
+    scene jennbwe4
+    n "But I want to see your boobies."
+    scene jennbwe3
+    j "And you're going to have to wait."
+    scene jennbwe4
+    n "I also want to see your ass."
+    scene jennbwe3
+    j "My ass is the same size."
+    scene jennbwe4
+    n "And yet you're still balanced out."
+    scene jennbwe3
+    j "That's because I started with a lot extra."
+    j "Hey, Haley is almost here."
+    scene jennbwe2
+    with dissolve
+    n "She's coming to dinner with us?"
+    scene jennbwe1
+    j "Oh, no."
+    j "But she is going to spend the night with us if that's okay."
+    scene jennbwe2
+    n "Of course."
+    scene jennbwe1
+    j "She's really been blowing up lately."
+    scene jennbwe2
+    n "I know! I just saw her over the weekend, remember?"
+    scene jennbwe1
+    j "Yeah, but even so."
+    scene jennbwe5
+    with fade
+    n "Really?"
+    j "You'll see."
+    scene bg black
+    with fadeout
+    "I lay down on the bed while I waited."
+    h "[n]!"
+    scene haleyjd1
+    with fadein
+    n "Haley!"
+    "She jumped beside me."
+    scene haleyjd2
+    with dissolve
+    h "Hi!"
+    image haleycuddlesani1 = Movie(play="haleycuddlesani1.webm")
+    scene haleycuddlesani1
+    with fade
+    "I kissed her."
+
+    $ hpregs = False
+    n "How are ya?"
+    if cumhaley:
+        if preg:
+            h "I think we should tell her."
+            n "Oh?"
+            h "We need to."
+            h "Don't you think?"
+            menu:
+                "Yes":
+                    $ hpregs = True
+                    n "No sense in hiding it."
+                    h "That's how I feel."
+                    h "Do we do it together?"
+                    n "Sure."
+                "Not yet":
+                    n "I don't think it's time yet."
+                    h "Why?"
+                    n "Because it's still early."
+                    n "Anything could happen."
+                    h "No matter what happens, I'm still going to tell my best friend."
+                    n "Fair enough."
+                    n "But this is Jenn's night."
+                    h "You're right."
+
+    h "Hey..."
+    h "Do you think we have enough time before she gets back?"
+    n "For what?"
+    h "For-"
+    h "Ah."
+    h "You want me to beg for it."
+    n "What are you talking about now?"
+    h "You love hearing your girls beg you."
+    h "Even though we aren't addicted to you quite as much."
+    n "Haley, are you talking about sex?"
+    n "Because Jenn would not appreciate it if she didn't get the big load."
+    h "The what?"
+    n "The first load of the day."
+    h "You're trying to convince me that you haven't already fucked today?"
+    h "Because I don't believe you."
+    n "Hmm..."
+    n "Good point."
+    n "But that was this morning."
+    h "Yeah, yeah."
+    n "How about I come out after Jenn passes out and have my way with you?"
+    h "I have a better idea."
+    h "All three of us share the bed and you take turns fucking both of us until we beg you to stop."
+    n "I suppose we could run it by her."
+    n "Hey, can you sit up?"
+    scene haleyjd3
+    with fade
+    h "Why?"
+    scene haleyjd4
+    n "Jenn said you grew again."
+    scene haleyjd3
+    h "Have I?"
+    scene haleyjd4
+    h "Hmm."
+    scene haleyjd3
+    h "I suppose you want to see 'em?"
+    scene haleyjd4
+    n "Naturally."
+    scene haleyjd3
+    h "That's too bad."
+    h "Being as how this is your night with Jenn."
+    scene haleyjd4
+    n "Are you throwing my words back in my face?"
+    scene haleyjd3
+    h "Naturally."
+    scene haleyjd4
+    n "Big mistake, Haley."
+    n "I'll get you for this."
+    scene haleyjd3
+    h "What are you going to do?"
+    scene haleyjd4
+    n "I'll-"
+
+    j "Hey."
+    scene jennbwe6
+    with fade
+    n "Fuckin' hey!"
+    j "Do you like it?"
+    n "Absolutely."
+    j "You don't mind that it's the same dress that I wore before?"
+    n "You can wear that dress every day of the week."
+    scene jennblink
+    with fade
+    j "Thanks!"
+    j "Only problem is that I fear it won't fit for much longer."
+    j "I was barely able to squeeze into it."
+    j "So... dinner time?"
+    n "Hell yeah."
+    h "Jenn, you look great!"
+    j "And you look... huge!"
+    h "I know, right?"
+    if hpregs:
+        h "Hey, Jenn?"
+        j "Yeah?"
+        h "There's something we need to tell you."
+        j "We?"
+        h "The other day, I realized I was late."
+        h "I went to get a test at-"
+        j "OH MY GOD!"
+        j "You're PREGNANT?"
+        h "...yes."
+        j "HALEEEEY!"
+        "She began to scream loud enough to make me wish I could shut my ears."
+        j "HOLY SHIT!"
+        j "That's amazing!"
+        h "You're not upset?"
+        j "Well, I'm jealous!"
+        j "I mean, I would rather have been first."
+        j "But now we can both have babies together!"
+        h "Really?"
+        h "I was really hoping you wouldn't be mad."
+        j "It's not your fault."
+        j "And I'm happy for you."
+        j "Wait, are you happy about it?"
+        h "It scared the shit out of me at first."
+        h "But now it's growing on me."
+        h "The problem is..."
+        j "Yeah?"
+        h "I'm already eating everything in sight."
+        j "I know!"
+        h "In a normal pregnancy, your excess weight turns into fat, and the majority of nutrients goes to the baby."
+        j "And?"
+        h "So if all my excess weight is going to my curves first, what if that doesn't give enough for the baby?"
+        j "Then you just eat more."
+        h "Trust me, I have been."
+        h "But Jenn..."
+        h "You might not want this."
+        j "Why not?"
+        h "Because... what if I get huge?"
+        h "Like... really, really huge?"
+        "Jenn looked at me."
+        j "What do you think?"
+        n "She has a point."
+        j "Yeah."
+        j "But Haley, I don't want you to go through it alone."
+        h "Thanks, Jenn."
+        h "I really appreciate that, I do."
+        h "But maybe you should wait."
+        h "Sit back and see how bad it is for me."
+        h "I mean, it might be nothing."
+        h "But I am so fucking hungry all the time."
+        h "A lot more than I was a week ago."
+        n "I didn't think pregnancy would make you hungry so soon?"
+        h "Normally, no."
+        h "That's why it has me worried."
+        j "Well, I'm not knocked up yet."
+        j "Maybe it will take a while?"
+        h "You've only been trying for two weeks, Jenn."
+        j "I know."
+        j "You're so lucky!"
+        h "I guess."
+        h "But I wanted to warn you."
+        h "This is something you might not want to jump right into."
+        j "Thanks, Haley."
+
+
+    h "Hey... I have a question for you."
+    j "Just ask."
+    h "Can I sleep with you guys tonight?"
+    j "I would say yes, but we're going to be having a lot of sex."
+    h "Duh."
+    h "I want to watch."
+    j "Seriously?"
+    h "Yep!"
+    j "Sorry, friend."
+    j "But I think I want [n] all to myself tonight."
+    h "You mean [n]'s dick?"
+    j "Why, what did I say?"
+    n "Har har."
+    j "But we want to include you, Bestie!"
+    j "So after dinner we can all watch a movie together."
+    h "That's it?"
+    h "See if I include you on my night!"
+    j "You'd better!"
+    scene bg black
+    with fade
+    "An Hour Later"
+
+    scene jennbath1
+    with fadehold
+    pause
+
+    j "Thanks for dinner."
+    n "You're welcome."
+    if huge:
+        n "And you do realize that you really didn't need to eat so much, right?"
+        j "I know."
+        j "But I wanted to."
+        n "Oh, yeah?"
+        j "Did it turn you on?"
+        scene jennbath2
+        with dissolve
+        j "Were you enjoying watching me eat all that food, knowing where it was going to end up?"
+        n "Maybe."
+        j "I hope so."
+        j "Because if it did, I want to take advantage."
+        n "I've told you this before, Jenn..."
+        n "That dress is all you need."
+        j "Oh yeah?"
+        j "Then I'd better not take it off."
+        j "I'd hate to lose a nice boner when I could use it as my personal pogo stick."
+        n "Something tells me it's going to work out just fine."
+        j "Oh yeah?"
+    else:
+        j "Hey, did you want to invite Haley in here with us?"
+        n "If that's what you want."
+        n "Otherwise, I'm quite content with what I have in front of me right now."
+        j "Good answer."
+        label galleryScene71:
+        scene jennbath2
+        with dissolve
+        j "A girl likes to be able to keep you to herself sometimes."
+        n "My girl does."
+        j "Why does the corny stuff work on me so well?"
+        n "Because sometimes the only difference between corny and cute is whether you're on the receiving end."
+        j "That makes sense."
+    scene jennbath3
+    with dissolve
+    j "So..."
+    j "Want to take a bath with me?"
+    scene jennbath4
+    with fade
+    n "If the answer to that question is ever no..."
+    n "I want you to punch me in the face."
+    scene jennbath5
+    with fade
+    j "Noted."
+    if hpregs:
+
+        n "But uhh..."
+        scene jennbath6
+        with dissolve
+        n "What about what Haley was saying?"
+
+        j "I'm not sure."
+        j "The whole thing sounds risky."
+        n "It does."
+        j "But sometimes..."
+        scene jennbath8
+        with dissolve
+        j "Do you think risk can make everything hotter?"
+        n "It can."
+        j "Then..."
+        scene jennbath7
+        with dissolve
+        j "Should we risk it?"
+        menu:
+            "Yes":
+                n "Maybe we should."
+                j "Yeah, I don't think anything is going to change."
+                scene jennbath9
+                with dissolve
+                j "Just because it might not work doesn't mean we shouldn't try."
+                j "And I still really want to have your babies."
+                n "Babies?"
+                j "Of course."
+            "No":
+                n "I don't think we should."
+                j "Oh."
+                scene jennbath9
+                with dissolve
+                j "Okay."
+                j "In that case, can you go grab a condom out of the nightstand in the bedroom?"
+                n "Hell yes."
+                n "Safe sex is the best!"
+                j "Totally."
+                if preg:
+                    j "Who are we kidding?"
+                    j "Just get in here."
+    else:
+        j "Get in here."
+    scene bg black
+    with fade
+    "I climbed in."
+    scene jennbath10
+    with fade
+    "Jenn climbed on me."
+    image jennbathani1 = Movie(play="jennbathani1.webm")
+    scene jennbathani1
+    with fade
+    pause
+    n "There's your boobies!"
+    j "Do you like them?"
+    n "I do."
+    n "I have to admit, though..."
+    j "You thought they'd be bigger by now?"
+    n "Kinda, yeah."
+    if huge:
+        j "I'll work on that."
+        n "You did a pretty good job of it tonight."
+        j "For you."
+    else:
+        j "I've been careful."
+        j "Spending some time at the gym."
+        j "Tonight was a slip up though."
+    if lactation:
+        j "Can you imagine them filled with milk?"
+        n "I can, yes."
+        j "Mmm I can't wait."
+        j "If you still had the watch I'd ask for you to make me lactate now."
+        n "Genius."
+    pause
+    j "You're getting close, aren't you?"
+    n "Yes I am, my dear Watson!"
+    j "I'm starting to be able to tell."
+    j "Go ahead."
+    n "Ladies first."
+    j "I'll catch the next one."
+    j "This is your turn."
+    n "You really are a lady!"
+    if preg:
+        j "Yesss!"
+        j "Cum inside me!"
+        with flash
+        j "Knock me up!"
+        with flash
+        j "Give me life!"
+        with flash
+        n "Jennn!"
+    else:
+        j "Yesss!"
+        with flash
+        j "Fuck that feels good!"
+        with flash
+        n "Jennn!"
+    pause
+    if preg:
+        scene jennbath11
+        with fade
+        j "I think you left something for me."
+        n "Do you like it?"
+        j "I love it."
+        j "Thank you!"
+        scene jennbath12
+        with fade
+        j "Don't mind me."
+        n "You look comfortable."
+        j "I hear this raises the chance of conception."
+        n "Oh?"
+        j "Mmm hmm!"
+    else:
+        scene jennbath12
+        with fade
+        pause
+        n "You look comfortable."
+        j "Very."
+        j "Thanks for the wonderful night, [n]."
+        n "My pleasure."
+        n "Ready for a movie?"
+        j "In a minute."
+
+    scene bg black
+    with fade
+    $renpy.end_replay()
+    pause
+    "An Hour Later"
+
+    image haleycouchani1 = Movie(play="haleycouchani1.webm")
+    scene haleycouchani1
+    with fadein
+    n "So, Haley..."
+    n "You didn't feel like joining us?"
+    h "Would you really want me to?"
+    n "Sure."
+    h "Hmm."
+    h "Maybe if Jenn wasn't a selfish bitch!"
+    pause
+    h "Jenn, are you really passed out already?"
+    pause
+    h "She always does this."
+    h "At least I have you here."
+    n "Glad I could help your friendship."
+    h "Uh huh."
+    h "So when do I get you to myself?"
+    n "No time like the present."
+    h "You're going to fuck my best friend and then casually walk out here and offer me her sloppy seconds?"
+    n "Why not?"
+    h "Because she's passed out on top of you."
+    n "So?"
+    n "I was hoping you'd be horny."
+    h "That's not the problem."
+    n "Oh?"
+    n "Then come over here so we can cuddle for a moment."
+    pause
+    h "Fine."
+
+    h "You probably don't even care if we fuck or not."
+    h "You just want a chance to get me naked."
+    n "Guilty."
+    h "Hey!"
+    h "Just for that, I'm staying over here."
+    n "Fine."
+    pause
+    h "This movie is very entertaining."
+    n "Totally."
+    h "Then why aren't you watching it?"
+    n "I'd rather watch you."
+    "She sighed."
+    h "I guess you're going to make me come over there after all."
+    n "That's up to you."
+    pause
+    h "Fine!"
+    scene haleyjd6
+    with fade
+    pause
+    h "This is nice."
+    n "Yeah you are."
+    h "What am I going to do with you?"
+    if cumhaley:
+        if preg:
+            n "Wild, inappropriate sex followed by giving birth to my child?"
+            h "Sounds about right."
+
+    "We lay there in silence for a bit."
+    if lauraside:
+        "As she watched the movie I pulled out my phone."
+        "I found four texts from Laura."
+        l "You have no idea the things I would let you do to me."
+        l "I have fantasized the dirtiest things about you lately."
+        l "So basically, I wanted to tell you that I would do just about anything to get you to fuck me one more time."
+        l "By the way, what do you think of these?"
+        scene lauraselfie1
+        with pixellate
+        pause
+        "I replied."
+        n "Someone is happy to see me."
+        "She texted me back in less than thirty seconds."
+        l "And what am I going to have to do to get your dick inside me again?"
+        menu:
+            "See her again [gr]\[Laura in harem\]":
+                $ lauradate = True
+                n "Send me another?"
+                "It took all of five seconds."
+                scene lauraselfie2
+                with pixellate
+                pause
+                n "What are you doing tomorrow morning?"
+                l "Staying home and letting you pound me until you break me."
+
+                n "See you then."
+                scene haleyjd6
+                with pixellate
+                "I poked Haley."
+            "Ignore her":
+                $ lauradate = False
+                scene haleyjd6
+                with pixellate
+                "I poked Haley."
+    label galleryScene72:
+    n "I'm kind of hungry for a snack."
+    h "Hmm?"
+    h "Oh, want me to get you something?"
+    n "I'd like you to stay where you are."
+    "I reached over and pulled up her shirt."
+    h "Hey!"
+    scene haleyjd7
+    with dissolve
+    h "Excuse me, Mister!"
+    "I whistled."
+    n "Looking good, girl!"
+    "I carefully set Jenn's head down as I sat across from Haley."
+    scene haleyjd8
+    with dissolve
+    h "And just what do you think you're doing?"
+    n "Getting a snack."
+    h "What-"
+    "I reached down to pull down her shorts."
+    h "Oh."
+    scene haleyjd9
+    with dissolve
+    "She tensed up as I kissed up and down her thighs."
+    h "Mmmm."
+    "I thought back to the last time I'd gone down on her and came up blank."
+    "Is this going to be the first time she experiences someone going down on her?"
+    "My kisses moved closer and closer to her pussy as she began to thrust her hips."
+    image haleycouchani2 = Movie(play="haleycouchani2.webm")
+    scene haleycouchani2
+    with fade
+    pause
+    h "Ohhhhh [n]!"
+    "My tongue worked in circles as I enjoyed the view."
+    h "Holy shit!"
+    "I pushed a finger into her slowly."
+    "She moaned even louder as I used a second one."
+    "Her body trembled around me as she reached her first orgasm in less time than it took for me to get her undressed."
+    h "Holy shiiitttttt!"
+    pause
+    "I climbed on top of her and lined myself up."
+    scene bg black
+    with fade
+    n "Ready?"
+    h "More than I've ever been."
+    "I thrust forward, my eyes watching her tits as they began to bounce."
+    image haleycouchani3 = Movie(play="haleycouchani3.webm")
+    scene haleycouchani3
+    with dissolve
+    pause
+    h "Sorry, Jenn!"
+    h "But can you blame me?"
+    h "Fuuuuu..."
+    h "How is she still asleep?"
+    n "I might have tired her out earlier."
+    h "I don't blame her."
+    h "By the way, how do you do it?"
+    h "How do you keep five girls satisfied at the same time?"
+    n "I do my best."
+    h "You're doing great right now."
+    n "Thanks!"
+    n "I'm glad you're a fan."
+    h "Can I get an autograph?"
+    n "Only on your tits."
+    pause
+    h "I'm so sleeping in the bed with you guys tonight."
+    pause
+    scene bg black
+    with fadeout
+    $renpy.end_replay()
+    if lauradate:
+        label galleryScene73:
+        "The Next Morning"
+        scene laurafuckable1
+        with fadein
+        l "Hey."
+        n "Holy shit."
+        l "Ever hook up with a girl in a pool?"
+        "I raised an eyebrow."
+        l "Nevermind."
+        l "Just get in here!"
+        n "Your tempting pictures were missing an important detail."
+        l "What's that?"
+        n "Dat ass."
+        l "Oh."
+        l "You don't want to see that."
+        l "It's way too big."
+        n "Laura."
+        n "Show me."
+        l "Fine."
+        scene laurafuckable2
+        with dissolve
+        pause
+        l "Hold on."
+        scene laurafuckable3
+        with dissolve
+        pause (0.7)
+        scene laurafuckable4
+        with dissolve
+        pause
+        l "Okay!"
+        l "Come get-"
+        scene laurafuckable5
+        with dissolve
+        pause (0.7)
+        scene laurafuckable6
+        with dissolve
+        l "AH!"
+        scene laurafuckable7
+        with dissolve
+        pause
+        l "COLD!"
+        scene laurafuckable8
+        with dissolve
+        l "I tried."
+        n "That was hilarious."
+        l "Glad I could entertain you."
+        l "Now..."
+        l "Join me?"
+        image laurapoolani1 = Movie(play="laurapoolani1.webm")
+        scene laurapoolani1
+        with fade
+        pause
+        n "How long do you have this place to yourself for?"
+        l "I'm not sure."
+        n "You aren't too worried about us getting caught?"
+        l "My parents would be happy to see you."
+        n "Right."
+        n "Despite having never met me."
+        l "They've heard of you."
+        n "Sexy."
+        l "You asked."
+        $renpy.end_replay()
+
+
+    if callme:
+        # this path is if you were not on Tiffany's path and met her after fucking Brittany
+        scene bg black
+        with fade
+        "{b}That Night{/b}"
+        scene aptv1
+        with fade
+        pause
+        n "Alright, I'm officially bored."
+        n "What do I do when I'm not having sex?"
+        pause
+        "{b}Incoming Call{/b}"
+        with vpunch
+        n "Hello?"
+        t "Hey! It's your neighbor!"
+        n "Tiffany?"
+        t "You got it!"
+        t "Hey, what are you up to?"
+        t "I just opened up a bottle of wine and was wondering if you wanted to join me."
+        menu:
+            "Accept [gr]\[Tiffany\]":
+                n "Don't mind if I do!"
+                scene aptv2
+                with dissolve
+                t "Do you need directions across the hall?"
+                scene aptv3
+                with dissolve
+                n "I do, actually."
+                scene aptv4
+                with dissolve
+                t "Alright, so you're going to walk out your door..."
+            "Decline":
+                n "Sounds wonderful, but I'm going to have to decline, sadly."
+                t "Oh, that's too bad!"
+                t "Alright, another time then."
+                n "Sounds good!"
+                jump skiptif
+        scene apartmentdoor
+        with fadein
+        "I knocked on her door."
+        scene tifhome1
+        with dissolve
+        t "Hey there!"
+        n "Want to buy some cookies?"
+        scene tifhome2
+        with dissolve
+        t "...{w}what?"
+        n "I have grasshoppers, white chocolate antelope nuts..."
+        t "Come in!"
+        scene tifhome3
+        with dissolve
+        t "Welcome to my humble home."
+        n "I like it."
+        scene tifhome4
+        with dissolve
+        t "Can I pour you some wine?"
+        n "Of course!"
+        t "Okay!"
+        t "Have a seat."
+        scene tifhome10
+        with dissolve
+        t "I'm so happy you could come over."
+        n "I appreciate the invite."
+        t "So, tell me about yourself."
+        scene tifhome8
+        with dissolve
+        t "What do you do for work?"
+        n "Nothing at the moment."
+        n "I go to college."
+        t "Oh! I need to go back to school."
+        scene tifhome5
+        with dissolve
+        n "How about you?"
+        t "I'm an exotic dancer."
+        n "Really?"
+        t "Yep."
+        scene tifhome8
+        with dissolve
+        n "How do you like it?"
+        t "Like any job, I guess."
+        "She brought over the wine."
+        scene tifhome9
+        with fade
+        t "You have your good days, you have your bad nights."
+        n "Sure."
+        image tifani2 = Movie(play="tifani2.webm")
+        scene tifani2
+        with dissolve
+        t "It makes dating hard."
+        t "I'm not going to date someone I meet at work."
+        n "So you have to find other ways to meet people?"
+        t "Exactly!"
+        n "Like bumping into them randomly?"
+        t "That sounds like a romantic comedy."
+        t "But I'm not above it."
+        t "And I bumped into you!"
+        t "Cheers."
+        t "To making new friends."
+        "We tapped our glasses."
+        with fade
+        t "Well, that's a relief."
+        n "What's that?"
+        t "I told you my occupation and you're still here."
+        n "Is that a surprise?"
+        t "Kind of."
+        n "Anything else you want to get off your chest?"
+        t "I'll tell you later."
+        t "I don't want to scare you off quite yet."
+        n "Good plan."
+        t "What about you?"
+        menu:
+            "Tell her everything":
+                $ tiflong = True
+                n "You don't want to hear any of my drama."
+                t "I think I do."
+                n "Are you sure?"
+                t "Tell me."
+                n "Okay."
+                n "I found out recently that I'm able to hypnotize people and help them."
+                t "What, like to quit addictions?"
+                n "No. {w}Well, maybe."
+                t "What do you mean by helping them?"
+                n "Well, I told my friend's little sister that her boobs would grow and they went up from a A cup up to G cups."
+                "She rolled her eyes."
+                t "Oh, really?"
+                n "I know, it sounds far fetched."
+                n "But that was over three weeks."
+                scene bg black
+                image tifani1 = Movie(play="tifani1.webm")
+                scene tifani1
+                with dissolve
+                t "I think I've heard this one before."
+                n "Oh yeah?"
+                t "My new manager."
+                t "He told the girls the same thing."
+                t "Or, somehow the rumor got started."
+                t "Except his thing is worse."
+                t "He makes your tits grow if he cums on them."
+                n "What?"
+                t "I know, right?"
+                t "Ridiculous."
+                n "You don't believe me?"
+                t "I don't believe him."
+                t "Why would I believe you?"
+                if tiflong:
+                    t "Hypnosis can, at best, aid mental changes."
+                    t "Not physical."
+                    n "That's what I thought, too."
+                    t "What, so you're saying you could command me to grow six inches and I would?"
+                    n "No."
+                    n "Well, admittedly, I haven't tried that."
+                    t "Why not?"
+                    n "Well, I'm still not fully sure how it works, but I'm not convinced that it's magic."
+                    n "I think it's more based on hormones and shit."
+                    t "Growth hormones could make you grow taller."
+                    n "Yeah, but that's a different level and would take longer."
+                    n "The mind convincing the body to put out more estrogen is a simpler thing."
+                    t "It's not just estrogen. You might get a cup size that way, not five."
+                    n "Right, but the rules of physics are followed."
+                    n "Each girl only grows bigger from either fat redistribution or from eating."
+                    n "The mass comes from somewhere."
+                    t "Oh, it's more than one girl now?"
+                    n "Yep."
+                    n "I think I'm up to ten or something."
+                    t "Ten girls with big ol' titties?"
+                    t "You should start your own strip club."
+                    n "Maybe."
+                    t "So."
+                    t "What's your game here?"
+                    t "You try to hypnotize me to get me to fuck you?"
+                    n "That sounds a bit dark."
+                    t "Right."
+                    t "So if this is your way of hitting on me, you might want to reconsider your angle."
+                    n "Not exactly."
+                n "I only wanted to tell you my fact that scares people off."
+                n "Well, actually, it's been having the opposite effect lately."
+
+                t "The girls won't stay away from you?"
+                n "Actually, yeah."
+                n "But that's for an unrelated issue."
+                t "Do tell."
+                n "Well, this girl-"
+                t "Your friend's little sister?"
+                n "The same."
+                n "She hypnotized me also."
+                t "To make your dick bigger?"
+                n "You've already heard this story, huh?"
+                t "I know male ambition."
+                n "Yeah, that was part of it."
+                t "What's the other part?"
+                n "Words got crossed."
+                n "My cum is now super addictive."
+                t "Yeah?"
+                t "So, what's the issue with these three girls all addicted to you?"
+                t "That's every guy's dream."
+                n "I can't keep up."
+                t "Ah. So when I came over the other night to knock on the door, that wasn't porn you were watching?"
+                t "It was the sounds of you showing the most vocal girl I've ever heard the time of her life?"
+                n "I'm getting the sense that you don't believe me."
+                scene bg black
+                scene tifani2
+                with dissolve
+                t "Honestly? {w}You lost me at hypnotism."
+                n "Hmm."
+                n "I could prove it."
+
+                t "Did this work in your mind?"
+                t "This cunning plan to seduce me?"
+                t "Let me ask you this."
+                t "Did you come up with this entire story just now after I told you I was a stripper?"
+                t "Or, worse, have you used this before?"
+                label tiffy2:
+                n "I guess it does sound pretty ridiculous."
+                t "Yup."
+                n "Hmm."
+                n "I could-"
+                t "You could show me your dick?"
+                t "Because it's soooo huge?"
+                n "I mean... {w}I'm no slouch."
+                t "Right."
+                t "And all strippers are gullible idiots."
+                n "No!"
+                n "It's not that at all."
+                n "I'm sorry if I seem to be trying to keep steering this conversation to be sexual."
+                n "But that's what my life has become, and I might have forgotten how to make it about anything else."
+                scene bg black
+                image tifani4 = Movie(play="tifani4.webm")
+                scene tifani4
+                with dissolve
+                t "Too much internet porn, huh?"
+                n "I wish."
+                t "It's my fault."
+                t "This is why I should never tell people that I'm a stripper."
+                t "Your poor mind went into overdrive."
+                t "You thought I would be expecting you to be all experienced and knowledgeable."
+                t "But do you know what I first thought of you when we met?"
+                n "What's that?"
+                t "I thought, 'hey, this seems like a normal guy!'"
+                t "When you told me you were a college student, I got excited."
+                n "Why's that?"
+                n "You are tired of everyone always hitting on you?"
+                t "Well, yeah, but not only that."
+                t "When I'm working, I have to spend the entire time turning every fucking conversation into something sexual."
+                t "Sometimes it's nice to turn that off, you know?"
+                n "I do, actually."
+                n "Sorry for my part in that."
+                t "No, it's my fault."
+                t "I'm the one that told you I was a stripper."
+                t "This shit is inevitable."
+                n "Why's that?"
+                t "Because guys are incapable of friendship with any girl they find relatively attractive."
+                n "Why do you say that?"
+                t "Because it's a fact."
+                n "Facts can be disproven."
+                n "There are a lot of girls I'm 'just friends' with."
+                t "Because you have to be."
+                t "You wouldn't fuck your girlfriend's mom."
+                n "I wouldn't?"
+                t "Not until she makes a move on you."
+                n "But there's other-"
+                t "Have you heard of the ladder theory?"
+                n "What's that?"
+                t "The difference between women and men."
+                t "Men have this ladder which has every girl in their life ranked on it."
+                t "There is a girl on the top, and she is the one they want to fuck the most."
+                n "Sure."
+                t "Now, some guys can be loyal to that girl."
+                t "So the girl below that might get put into the friendzone."
+                t "But the moment that girl on the top is no longer fuckable, he is ready to fuck the next one."
+                n "Okay. And the difference between guys and girls?"
+                t "Girls have two ladders."
+                t "The guys they will fuck on one ladder and guys they won't on the other."
+                t "The concepts of loyalty exist either way."
+                t "But once a guy is on the friend ladder, he doesn't cross over to the fuckable ladder."
+                n "Makes sense."
+                t "But guys don't have a friendship ladder."
+                t "They only have priorities."
+                scene bg black
+                image tifani3 = Movie(play="tifani3.webm")
+                scene tifani3
+                with dissolve
+                t "The moment there is no one above them, a guy will still fuck every attractive girl in his life."
+                n "Hmm."
+                menu:
+                    "Agree":
+                        n "Yeah, sounds about right."
+                        t "So you agree that men are animals?"
+                        n "Both genders are."
+                        n "Women just have the luxury of a wider selection in mates."
+                        t "A man of learning, I see."
+                        t "So, who is the highest on your ladder?"
+                        menu:
+                            "Flirt with her":
+                                n "Whoever is in front of me."
+                                t "Uh oh."
+                                t "Is that a warning?"
+                                n "Definitely."
+                                n "I'm an animal, after all."
+
+                            "Hold back":
+                                n "Hard to say."
+                                n "They keep changing places."
+                        t "Interesting."
+                        n "So, you're saying that a girl can put a guy in the unfuckable category, even if he is attractive, but guys can't?"
+                        t "Guys don't have a 'friend zone'. There is only fuckable and unfuckable."
+                        t "That's the theory, anyway."
+                        t "And I have yet to see it contradicted."
+
+
+                    "Disagree":
+                        n "I disagree."
+                        t "Oh?"
+                        t "So you're saying that if you were close friends with a girl whom you found attractive you would turn her down simply to maintain your friendship?"
+                        n "Sure."
+                        n "If I valued her friendship."
+                        t "Even if she was sexy as fuck?"
+                        t "You would be content to sit back and keep things at a purely platonic level to maintain your friendship?"
+                        n "I'm a pretty good friend to have."
+                        t "Apparently."
+                        t "Want to be friends?"
+                        n "Undecided."
+                        n "I'm not sure which ladder you're climbing yet."
+                        t "Oh! So you're a two ladder kind of guy, huh?"
+                        t "So let me ask you this... are there any girls in your life right now that you wouldn't fuck?"
+                        t "And keep in mind, I'm talking about attractive ones."
+                        menu:
+                            "Yes":
+                                n "Sure."
+                                n "There's one that was extra bitchy that I don't think I would let anywhere close to my dick."
+                                t "What did she do?"
+                                t "Steal your drugs and spend your bag of tips?"
+                                t "Actually, that might be more of a stripper thing."
+                                if tiflong:
+                                    if watched:
+                                        n "She stole my pocket watch and hypnotized her friends and I to make us her puppets."
+                                    else:
+                                        n "She stole my pocket watch and hypnotized her friends to make them her puppets."
+
+                                    t "Whoa."
+                                    t "Seriously?"
+
+                                else:
+                                    n "She stole something of mine and used it against me and my friends."
+                                t "That's... {w}evil."
+                                n "Yep."
+                                t "But I bet you'd hate fuck her."
+                                n "Hell no."
+                                t "Come on."
+                                t "If she was tied up on this coffee table right now with a gag in her mouth, you wouldn't take out your revenge?"
+                                n "..."
+                                n "Damn it."
+                                t "Ha!"
+                            "No":
+                                n "Probably not."
+                                t "Figures."
+
+            "Just the cliffnotes":
+                n "My luck with the ladies has been ridiculous lately."
+                t "Oh?"
+                t "Scaring them all off, are we?"
+                n "The opposite."
+                n "A month ago, I was an inexperienced nerd living with my parents."
+                n "I moved out and... bam!"
+                t "Yeah, it is pretty hard to pull tail when you're living at home."
+                t "I have to say, though..."
+                t "Telling a girl that you have a lot of options isn't exactly the way to get in her pants."
+                n "Isn't it though?"
+                n "It seems like girls like competition."
+                t "Not this one."
+                n "Fair enough."
+                t "Maybe I enjoy myself the occasional shy nerd."
+                n "That's what roleplay is for."
+                t "Ha."
+                n "So, your turn?"
+                t "Hell no. You have me intrigued."
+                n "You want more?"
+                t "I really do."
+                n "Okay."
+                n "Apparently my shit is addictive."
+                t "Your dick?"
+                t "Every boy's dream."
+                n "My cum, actually."
+
+
+                $ tiflong = False
+                jump tiffy2
+
+
+
+        menu:
+            "Challenge her theory":
+                $ tifriendzone = True
+                n "You know what?"
+                n "I think that I can prove to you that I'm capable of being 'just friends' with a girl."
+                t "Oh, yeah?"
+                n "Sure."
+                n "You would agree with me that you are objectively attractive, correct?"
+                t "Sure."
+                n "There's not a straight guy in the world that would, given the right circumstances and assuming he is single, not want to get you between the sheets."
+                t "Aww, you flatter me."
+                t "But for some reason, gay guys love me."
+                n "I'm sure they do."
+                n "Well, you seem like a great friend to have."
+                n "So, I'm hereby putting you in my friend zone."
+                t "Oh, really?"
+                n "I hope you aren't offended."
+                n "But I value you more for your friendship than as a sexy individual that I'd give my left nut for a chance with."
+                t "Aww."
+                t "You're so sweet."
+                n "Yeah I am!"
+                n "One of the reasons why I'm a great friend to have."
+                t "Alright, well, in that case, I suppose I should tell you the thing I held back on before."
+                n "Oh yeah?"
+                t "I was waiting until we finished the bottle of wine, but it only really mattered if we were to ever consider dating."
+                n "Hit me with it."
+                t "I'm a mom."
+                t "I have a daughter. She's fourteen months old."
+                n "And you look amazing."
+                t "Thank you."
+                n "Although, you do realize that you could just say one year, right?"
+                t "You don't have a mom fetish, do you?"
+                n "Is that a thing?"
+                t "Are you joking?"
+                n "I'm sorry, I don't really go on the internet."
+                t "You're hilarious."
+                n "Okay, but now that you mention it..."
+                n "...have your tits been growing since we started this conversation?"
+                t "Oh, absolutely."
+
+            "Let her have this one":
+                $ tifriendzone = False
+                n "I could buy it."
+                t "So you're saying that if, given the chance, you would fuck me?"
+                n "If you were at the top of my ladder, sure."
+                t "I'm not?"
+                n "Hey, I don't mean to offend."
+                n "I'm sure you are objectively attractive-"
+                t "What!"
+                n "-but I have a full plate right now."
+                n "Too many girls."
+                t "Oh, yeah?"
+                t "Is this the part where I'm supposed to throw myself at you to win you over?"
+                n "I believe so, yes."
+                n "But it won't work."
+                t "Is that because you're oversexed?"
+                n "Definitely."
+                n "I can't wait to go to sleep alone tonight."
+                n "It will be the first time I wasn't woken up several times in the middle of the night for at least a week."
+                t "Sounds like a rough life."
+                n "There really can be too much of a good thing, I found out."
+                n "And my dick could really use a break."
+                t "Poor boy."
+                t "Well, I guess I should give up on my evil stripper plan to have sex with you, then."
+                t "Because it sounds hopeless."
+                n "That's okay."
+                n "Maybe you could hang out in my friend zone."
+                t "Ha!"
+                t "I see what you did there."
+                n "Although..."
+                t "Yes?"
+                n "This could totally be my eyes playing tricks on me..."
+                n "...but are your tits bigger than they were when you first sat down?"
+                t "Yes."
+                n "What?"
+                n "How?"
+                t "Actually, that was the other thing I was going to tell you."
+                t "I figured I would wait until we finished the bottle of wine, and here we are."
+                t "I'm a mom."
+                t "I have a daughter."
+
+
+
+        t "I pumped a few hours ago, and they have been slowly swelling ever since."
+        n "Huh."
+        t "So, that brings this conversation full circle."
+        t "Not only am I a stripper, I'm also a single mother."
+        t "So it's just as well that you already told me you aren't interested in dating me."
+        t "Because this way, I know it's because of my shitty personality and not just my poor life choices."
+        n "Hey! That's not-"
+        t "And it's fine!"
+        t "I had the first night in months where I was able to drink a bottle of wine and enjoy conversation with a nice guy keeping me company."
+        t "So I appreciate you coming over."
+        t "But I should probably go pump now."
+        menu:
+            "Leave":
+                n "It was fun."
+                n "Thanks for inviting me over."
+                n "I'd love to do it again sometime."
+                t "You're just being nice."
+                n "I mean it."
+                n "I enjoyed our conversation."
+                n "Maybe one day I could get a dance."
+                t "That would cost you."
+                n "I have a feeling it would be worth it."
+                t "Thanks, [n]."
+                t "You made tonight fun."
+                t "Have a good night."
+                n "You too."
+                jump skiptif
+            "Tell her you want to stay [gr]\[Tiffany\][red]\[Bad ending\]":
+                $ tifside = True
+                n "Tiffany, you have the wrong idea."
+                t "What do you mean?"
+                n "Let me start by saying that if you want to call it a night, I totally understand and I will head back across the hall."
+                n "But if you are under the impression that I'm not fully enjoying your company, you are dead wrong."
+                n "I don't judge, but if I did, I wouldn't consider either of the life choices you mentioned as poor ones."
+
+        n "You make a good living by looking so good that guys literally throw money at you? Good for you."
+        n "You have a daughter? That's awesome. You should never apologize for bringing a life into this world."
+        n "And your personality is anything but shitty."
+        n "I know that your job doesn't only involve shaking that shapely ass, it's also about being so skilled at conversation that you get paid for it."
+        n "I imagine you make quite a decent living, because you have mad skills."
+        t "Aww."
+        t "Thank you."
+        t "But you haven't even seen me dance."
+        n "I bet you're also pretty amazing at that."
+        "She laughed."
+        t "Guilty."
+        n "You have nothing to feel bad about, and I'm sorry if I gave that impression at all."
+        n "I was only teasing you before."
+        n "Any guy would be lucky to date you."
+        t "Thanks."
+        t "Alright, well, that makes my night."
+        t "But I really do need to go pump."
+        t "It usually takes about fifteen minutes, and if you want, you can wait out here and watch TV or something."
+        t "I'm sorry, I know it's gross, but it's my life."
+        menu:
+            "Sounds good.":
+                n "Sounds good."
+                t "Okay."
+                t "I'll be back."
+                scene tifhome10
+                with dissolve
+                pause
+                n "See you in a bit."
+                scene tifhome11
+                with dissolve
+                scene tifhome11
+                with dissolve
+                pause
+                label nolac2:
+                scene bg black
+                with fade
+                "{b}Fifteen Minutes Later{/b}"
+                scene tifhome6
+                with fade
+                pause
+                t "Hey."
+                scene tifhome12
+                with dissolve
+                pause
+                n "Oh!"
+                n "Hey!"
+                t "So... {w}I'm embarrassed."
+                t "I didn't want to keep you waiting, but I think I rushed it."
+                n "No problem."
+                scene tifhome13
+                with dissolve
+                pause
+                t "You are too sweet."
+                scene tifhome14
+                with dissolve
+                pause
+                n "Oh!"
+                scene tifhome15
+                with dissolve
+                pause
+                n "Uh..."
+                scene tifhome16
+                with dissolve
+                n "No problem."
+                t "I tried to make it up to you by wearing something a bit more stripper-like."
+                n "I see that."
+                t "Well?"
+                t "Am I starting to change your mind about whether or not you'd consider fucking me?"
+                n "Nah."
+                n "My mind is made up."
+                scene bg black
+                with fade
+                "{b}Ten Minutes Later{/b}"
+
+            "Actually... [blue]\[Lactate\]":
+                n "Actually... {w}I don't think it's gross at all."
+                t "What do you mean?"
+                n "You were talking about some guys being into moms."
+                n "And I happen to think that lactation is anything but gross."
+                t "What do you mean?"
+                n "You want me to say it?"
+                n "I think it's sexy as fuck."
+                t "Really?"
+                if tifriendzone:
+                    t "Enough to pull me out of the friend zone?"
+                    n "Honestly?"
+                    n "Yeah, probably."
+                else:
+                    t "Enough to make me climb your ladder?"
+                    n "Honestly?"
+                    n "Yeah, probably."
+                t "Huh."
+                t "Alright."
+                t "In that case, I'll be back."
+                scene tifhome10
+                with dissolve
+                pause
+                n "Sounds good."
+                scene tifhome11
+                with dissolve
+                pause
+                scene bg black
+                with fade
+                "{b}Five Minutes Later{/b}"
+                scene tifhome6
+                with fade
+                pause
+                t "Hey."
+                scene tifhome12
+                with dissolve
+                pause
+                n "Oh!"
+                n "Hey!"
+                t "So... {w}I had an idea."
+                t "If you were serious about thinking it's a turn on.."
+                scene tifhome13
+                with dissolve
+                pause
+                t "...I figured we could do some exploring."
+                scene tifhome14
+                with dissolve
+                pause
+                n "Oh!"
+                scene tifhome15
+                with dissolve
+                pause
+                n "Uh..."
+                n "Sure."
+                scene tifhome16
+                with dissolve
+                pause
+                t "I'm so full right now, I'm leaking through this material."
+                n "I can see that."
+                t "So...{w} what do you think?"
+                menu:
+                    "I think it's sexy [blue]\[Lactate\]":
+                        $ mp.lac = True
+                        $ mp.save()
+                        $ lactation = True
+                        n "I think it's sexy as fuck."
+                        t "Really?"
+                        t "Good."
+                        t "Then what if I..."
+                        scene tifhome17
+                        with dissolve
+                        pause
+                        t "...do this?"
+                        n "Oh, shit!"
+                        t "I was so full, I started expressing when we were still talking."
+                        t "I could feel the milk dripping down my top."
+                        scene tifhome18
+                        with dissolve
+                        pause
+                        t "It's almost painful how full I am right now."
+                        t "In fact..."
+                        t "...I was wondering..."
+                        scene tifhome19
+                        with dissolve
+                        pause
+                        t "...if you would want to help me with my problem?"
+                        n "Oh!"
+                        t "This is kind of cute."
+                        t "It's the first time tonight I've seen you quiet."
+                        t "What if I..."
+                        scene tifhome20
+                        with dissolve
+                        t "...do this?"
+                        "I gulped."
+                        n "You are beautiful."
+                        t "Go ahead."
+                        t "If you want to."
+                        "I leaned forward and covered her nipple with my mouth."
+                        scene tifhome21
+                        with dissolve
+                        pause
+                        t "Oh!"
+                        t "Fuck, that feels good!"
+                        t "Oh!"
+                        t "Gentle, gentle!"
+                        t "It's really sensitive."
+                        "I sucked on her engorged nipple, filling my mouth with her breast milk and savoring the taste before swallowing."
+                        "Several minutes passed, the only sounds being her moaning mixed with my sucking."
+                        t "Don't forget the other one!"
+                        scene tifhome23
+                        with dissolve
+                        pause
+                        t "Fuck, this is so hot!"
+                        t "After all the wine I drank, I wonder if my milk would be enough to get you tipsy?"
+                        t "How does it taste?"
+                        image tifani5 = Movie(play="tifani5.webm")
+                        scene tifani5
+                        with dissolve
+
+                        n "It's surprisingly sweet."
+                        t "I wonder if that's the wine?"
+                        pause
+                        t "Fuck, this is amazing."
+                        t "But you realize that you need to fuck me now, right?"
+                        n "Oh, I'm aware."
+                        t "Whenever you're ready."
+                        pause
+                        t "I almost wish your dick was as massive as you keep saying."
+                        t "That would make this night epic."
+                        t "But don't worry."
+                        t "I haven't had sex in months."
+                        t "I'm sure I'll be tight."
+                    "I'm not into it":
+                        n "It's..."
+                        n "Lots of guys would find that sexy."
+                        t "But not you?"
+                        t "Fair enough."
+                        t "I'll be right back."
+                        jump nolac2
+        scene bg black
+        with fadeout
+        image tifani6 = Movie(play="tifani6.webm")
+        scene tifani6
+        with fadein
+        pause
+        t "HOLY SHIT!"
+        t "How is it still getting bigger?"
+        t "You are filling me up so much right now!"
+        t "I can't-"
+        t "I can't keep this up!"
+        pause
+        scene bg black
+        image tifani7 = Movie(play="tifani7.webm")
+        scene tifani7
+        with dissolve
+        pause
+        t "Give me a second!"
+        t "Let me adjust to this monster."
+        n "Take your time."
+        t "This thing is ridiculous."
+        t "It's good that you already made me soaking wet."
+        t "Otherwise, there's no way I'd be able to fit this thing inside me."
+        t "What do you call it? Bessy?"
+        n "What?"
+        t "Fucking Loch Ness Monster!"
+        pause
+        t "Okay, I'm ready."
+        pause
+        scene bg black
+        image tifani9 = Movie(play="tifani9.webm")
+        scene tifani9
+        with dissolve
+        pause
+
+        t "HOLY SHIT!"
+        t "And you live right across the hall?"
+        t "I think you found yourself your own private stripper!"
+        t "I'm going to be paying you here!"
+        n "Has anyone ever told you that you're sexy?"
+        t "Shit! My legs are giving out!"
+        n "Lay back on me."
+        n "I'll take over."
+        pause
+        scene bg black
+        image tifani10 = Movie(play="tifani10.webm")
+        scene tifani10
+        with dissolve
+        pause
+        t "Oh, shit!"
+        t "I'm close!"
+        t "But don't cum inside me, okay?"
+        n "I'll do my best."
+        t "Fuuuck!"
+        t "I know the perfect birth control!"
+        t "All I have to do is tell you that if you cum inside me..."
+        t "...you could give my daughter a sibling."
+        t "Because I'm not on anything!"
+        if preg:
+            n "That's not going to work the way you think!"
+            t "What? Why?"
+            n "FUCK!"
+            t "Wait! Are you-"
+            n "Hop off! Hop off!"
+            t "Too late!"
+            n "Tiffany!"
+            t "I'm-"
+            with flash
+        t "Holy fuuuuuuuck!"
+        with flash
+        t "[n]!"
+        with flash
+        t "Yes!"
+        with flash
+        t "YES!"
+        with flash
+        t "YESSSS!"
+        pause
+        scene bg black
+        image tifani8 = Movie(play="tifani8.webm")
+        scene tifani8
+        with dissolve
+        pause
+        t "Holy shit!"
+        t "That was..."
+        t "Wow."
+        n "Damn, girl."
+        pause
+        t "This is peaceful."
+        t "How long can I stay like this?"
+        t "And... {w}are you still hard?"
+        n "Yep."
+        n "Ready for round two?"
+        t "Give me a minute, boy! Damn!"
+        pause
+        scene bg black
+        with fade
+        pause
+        "{b}One Minute Later{/b}"
+
+        scene bg black
+        image tifani11 = Movie(play="tifani11.webm")
+        scene tifani11
+        with fade
+        pause
+        t "Okay, I believe you!"
+        t "This is-"
+        t "-the best fuck-"
+        t "-I've ever had!"
+        pause
+        if preg:
+            t "And I can't believe you came inside me!"
+            n "Your fault."
+            n "You and your dirty talk."
+            t "Wait, making me pregnant... {w}turns you on?"
+            n "Yep."
+            t "You are one kinky dude."
+            t "So I could tell you..."
+            t "That I look really sexy... {p}when I'm pregnant?"
+            t "And that I miss it?"
+            t "That I loved feeling round and curvy all the time?"
+            n "Nnnngggg!"
+            t "Really?"
+            n "Fuck!"
+            with vpunch
+            t "AH!"
+            with vpunch
+            t "I can feel it!"
+            with vpunch
+            t "Oh, there's so much!"
+            t "You're going to make me-"
+            t "AHHHHHHH!"
+            with flash
+            t "FUUUUUUUUUCK!"
+            with flash
+            pause
+            pause
+            t "Ah, why does that turn me on so much?"
+            t "I love the feeling when you cum inside me."
+            pause
+            t "Wait, are we still going?"
+            t "Do you have another load for me?"
+            n "..."
+            n "If you want it."
+            pause
+            t "I want it!"
+            t "Fill me!"
+            t "Cum inside me, Daddy!"
+        else:
+            n "I aim to please."
+        pause
+        $ fuckedtif = True
+
+label skiptif:
+
+    scene bg black
+    with fade
+    pause
+    "{b}Friday - Haley's Day{/b}"
+    image haleycouchani4 = Movie(play="haleycouchani4.webm")
+    scene haleycouchani4
+    with fade
+    pause
+    h "I told you.."
+    h "...all I wanted..."
+    h "...for my day..."
+    h "...was to fuck you."
+    pause
+    scene bg black
+    with fadeout
+    pause
+    "{b}Five Days Later{/b}"
+    with fade
+    "{b}Wednesday - Leah's Day{/b}"
+    image leahcuddleani1 = Movie(play="leahcuddleani1.webm")
+    scene leahcuddleani1
+    pause
+    L "This is perfect."
+    n "Yeah?"
+    L "I can't remember the last time it was just the two of us."
+    n "Hey, yeah!"
+    n "It's been a minute."
+    L "Don't get me wrong, you know I love Ashley."
+    L "But I spent the past three days straight with her."
+    L "It's nice to be curled up with my man."
+    "I squeezed her."
+    L "You know what's crazy?"
+    n "What's that?"
+    L "You moved in with us less than a month ago."
+    L "Think of how much has changed since then."
+    n "Seriously."
+    n "A month ago, I lived at home with my parents."
+    n "And we were both virgins."
+    L "I was walking around with a B cup."
+    L "And you didn't have a posse of girls that follows you around everywhere you go."
+    n "A simpler time."
+    n "Should we run off together?"
+    L "Let's do it."
+    n "Where would you go?"
+    L "I'd take you with me and move to a different country."
+    n "Anywhere in particular?"
+    L "How about we start in Korea?"
+    n "Go stay with your sister for a bit?"
+    L "Exactly."
+    L "It would be fun if I went by myself."
+    L "But with you it would be amazing."
+    n "How long do you think Ashley could last without us?"
+    L "I'm sure she'd follow us there in less than a month."
+    n "Sounds like fun to me."
+    L "At least you will be able to tell Aera and I apart."
+    n "Even in the dark. All I'll have to do is grope you."
+    L "Mmm hmm."
+    n "So, any regrets in the past month?"
+    L "Only the obvious."
+    L "Being out of control is a little scary."
+    n "I wouldn't say you are out of control."
+    L "Oh, no?"
+    n "Everyone has to deal with weight gain and a slower metabolism as they age."
+    n "You have the added benefit that it all accumulates in the right places."
+    L "My metabolism never slowed."
+    L "I am hungry all the damn time."
+    L "Plus, you know how you hypnotized me for my ass to grow?"
+    n "Yeah?"
+    L "I feel like it really hasn't been keeping up with what's going on upstairs."
+    n "Something to look forward to."
+    L "Not being able to ever wear jeans again?"
+    n "Okay, something for me to look forward to."
+    "I squeezed her breast."
+    with fade
+    L "I'm glad you're enjoying it."
+    L "I mean that, by the way."
+    L "Having you as my own personal fan makes this whole thing a lot hotter."
+    L "And that's something else I should thank you for."
+    n "What's that?"
+    L "For not comparing me to any of the other girls."
+    L "Appreciating me for me."
+    n "My pleasure."
+    n "So, you're hungry?"
+    n "You could have had more at dinner."
+    L "After eating a full entree and three appetizers?"
+    n "We shared those."
+    L "I ate twice as much as you."
+    n "Nah."
+    L "And yes, I was full."
+    L "But being full never lasts."
+    L "It's no longer a feeling I can afford."
+    n "But you exercised."
+    L "When?"
+    n "When we worked on our cardio for an hour before we left."
+    L "I suppose."
+    n "Plus, you know we're going to work out again tonight."
+    L "Is that so?"
+    n "So really, you probably should have another snack."
+    n "For energy."
+    if huge:
+        L "You might convince me."
+        L "[n]."
+        L "Are you trying to 'feed' me?"
+        menu:
+            "Maybe":
+                n "Maybe."
+                L "Mmm."
+                L "I like it that you admit it."
+                n "Yeah?"
+                L "I like it when you're honest."
+                L "And if you love watching me fill out..."
+                L "...then maybe I enjoy making you happy."
+                n "Have you already passed your ideal?"
+                L "It's hard to say."
+                L "Part of it thrills me."
+                L "When we walked into dinner I felt every eye on me."
+                L "It made me feel truly sexy and confident."
+                L "But on the other hand..."
+                L "Sometimes it's scary."
+                L "I'm only eighteen."
+                L "It's taking some time to adjust to walking around with the body of a full grown woman."
+                L "So yes, I'm doing my best to slow everything down."
+                L "I like to enjoy every stage as much as I can."
+                L "But will I want to grow even more in the future?"
+                L "Absolutely."
+                L "So the idea of you making me snacks and feeding them to me..."
+                L "It's pretty damn hot."
+                n "Thanks, Leah."
+                n "I really value your honesty as well."
+                L "So..."
+                L "Snacks?"
+                n "Be right back."
+            "No":
+                n "Nope!"
+                n "Just trying to be a good host."
+                L "Mmmkay."
+                n "What sounds good?"
+                L "Surprise me."
+                n "Be right back."
+
+
+        scene leahbedbwe1
+        with fadehold
+        L "What'd you get?"
+        "I held up the carton of Ben And Jerry's."
+        n "A little somethin' almost as sweet as you are."
+        scene leahbedbwe2
+        with dissolve
+        L "[n]!"
+        L "Stop being so sweet!"
+        n "What? It's just a little ice cream..."
+        L "Cookies and cream? You knew that was my favorite, didn't you?"
+        n "I might have recalled that."
+        scene leahcuddleani1
+        with dissolve
+        L "You're going to spoil me and I'll start expecting it all the time."
+        n "I guess I could put it back and grab some carrots instead..."
+        L "I'm not a rabbit."
+        L "But just so I know..."
+        L "How many calories are in that carton?"
+        n "Umm..."
+        n "Seven."
+        L "Ha!"
+        "I opened the carton and dug up a spoonful."
+        n "Ready?"
+        L "Leah hungry!"
+        n "Open up."
+        L "Feed me!"
+        scene leahbedbwe3
+        with fade
+
+        L "Alright, that was delicious."
+        L "But I'm going to need to work off the calories."
+        n "I think I can help you with that."
+        L "Yeah?"
+        L "Just give me a minute..."
+        pause
+        n "Goodnight, Leah."
+
+
+    else:
+        L "I'm good."
+        n "Really?"
+        L "Okay, I'm starving."
+        L "But I'm used to it now."
+        L "I'm just always hungry."
+        L "But my tits keep growing anyway."
+        L "All I can do is slow them down."
+        L "It's my only way of maintaining a sense of control."
+        n "Fair enough."
+
+
+
+
+
+
+    scene bg black
+    with fade
+    "{b}Five Days Later{/b}"
+    "{b}Monday - Grace's Day{/b}"
+    scene apartmentdoorway
+    with fade
+    n "Who's there?"
+    g "The police!"
+    n "Oh, good."
+    image graceaptani1 = Movie(play="graceaptani1.webm")
+    scene graceaptani1
+    with fade
+    n "Whoa whoa whoa, what are you doing?"
+    g "What?"
+    n "First, you just impersonated a police officer."
+    n "Now you're trying to walk in here like that?"
+    g "What are you-"
+    n "There is only one rule!"
+    g "Oh."
+    g "Your stupid topless thing."
+    n "Don't act like you are above the law!"
+    n "You need to follow the rules, just like everyone else."
+    g "You're exhausting."
+    g "What if I want to break the rules?"
+    n "Then you can stand right there."
+    n "Because you can't take another step."
+    g "Fine by me."
+
+    g "Hey... you know what?"
+    n "Tell me."
+    g "I don't feel as addicted to you anymore."
+    n "Yeah?"
+    g "I used to go insane after a few hours away from you."
+    g "But it's been four days and I've been fine."
+    $ tellgrace = False
+    menu:
+        "[gr] Tell her about Laura's command":
+
+            n "I didn't tell you about that?"
+            g "About what?"
+            n "Laura commanded you that you wouldn't be addicted to me anymore."
+            g "Really?"
+            g "Well, damn. At least she did something right."
+            n "I told her to stop your tits from growing, but at least she did that."
+            g "I'll take it, I guess."
+            g "Hey, did you ever talk to her?"
+            n "Kind of."
+            g "Yeah?"
+            n "She tried."
+            g "So what happened?"
+            n "I told her I didn't want to listen to her shit."
+            g "So you've seen her?"
+            if britside:
+                n "She stopped by."
+                g "What? How did she know where to find you?"
+                n "She followed one of you girls."
+                g "Really? Who?"
+                n "Who knows."
+                g "So did she try to hook up with you or anything?"
+            else:
+                g "Really? Did she try to hook up with you or anything?"
+            if lauraside:
+                n "Yep."
+                g "What!"
+                g "Did you let her?"
+                n "I told you girls I wouldn't hook up with anyone else."
+                g "You didn't answer my question."
+                menu:
+                    "[gr] Tell her":
+                        $ tellgrace = True
+                        n "She asked for a revenge fuck."
+                        n "Told me that I could take out my anger on her."
+                        g "Seriously???"
+                        g "So you did it?"
+                        n "I did, yeah."
+                        g "Damn."
+                        g "That's kind of hot."
+                        n "Are you going to tell the other girls?"
+                        g "Depends."
+                        g "Was it a one time thing?"
+                        n "I think so."
+                        g "Hmm."
+                        g "I think I get it."
+                        g "So tell me more."
+                        g "Did you punish her?"
+                        n "I tried."
+                        n "But I'm pretty sure she liked it."
+                        g "Ha! That bitch."
+                        g "So when was this?"
+                        if huge:
+                            n "A week ago."
+                        else:
+                            n "Two weeks ago."
+                        g "That's hilarious."
+                        g "Are you going to see her again?"
+                        n "I wasn't planning on it."
+                        g "I don't believe you."
+                        g "I think you like to stick your dick in crazy."
+                        n "Me? Never."
+
+                        n "Unless you wanted to be there?"
+                        g "Why would I?"
+                        n "She might not be your best friend anymore."
+                        n "But you still might want to hit it?"
+                        if glthreesome:
+                            g "I am fucking you, sooo..."
+                            g "But nah, I think I'm good."
+                            n "Fair enough."
+                        else:
+                            g "Seriously?"
+                            g "Are you really trying to push me to be gay?"
+                            n "Heavens no."
+                            n "But bisexual, sure."
+                            g "Perv."
+                    "Lie":
+                        $ tellgrace = False
+                        n "Of course not."
+                        g "Good."
+            else:
+                n "No, this was over the phone."
+                g "Ah."
+        "Keep it to yourself.":
+            $ tellgrace = False
+            n "That's good."
+            g "Yeah, maybe I'm getting mentally stronger."
+
+
+    label galleryScene74:
+    g "So... are you going to let me pass now?"
+    n "That's up to you."
+    g "Fucker."
+    scene gracestrip1
+    with fade
+
+    n "..."
+    g "What?"
+    scene gracestrip2
+    with dissolve
+    g "Admiring your handiwork?"
+    n "Yep."
+    scene gracestrip3
+    with dissolve
+    g "At least someone is enjoying them."
+    g "You know what?"
+    scene gracestrip4
+    with dissolve
+    g "If I'm already topless, I'm going to use your pool."
+    n "Sounds good."
+    n "Can I get you anything to eat?"
+    scene gracestrip5
+    with dissolve
+    g "Fuck off."
+    if huge:
+        g "Not only do I have to worry about you, now I always have Haley trying to jam things down my throat."
+        g "We went out to dinner the other night and she took us to a damn buffet."
+        scene gracestrip6
+        with dissolve
+        n "I thought it was your idea?"
+        g "Who told you that?"
+        n "Just a guess."
+    else:
+        g "I'm big enough already."
+        scene gracestrip6
+        with dissolve
+        g "And don't tell me I'm not."
+        n "I didn't say anything."
+        g "Good."
+    image gracedateani2 = Movie(play="gracedateani2.webm")
+    scene gracedateani2
+    with fade
+    n "So what do you want to do tonight?"
+    n "We could go for a walk around the block?"
+    g "Nah, I'm feeling kind of lazy."
+    n "What if we went out for frozen yogurt?"
+    g "[n]!"
+    g "What the fuck!"
+    n "What?"
+    g "Are you seriously trying to make me eat more?"
+    n "You and Laura loved going out for frozen yogurt."
+    n "Isn't it the lower calorie alternative?"
+    g "Lower fat, maybe. But that doesn't matter if you cover it in sugary snacks."
+    n "So you would rather sit here doing nothing than going out for some exercise and rewarding ourselves for it?"
+    g "The kind of exercise I had in mind is a reward enough in itself."
+    n "That sounds great."
+    n "But I'm also trying to think of other activities for us to do."
+    g "Right."
+    g "It's not because you want my tits to get bigger or anything."
+    n "Grace, I'm getting kind of sick of this."
+    g "What?"
+    n "You. Blaming me."
+    n "I didn't say anything when the other girls were around, but I'm getting tired of this bullshit."
+    n "I'm not making you eat anything."
+    n "You want me to never offer you another bite?"
+    n "I'll do it."
+    n "You act like I'm stuffing food down your throat, but every time I see you, you're bigger than the other girls."
+    n "The only command I ever gave you was for your boobs to grow."
+    n "I'm not forcing you to do shit, so stop blaming me."
+    g "Whatever."
+    n "Seriously?"
+    pause
+    n "Grace, I know what you did last time you stayed over."
+    g "What are you talking about?"
+    n "I bought a whole bag of Reece's cups."
+    n "When you left, they were gone."
+    n "And I'm guessing it wasn't a one-time thing."
+    g "..."
+    g "You put it there."
+    n "I didn't tell you about it."
+    n "You got up in the middle of the night, snuck downstairs, raided my cabinets and ate three thousand calories in one sitting."
+    g "..."
+    g "...I know."
+    g "I'm sorry."
+    n "I don't care if you pig out, Grace."
+    n "But stop blaming me for it."
+    g "Okay."
+    g "Sorry."
+    g "Let me make it up to you."
+    g "I'll let you eat my ass."
+    menu:
+        "Okay":
+            n "Okay."
+            g "Really?"
+            n "What, you didn't think I would?"
+            g "I still don't."
+            n "You'll be eating your words, young lady."
+            g "And you'll be eating my-"
+            scene bg black
+            image gracedateani5 = Movie(play="gracedateani5.webm")
+            scene gracedateani5
+            with fade
+            pause
+            g "Ohhh shit!"
+            g "That feels fucking great!"
+            pause
+            g "Good boy!"
+            g "Alright, alright!"
+            g "I need you inside me."
+
+
+
+        "No":
+            n "I'm good."
+            g "I knew it."
+            g "You boring."
+            n "I don't think I've been accused of that before."
+            n "Just because I don't share your enthusiasm for all things anal doesn't make me-"
+            g "You boring."
+            n "I'll show you boring!"
+
+    scene bg black
+    image gracedateani4 = Movie(play="gracedateani4.webm")
+    scene gracedateani4
+    with fade
+    pause
+    g "Fuck, that's good!"
+    g "But can you go harder?"
+    n "Of course."
+    pause
+    g "Harder."
+    pause
+    g "Harder!"
+    n "You want to be on top?"
+    g "Hell yeah."
+    g "Get off me, giant!"
+    scene bg black
+    image gracedateani3 = Movie(play="gracedateani3.webm")
+    scene gracedateani3
+    with fade
+    pause
+    n "Damn, woman!"
+    n "Well done!"
+    pause
+    g "This..."
+    g "...is what..."
+    g "...I wanted!"
+    n "Go cowgirl!"
+    pause
+    scene bg black
+    with fadeout
+    $renpy.end_replay()
+    if lydiaside:
+            "An Hour Later"
+            with fade
+            "Grace and I were watching a movie when I heard a knock."
+            image laptani4 = Movie(play="laptani4.webm")
+            scene laptani4
+            with fade
+            n "May I help you?"
+            lyd "Come on."
+            n "I have company."
+            lyd "Stairwell."
+            lyd "You and me."
+            lyd "Right now."
+            n "I really can't."
+            lyd "You really can."
+            lyd "Come on, I'm done with my shift and I'm about to go home."
+            lyd "I won't be able to sleep without a load in my belly and I'll be up all night cursing your name."
+            n "I'm okay with that."
+            lyd "Well, fuck you then!"
+            n "Bye, Lydia."
+            n "See you tomorrow."
+            scene bg black
+            with fade
+    "{b}Five Hours Later{/b}"
+    with fade
+    "Where did she go?"
+    scene gracegorge1
+    with fade
+    pause
+    n "Grace?"
+    scene gracegorge2
+    with fade
+    pause
+    "I turned on the light."
+    scene gracegorge3
+    with dissolve
+    n "Hey."
+    scene gracegorge4
+    with dissolve
+    g "OH MY GOD!"
+    scene gracegorge5
+    with dissolve
+    g "You scared the shit out of me!"
+    n "How's your fourth meal?"
+    g "I'm not..."
+    image gracedateani1 = Movie(play="gracedateani1.webm")
+    scene gracedateani1
+    with fade
+    g "Shit."
+    g "You caught me."
+    g "Fuck!"
+    g "Now you're going to think this gut is a total turn off."
+    n "Am I though?"
+    g "You don't have to be nice."
+    g "This is me at my lowest."
+    n "Why do you say that?"
+    g "Because!"
+    g "I've been lying to everyone, telling them I wasn't trying to keep growing, that I didn't want bigger tits."
+    g "But really..."
+    g "I love them."
+    g "I love how they feel, I love how they look."
+    g "I've been in denial."
+    g "And when you called me out earlier..."
+    g "It made me feel guilty and shitty."
+    g "But it also..."
+    n "Yeah?"
+    g "I kind of love it."
+    n "What part?"
+    g "Losing control."
+    g "It's like when I was in middle school and my mom left..."
+    g "I ate my problems."
+    g "Now, I don't have any problems."
+    g "But when I eat, even when I eat so much that it gives me a belly..."
+    g "It goes away."
+    g "And then, the next day my boobs are even bigger."
+    g "Now, look at them."
+    g "They're fucking huge!"
+    g "Do you still like it?"
+    menu:
+        "Yes":
+            n "Hell yes."
+            g "Really?"
+            n "I think you're sexy as fuck."
+            g "Even when I'm as big as a cow?"
+            n "Is that the goal?"
+            n "You have some work to do."
+            g "Are you mad that I ate your leftovers?"
+            n "Hell no."
+            n "Want my next meal, too?"
+            g "You're weird."
+            n "Me?"
+            n "I'm not the one stuffing my face at four in the morning."
+            g "I know!"
+            g "I'm just so hungry."
+            g "Well, not anymore."
+            g "I'm really full."
+            n "Too full to fuck?"
+            g "What?"
+            g "Right now?"
+            n "Why not?"
+            g "Because... I don't think I can move."
+            g "My stomach will bounce around and I'll throw up."
+            n "Maybe it needs a digestive?"
+
+        "No":
+            n "I'm not trying to be mean, but..."
+            n "I think you're big enough."
+            g "Ha!"
+            g "Fair enough."
+            g "Sorry."
+            n "It's okay."
+
+
+    g "Hey, can you do me a favor?"
+    n "Maybe."
+    g "Don't tell the other girls about my binging."
+    n "I won't."
+    n "As long as you stop blaming me for it."
+    g "Deal!"
+    n "Hey, if you're still hungry-"
+    g "I think I know where this is going."
+    n "-you could lay on the counter and I'll ram my cock down your throat."
+    g "You realize I would throw up all over your dick, right?"
+    n "What's a guy gotta do to get a BJ around here?"
+    scene bg black
+    with fade
+
+    $ fuckedlydia = False
+    if lydiaside:
+        label galleryScene75:
+        "The Next Day"
+        image laptani4 = Movie(play="laptani4.webm")
+        scene laptani4
+        with fade
+        lyd "Hey there [p]."
+        n "Wait."
+        n "How did you hear that name?"
+        lyd "I have my ways."
+        n "How can I help you?"
+        lyd "Like you don't know."
+        lyd "You really want me to say it?"
+        lyd "Fine."
+        lyd "I want to suck your cock."
+        n "Umm..."
+        n "You already did this morning."
+        n "Do you not remember?"
+        lyd "So?"
+        lyd "It's the only thing I have thought about my entire shaft."
+        lyd "Shit, I mean shift."
+        lyd "Freudian slip."
+        lyd "Point is..."
+        lyd "Your cum is fucking delicious!"
+        lyd "And I don't know how, but your girls were right."
+        lyd "It's super addictive."
+        lyd "Come on! Are you really going to turn down the girl you called the best cocksucker you've ever met?"
+        n "When it's the second time that day?"
+        n "Maybe."
+        lyd "Why don't you just fuck me?"
+        n "Because."
+        n "I promised the girls I wouldn't."
+        lyd "So?"
+        lyd "You realize that oral sex is still sex, right?"
+        n "No one got pregnant from a blowjob."
+        lyd "Come on, I won't tell them we're fucking."
+        n "That's not the point."
+        lyd "The point is, I have a serious craving for your sperm right now."
+        lyd "How are you going to give it to me?"
+        menu:
+            "Fine [blue]\[Cheat with Lydia\][red]\[Bad ending\]":
+                $ fuckedlydia = True
+                n "But there is no way you are as good of a lay as you are at giving head."
+                lyd "Try me."
+                scene bg black
+                image laptani8 = Movie(play="laptani8.webm")
+                scene laptani8
+                with fade
+                pause
+                lyd "Say it!"
+                n "No!"
+                lyd "I own you!"
+                n "Fuck that!"
+                lyd "If you want to cum-"
+                n "If I want to cum I'll do it up your ass!"
+                lyd "No!"
+                n "It's cool, Lydia."
+                n "You don't have to act like you're possessed to show me a good time."
+                n "Just keep rocking your hips like that."
+                lyd "Like this?"
+                n "Perfect."
+                lyd "How do you like my pussy?"
+                n "Honestly?"
+                n "It's incredible."
+                lyd "Yessss!"
+                lyd "Your dick is cool too I guess."
+                n "Oh hell no."
+                pause
+            "Stick to BJs":
+                $ fuckedlydia = False
+                n "Fiiiiine."
+                n "I'll let you blow me again."
+                lyd "Pants off!"
+        scene bg black
+        with fadeout
+        $renpy.end_replay()
+
+label galleryScene76:
+    "Two Weeks Later"
+    with fade
+    g "Haley, do you have to be so loud?"
+    h "Sowwy."
+    image haleyaptani4 = Movie(play="haleyaptani4.webm")
+    scene haleyaptani4
+    with fade
+    pause
+    h "I dust get willy into it."
+    g "Yeah, yeah."
+    h "I could wide him instead-"
+    j "No!"
+    j "You're much louder when you're getting fucked."
+    h "Den... deal wit it."
+    g "Ha! Yesss!"
+    g "Haley is the best!"
+    pause
+    g "Hey, Haley?"
+    g "Do we have any more snacks?"
+    g "My stomach is growling."
+    h "Yeah!"
+    h "Hode on."
+    g "Hodor?"
+    n "Hey!"
+    n "No sad references when I'm about to cum!"
+    g "So many rules."
+    g "But okay."
+    g "I won't mention Game of Thrones anymore."
+    n "Thank you."
+    scene ghcouch1
+    with fade
+    h "I'll be right back."
+    n "Okay?"
+    h "Do you want a cheese plate or-"
+    scene ghcouch2
+    with dissolve
+    g "Sucka!"
+    g "My dick now!"
+    g "Can't believe she fell for it."
+    image ghcouchani1 = Movie(play="ghcouchani1.webm")
+    scene ghcouchani1
+    with fade
+    pause
+    h "Hey!"
+    g "Mmm."
+    h "No problem."
+    h "All I have to do is find something you like more than dick."
+    j "Good luck on that challenge."
+    h "Easy."
+    h "Oh, is this a pie?"
+    g "Mmmph!"
+    h "You're not getting that load!"
+    h "I earned it."
+    g "Share?"
+
+    j "Guys!"
+    j "I'm trying to watch this damn movie!"
+
+    "I turned up the volume."
+    j "Thank you!"
+    h "You aren't going to get on it, Jenn?"
+    j "When you put it that way-"
+    "The doorbell rang."
+    h "I'll get it."
+    pause
+    a "Heyooo!"
+
+    scene ghcouch3
+    with fade
+    a "What's up, bitches?"
+    a "Wow, [n]."
+    a "You have them so hypnotized by your dick they aren't even acknowledging guests?"
+    a "I guess you didn't need the watch after all."
+    image ghcouchani3 = Movie(play="ghcouchani3.webm")
+    scene ghcouchani3
+    with fade
+    pause
+    g "Guest? You basically live here."
+    h "You're one to talk!"
+    h "Are you hungry, Ashley?"
+    a "Starving!"
+    h "Cool! You can have Grace's portion!"
+    g "Mmmph!"
+    a "Hey, Jenn! I like your hair!"
+    j "Really?"
+    a "It's cute! We needed a blonde in the group."
+    j "That's what I was thinking."
+    a "Did [n] say anything?"
+    j "He said he liked it."
+    a "Good job, [n]!"
+    n "Thanks."
+    j "I really like your top by the way, Ash!"
+    a "Thanks!"
+    a "Hey, do you want to do a photo shoot for my Twitter?"
+    j "Are you still doing that?"
+    a "Of course!"
+    scene bg black
+    image ghcouchani2 = Movie(play="ghcouchani2.webm")
+    scene ghcouchani2
+    with fade
+    pause
+    a "I'm starting to get a following."
+    j "Then what?"
+    a "Profit!"
+    n "Are you sure you aren't missing a step?"
+    a "I don't think so."
+    a "Come on! I bought you a cute bikini you can wear around the pool."
+    j "Really?"
+    a "I knew that would get you."
+    j "Can I see it?"
+    a "You can try it on."
+    j "Fine!"
+    pause
+    scene bg black
+    with fade
+    pause
+    "Five Minutes Later"
+    scene ghcouch4
+    with fadein
+    j "How do I look?"
+    n "Damn, girl!"
+    n "You're about to make me nut into your best friend's mouth!"
+    j "Aww, thank you!"
+    scene ghcouch5
+    with fade
+    j "Anything I can do push you over the edge?"
+    a "Jenn! You can flirt with your boyfriend later!"
+    a "It's time to shake your money maker."
+    scene bg black
+    image ghcouchani4 = Movie(play="ghcouchani4.webm")
+    scene ghcouchani4
+    with fade
+    pause
+    n "Fuck, Grace!"
+    h "Come on whore!"
+    h "Stop being a cock goblin!"
+    g "Glocccck!"
+    a "Alright, you know how models pose, right?"
+    j "I don't think so."
+    a "I want confidence!"
+    a "You're the one [n] is thinking about while he cums down Grace's throat."
+    n "Fuck!"
+    with vpunch
+    g "Nnnnnngh!"
+    with flash
+    h "Hey! We were supposed to share!"
+    with vpunch
+    pause
+    scene ghcouch7
+    with fade
+    pause
+    h "Oh."
+    scene ghcouch8
+    with dissolve
+    pause
+    h "Mmm."
+    scene ghcouch9
+    with dissolve
+    pause
+    g "Told you I'd share."
+    h "Thanks!"
+
+    a "Alright, show's over!"
+    scene ghcouch6
+    with dissolve
+    a "Come on, Jenn."
+    a "Act like you're too cool to be here."
+    a "The world owes you for existing and you have a tattoo on the small of your back that says 'Daddy Issues'."
+    j "Ashley!"
+    a "Now give me a turn."
+    scene ghcouch10
+    with dissolve
+    a "Perfect."
+    j "Shouldn't I put on make up?"
+    a "You always have make up on."
+    j "Not for the camera."
+    scene ghcouch11
+    with dissolve
+    n "You look great."
+    a "Hey, [n]?"
+    a "Do you want to take a few?"
+    menu:
+        "[gr] Sure":
+            n "Sure."
+        "No":
+            n "No thanks."
+            n "I'm going to appreciate my afterglow."
+            a "Fair enough."
+            jump nopics
+    scene ghcouch12
+    with fade
+    pause
+    g "Looking good, Jenn!"
+    j "Thanks!"
+    n "Now give me those model poses."
+    j "Okay!"
+    h "Umm, Jenn?"
+    scene ghcouch13
+    with dissolve
+    j "Yes?"
+    h "Are you aware that your bikini is cow print?"
+    j "Umm..."
+    j "So?"
+    "Ashley glared at Haley."
+    h "So... are you trying to bring even more attention to your tits?"
+    j "Wait!"
+    scene ghcouch14
+    with dissolve
+    j "Ashley! Are you?"
+    a "I thought it was obvious?"
+    a "That's the whole theme of my account!"
+    a "It's me and my hot friends documenting how big our boobs are growing."
+    j "But that's going to attract perverts!"
+    a "Yeah!"
+    a "That's our main demographic."
+    scene ghcouch15
+    with dissolve
+    j "Perverts?"
+    a "People who are into breast expansion."
+    a "And we have a decent amount of female followers, I'll have you know."
+    j "Breast expansion?"
+    a "Yeah! People who think that watching boobs grow is hot."
+    j "What!"
+    scene ghcouch16
+    with dissolve
+    h "The internet is a freaky place, Jenn."
+    j "But..."
+    j "I thought it was only us who thought this was hot."
+    a "It's easy money."
+    a "Guys like hot girls."
+    a "Especially ones with giant boobs falling out of their cow print bikinis."
+    scene ghcouch17
+    with dissolve
+    j "But why cow print though?"
+    a "Because you're the one with the lactation fetish."
+    j "Oh!"
+    j "Like a dairy cow."
+    a "Damn right."
+    n "Now give me a moo!"
+    j "No!"
+    $renpy.end_replay()
+label nopics:
+    scene bg black
+    with fade
+    if tifside:
+        "The doorbell rang."
+        j "I'll get it."
+        scene tifending1
+        with fade
+        a "Like that?"
+        g "That's my girl."
+        scene tifending2
+        with dissolve
+        j "Hi."
+        "..." "Is [n] here?"
+        j "Sure."
+        scene tifending3
+        with dissolve
+        g "Hello?"
+        t "Hi."
+        n "Hey, neighbor!"
+        scene tifending4
+        with dissolve
+        n "Everyone, this is Tiffany."
+        n "She lives across the hall."
+        g "Hi, Tiffany!"
+        n "What can I do for you?"
+        t "I need a word."
+        t "Alone."
+        n "Okay."
+        n "I'll be right back."
+        scene bg black
+        image tifendingani1 = Movie(play="tifendingani1.webm")
+        scene tifendingani1
+        with fade
+        pause
+        n "What's up?"
+        t "Are you dating those girls?"
+        n "Yeah."
+        t "All of them?"
+        n "Yeah, what's this-"
+        t "You are going to be a father."
+        n "What?"
+        n "You're not serious."
+        t "Are you really surprised?"
+        n "Well, yeah!"
+        n "I thought you couldn't get pregnant when you were still breast feeding?"
+        t "It lowers the chances, sure."
+        if preg:
+            t "So you're saying you were only role playing?"
+            t "You didn't want this?"
+            n "I don't..."
+            n "I don't know."
+            n "Yeah, a part of me did."
+        else:
+            t "Is this not what you wanted?"
+            n "Maybe!"
+        n "If it was just us."
+        t "Well, there's no time like the present."
+        if lactation:
+            t "It looks like I'll be breastfeeding a while longer."
+        n "Holy shit."
+        n "Thanks for telling me."
+        t "Yep."
+        pause
+        scene bg black
+        image tifendingani2 = Movie(play="tifendingani2.webm")
+        scene tifendingani2
+        with dissolve
+        pause
+        n "Wait!"
+        n "What's wrong?"
+        n "I mean, besides the obvious."
+        t "I knew you were dating other girls."
+        t "But I had no idea I was competing with... {p}whatever that was in there."
+        t "Because I thought..."
+        t "I thought you would be happy to hear the news."
+        menu:
+            "I am":
+                n "I am, Tiffany."
+                n "I'm just... {w}surprised."
+                t "Okay."
+                t "But I'm not looking to join your weird little sex cult in there."
+                n "I understand."
+                t "I'm serious, [n]."
+                scene tifending5
+                t "It looks like you have some attractive girls in there."
+                t "But you need to decide if you want to be with girls..."
+                scene tifendingani1
+                with dissolve
+                t "...or to step up and be a man who takes care of his woman."
+                menu:
+                    "Make an overly romantic gesture [gr]\[Tiffany ending\]":
+                        n "That's something you don't have to worry about."
+                        n "This took me by surprise."
+                        n "But it's great news."
+                        n "And I want to be with you."
+                        t "What about the girls in there?"
+                        n "They're great."
+                        n "But I want you."
+                        t "Really?"
+                        t "Prove it."
+                        n "How?"
+                        t "Don't go back in there."
+                        t "Come over instead."
+                        n "Yeah?"
+                        t "Yeah."
+                        n "Will you strip for me?"
+                        t "Limited time offer."
+                        n "Lead the way."
+                        jump tifanending
+
+                    "Tell her you'll take care of her":
+                        n "I want to do everything I can to take care of you, Tiffany."
+                        n "But those girls inside need me too."
+                        t "I'm not looking to join your weird sex cult, bud."
+                        n "I know."
+                        t "Okay."
+                        t "You know where to find me."
+
+            "I'm not":
+                n "I can't say it's the news I wanted to hear."
+                t "Fuck my life."
+                n "Hey, it's going to be okay."
+                scene tifending5
+                t "No, it's not."
+                t "I let a guy knock me up who had no intention of wanting a family."
+                scene tifendingani1
+                with dissolve
+                t "Twice."
+                t "I'm such a fucking idiot."
+                t "My life is now a full-blown cliche."
+                n "Hey, that's not..."
+                t "Alright, [n]."
+                t "I'll be across the hall."
+                t "I should have enough savings to last me the six months with unemployment."
+                "She sighed."
+                t "Fuck."
+        scene bg black
+        with fade
+        "She left."
+        scene tifending6
+        with fade
+        pause
+        n "Oh!"
+        n "Hi."
+        pause
+        n "Didn't realize we had an audience."
+        j "Yup."
+
+        a "So."
+        a "You were fucking your neighbor."
+        menu:
+            "Admit it":
+                n "Yeah."
+                scene tifending7
+                with dissolve
+            "Deny it":
+                n "Well, yeah."
+                n "But that was before I promised to be loyal."
+                a "And you haven't hooked up with her since?"
+                n "Nope."
+                scene tifending7
+                with dissolve
+                a "I'll be right back."
+                n "Where are you going?"
+                g "To ask her when you last hooked up."
+                n "Don't do that."
+                g "Why not?"
+                n "Because..."
+                n "Alright, it was more recently."
+                g "How recently?"
+                n "A couple of nights ago."
+
+
+        a "Even though you promised us you would only be with us."
+        n "Yeah."
+        g "Cool, bro."
+        a "I guess this is the end."
+        n "Of the weekend?"
+        a "Of our relationship."
+        scene tifending8
+        with dissolve
+        pause
+        g "Wow, [n]."
+        g "The one nice thing Laura did for me was make me no longer addicted to your sorry ass."
+        g "Bye, fucker."
+        scene tifending9
+        with dissolve
+        pause
+        n "Jenn?"
+        j "What, [n]?"
+        n "Are you-"
+        scene tifending10
+        with dissolve
+        n "Are we still..."
+
+        j "What?"
+        n "Are we going to be okay?"
+        pause
+        scene tifending11
+        with dissolve
+        pause
+        n "Fuck."
+        pause
+        scene tifending12
+        with dissolve
+        n "Haley?"
+        scene bg black
+        image tifendingani3 = Movie(play="tifendingani3.webm")
+        scene tifendingani3
+        with dissolve
+        pause
+        h "Yes."
+        n "Are you..."
+        n "What are you going to do?"
+        h "What can I do?"
+        h "I'm knocked up by a guy that has been cheating on me."
+        n "Don't do that."
+        h "What?"
+        n "You know I've been with other girls."
+        h "Yeah, the ones that I agreed to let you be with."
+        h "How are five girls not enough for you?"
+        n "I..."
+        n "I don't know."
+        h "Then I could never expect to be."
+        n "Haley."
+        h "Yes?"
+        n "I just..."
+        pause
+        h "I was really hoping you'd have some kind of explanation."
+        n "Can't you give me another chance?"
+        scene tifending13
+        with dissolve
+        h "No."
+        n "But..."
+        n "What about the baby?"
+        h "Don't worry about it."
+        h "It won't be your problem."
+        h "Go take care of you other ten illegitimate kids you probably have."
+        h "I'll take care of this one."
+        n "Shit."
+        menu:
+            "Give up [red]\[Bad ending\]":
+                scene apartment2
+                with fade
+                n "Well, fuck me."
+                pause
+                scene bg black
+                with fadeout
+                jump end
+
+            "Go across the hall [gr]\[Tiffany ending\]":
+                scene bg black
+                with fade
+                "I went back across the hall to Tiffany's."
+        scene tifhome1
+        with fadein
+        t "Hi."
+        n "Hey!"
+        n "So... I broke up with them."
+        t "All of them?"
+        n "Yeah."
+        scene tifhome2
+        with dissolve
+        t "How did they take it?"
+        n "They heard our conversation."
+        n "It was mutual."
+        t "So they all broke it off with you?"
+        n "Kind of, yeah."
+        t "Oh, [n]."
+        t "What am I going to do with you?"
+        n "Be with me?"
+        t "It would be my honor and my privilege."
+        label tifanending:
+        scene bg black
+        with fade
+        pause
+        "Six Months Later"
+        scene steak
+        with fadein
+        pause
+        t "I'm hooooome!"
+        t "How was class?"
+        n "Not bad!"
+        t "What's that you're making me?"
+        n "I thought you had the power of super smelling?"
+        t "All I know is that it smells great."
+        scene tifkitchen1
+        with fade
+        t "Is it dick?"
+        n "I'm very flattered, but I'm afraid you're going to need some sustenance first."
+        n "How do you want your steak?"
+        scene tifkitchen2
+        with dissolve
+        t "Mmm."
+        t "I'll take my meat juicy."
+        n "How was work?"
+        t "Not too bad."
+
+        t "I think I like bartending better than dancing."
+        n "Is there anything you do miss about it?"
+        t "Just the money."
+        n "Are you sure?"
+        n "Because it seems like you can't but take your work home when you strip as soon as you get home."
+        t "Oh shut up."
+        scene steak
+        with fade
+        t "I know you like it."
+        t "Still, it was nice of my new manager to keep me on."
+        if preg:
+            t "Actually, I'm starting to realize that you're not the only guy with a pregnancy fetish."
+            t "Half the guys that come in check me out."
+            n "Told you."
+            n "You're one sexy MILF."
+        scene tifkitchen3
+        with fade
+        n "Is there a rule about cooking your meat when you're pregnant?"
+        t "I'll take whatever meat you want to give me."
+        n "You're not helping!"
+        n "Can you take a little pink?"
+        scene tifkitchen4
+        with dissolve
+        t "I'll show you a little pink!"
+        n "Damn, woman!"
+        n "Get your hormones under control!"
+        t "I want to be under your control."
+        scene tifkitchen5
+        with dissolve
+        n "That can be arranged."
+        t "Turn down the burner."
+        t "I need your dick in me."
+        n "But-"
+        scene steak
+        with fade
+        t "Don't argue with a pregnant woman!"
+        n "As you wish."
+        "I picked her up and tossed her onto the counter."
+        scene tifkitchen6
+        with fade
+        t "Fuck yes!"
+        t "What is it with you men and your meat?"
+        n "What is it with you women and yours?"
+        t "Fair."
+        t "Now stick it in me!"
+        image tifkitchenani2 = Movie(play="tifkitchenani2.webm")
+        scene tifkitchenani2
+        with fade
+        pause
+        t "That's what Momma likes!"
+        n "I aim to please."
+        t "Yeah, Daddy!"
+        t "Go deeper!"
+        t "I want you so deep that I can introduce you to our little angel for the first time!"
+        n "Damn, woman."
+        n "Too far!"
+        t "Not yet!"
+        pause
+        image tifkitchenani1 = Movie(play="tifkitchenani1.webm")
+        scene tifkitchenani1
+        with fade
+        pause
+        pause
+        t "Give it to me, Daddy!"
+        t "Stretch my pussy with that big fucking cock!"
+        t "Now when I give birth she'll slip right out!"
+        n "I don't think it works that way..."
+        t "Mmm, yeah."
+        t "You're already a great Daddy..."
+        $renpy.end_replay()
+        pause
+        jump end
+
+    if baileyside:
+        "Two Hours Later"
+        "I was about to go upstairs when I heard a knock."
+        image hbaptani2 = Movie(play="hbaptani2.webm")
+        scene hbaptani2
+        with fade
+        n "Hey..."
+        n "What are you doing here?"
+        ba "I need it."
+        n "But..."
+        n "Can't you wait until tomorrow?"
+        ba "No."
+        ba "Who's inside?"
+        n "I have like five friends over right now."
+        n "I can't invite you over, and I can't go anywhere with you right now."
+        ba "Fuck me in the stairwell?"
+        ba "Real quick!"
+        n "I can't right now, Bailey."
+        n "But I'll fuck the shit out of you tomorrow, okay?"
+        ba "Promise?"
+        n "Sure."
+
+
+    scene bg black
+    with fade
+    pause
+
+    "Midnight"
+    with fade
+    n "Lay down, Jenn."
+    scene jennspank
+    with fade
+    j "Come on!"
+    j "I know you can go another round."
+    n "You need to get up in six hours."
+    n "Don't you want to look good for photos?"
+    j "I always do."
+    j "Come on!"
+    n "You have ten seconds to get into bed, young lady!"
+    j "Or else what?"
+    n "Or I spank you so hard your ass shakes for a week!"
+    j "Liar."
+    n "Five."
+    j "You said ten!"
+    n "It's already been three."
+    n "Two."
+    j "You won't-"
+    scene bg black
+    image jennspankani1 = Movie(play="jennspankani1.webm")
+    scene jennspankani1
+    with fade
+    pause
+    "SMACK!"
+    "SMACK!"
+    j "AHHH!"
+    j "OWWW!"
+    n "Are you going to sleep now?"
+    j "NO!"
+    pause
+    pause
+    j "AHH!"
+    j "OKAY OKAY!"
+    scene bg black
+    with fade
+    pause
+    "An Hour Later"
+    with fade
+    g "Wake up."
+    n "No."
+    g "Come on! Open your eyes."
+    n "Nope."
+    g "I need you inside me."
+    n "Oh really?"
+    n "Are you looking for a spanking, too?"
+    g "Please?"
+    n "You know what I think?"
+    n "I think what you really want is to feel close to me."
+    "I heard one of the girls snort next to us."
+    g "Shut up!"
+    L "You can lay between us, Grace."
+    L "But don't be surprised if you wake me up with my tongue in your pussy."
+    g "Bring it."
+    n "Goodnight, girls."
+
+
+
+
+
+    scene bg black
+    with fadeout
+    pause
+    "Six Hours Later"
+    scene graday1
+    with fadein
+    pause
+    n "Alright, ladies!"
+    n "Time to get up!"
+    g "Shhhhhhhh..."
+    scene graday2
+    with dissolve
+    g "...ut the fuck up!"
+    n "You gotta get up if you want that paper!"
+    g "Hmmmph."
+    n "You just spent the past twelve years of your life for a diploma."
+    n "Now you might as well walk a few feet to accept it on a stage."
+    g "Shuddup."
+    scene jennready1
+    with fade
+
+    pause
+    n "Hey, Jenn!"
+    n "Up already?"
+    scene jennready2
+    with dissolve
+    j "Yeah, I wanted to get a headstart on the bathroom."
+    j "I'll be done in an hour."
+    n "Damn!"
+    n "You're going to be stylin'!"
+    j "No, I'll look the same as always."
+    n "So, no distracting you with some bathroom fun?"
+    j "I wish!"
+    j "Sorry, [n], but my lady parts are far too sore."
+    n "Fair enough."
+    scene graday3
+    with fade
+    n "Ladies!"
+    n "I see you're already awake."
+    a "Hell yeah."
+    a "But I'm craving a dick in my mouth for some reason."
+    if master:
+        L "So am I, Master."
+    a "Would you be a good sport and let us suck your dick?"
+    n "Anything I can do to help you kids graduate."
+    a "You're such a good person."
+    L "And I'll feel better standing up there in front of my parents knowing your cum is sloshing around in my stomach."
+    n "I think that's something everyone wants."
+
+
+    scene bg black
+    with fade
+    "That Night"
+    image gradani2 = Movie(play="gradani2.webm")
+    scene gradani2
+    with fadein
+    a "Fuck yeah!"
+    a "Graduated, bitches!"
+    g "Are we going to celebrate with an orgy?"
+    a "Since when do we need a reason for an orgy?"
+    g "Thatta girl."
+    g "I'm just glad [n] woke me up early to get ready."
+    g "Without him I'd probably still be sleeping."
+    n "It's what I'm here for."
+    g "What, acting like my dad?"
+    g "I'm not really into it."
+    scene bg black
+    image gradani1 = Movie(play="gradani1.webm")
+    scene gradani1
+    with fade
+    L "Are you sure about that, Grace?"
+    L "I always pegged you as a Daddy Issues kind of girl."
+    g "What's that supposed to mean?"
+    g "And, gross! My dad is sitting right over there."
+    L "Oh, nothing."
+    h "Yeah, it's not like you get all star eyed every time [n] tells you what to do."
+    g "Welcome back, Haley."
+    scene haleygradnight1
+    with dissolve
+    h "Thanks."
+    g "And for the record, I tell [n] what to do, not the other way around."
+    h "Sure, Grace."
+    h "Whatever you say."
+    n "Want me to grab you a seat, Haley?"
+    scene haleygradnight2
+    with dissolve
+    h "No thanks."
+    h "I'll just sit in your lap."
+    g "No!"
+    scene haleygradnight1
+    with dissolve
+    g "You know each of our parents thinks we are dating [n]."
+    g "I do not want to explain to my dad why my boyfriend is fucking my friends."
+    n "Good point."
+    n "I already had to sit down and have the talk with him."
+    n "It's not something I'm looking to do again anytime soon."
+    scene haleygradnight2
+    with dissolve
+    j "How was my grandma?"
+    n "Worse."
+    L "And my parents?"
+    n "Them I already had the talk with."
+    scene bg black
+    scene gradani2
+    with fade
+    n "Thankfully Ashley's mom loves me."
+    a "I don't know why."
+    h "My mom likes you too."
+    h "But I told her that you are only dating Jenn."
+    scene haleygradnight2
+    with dissolve
+    n "So all the nights you're at my place, you're just hanging out with Jenn?"
+    h "Naturally."
+    g "Girl, you are much smarter than the rest of us."
+    scene haleygradnight1
+    with dissolve
+    h "It's a gift."
+    show haleygradnight1:
+        truecenter
+        zoom 1.0
+        xalign 1.0
+        ease 3.0 zoom 1.5
+    $ lauraccepted = False
+    if lauraside:
+        j "Oh, good. Here comes the bitch."
+        scene bg black
+        image gradani3 = Movie(play="gradani3.webm")
+        scene gradani3
+        with fade
+        l "Hi, everyone."
+        g "Hey."
+        l "Congratulations!"
+        l "You all made it to the end despite my bitchy ass."
+        scene bg black
+        image gradani5 = Movie(play="gradani5.webm")
+        scene gradani5
+        with dissolve
+        l "Jenn, I want to apologize to you once again."
+        l "I was a bully, and it wasn't because of anything you did."
+        l "You didn't deserve it, and I want you to know it was only because I was being a shitty human being."
+        l "Haley, the same goes for you."
+        l "Leah and Ashley, you both have always been cool."
+        scene bg black
+        scene gradani3
+        with dissolve
+        l "Grace, I should have been a better friend to you."
+        l "And I miss you."
+        j "Thanks, Laura."
+        j "I appreciate that."
+        g "I miss you too."
+        l "I wanted to come over here and tell all of you that I'm sorry for my behavior."
+        l "I got caught up in trying to win over [n], and the way I acted was not fair to any of you."
+        l "That being said, I have one more thing to tell you."
+        l "[n]..."
+        scene bg black
+        image gradani6 = Movie(play="gradani6.webm")
+        scene gradani6
+        with dissolve
+        pause
+        l "I'm pregnant."
+        pause
+        n "What?"
+        l "You're the only one I've been with."
+        a "What!"
+        g "When did this happen?"
+        if lauradate:
+            l "I think it was from the time at my pool party."
+            scene bg black
+            image gradani4 = Movie(play="gradani4.webm")
+            scene gradani4
+            with dissolve
+            g "Holy shit."
+            a "But... that was two months ago."
+            l "I know."
+            l "But I started taking birth control right after that, so I didn't think much of it when I skipped a cycle."
+            j "Wow."
+            scene bg black
+            scene gradani6
+            with dissolve
+            if cumhaley:
+                if preg:
+                    j "Haley is pregnant too."
+                    l "I know."
+                    l "Looks like you're going to be a dad twice over, [n]."
+                    n "Damn."
+            l "It's okay, [n]."
+            l "You don't have to be a part of it any more than you want to be."
+            l "I just..."
+            l "I wanted you all to know."
+            l "Since you are all dating him now."
+            l "I figured you should hear it from me."
+            l "And I also want to apologize to everyone for my part in all of us having huge stripper titties."
+            scene bg black
+            scene gradani5
+            with dissolve
+            l "Starting with you, Leah..."
+            if tellgrace:
+                "Grace turned to me with a whisper."
+                g "That wasn't when she got pregnant, was it?"
+                n "I don't know-"
+                g "It was since then."
+                g "She's trying to protect you."
+                n "I'm not sure."
+                n "I didn't even know."
+                g "I think we should-"
+                a "What are you guys whispering about?"
+                g "About Laura, of course."
+                jump lauraschance
+        else:
+            l "I came over to the apartment to talk, but [n] fucked me to get his revenge on me."
+            l "The joke is on him, because now all of us are fucked."
+            a "What!"
+            L "Was this before or after you promised to be loyal to us?"
+            g "Wait."
+            g "Is this true?"
+            $ denyEndings = "[gr]\[Haley(+Grace) or Laura(+Grace) endings\]" if tellgrace else "[gr]\[Haley or Laura endings\]"
+            $ admitEndings = "[gr]\[Harem ending (w/ or w/o Laura)\]" if tellgrace else "[gr]\[Haley or Laura endings\]"
+            menu:
+                "Deny it [denyEndings]":
+                    n "Hell no."
+                    n "I doubt she's even pregnant."
+                    if britside:
+                        n "It's probably just your sister's."
+                        l "Want to tell them why you know my sister is pregnant?"
+                        n "Umm..."
+                    L "Laura, when was the last time you had sex with [n]?"
+                    l "It was the night after you all went out dancing."
+                    a "[n]!"
+                    if britside:
+                        l "I followed my sister when she went to have sex with him-"
+                        j "Seriously?"
+                        l "And then he face fucked me."
+                        l "Then I came back the next day and we had sex all over the apartment."
+                    L "[n], please."
+                    L "Tell us the truth."
+                    n "She's making this shit up."
+                    g "What color is the blanket on [n]'s bed?"
+                    l "Burgandy."
+                    j "She could have seen that on our social media."
+                    a "Laura, what floor is the apartment on?"
+                    l "Seventeenth."
+                    a "Wow."
+                    a "Cool, [n]."
+                    g "Way to fuck up my life."
+                    jump ruinedlife
+                "Admit it [admitEndings]":
+                    n "Yeah, but it was just the once!"
+                    n "I was confused."
+                    n "We were all still pissed at her, and I didn't have a way of expressing my anger..."
+                    g "Except for, ya know, angry fucking any of your willing girlfriends."
+                    n "I'm sorry."
+                    L "Be honest, [n]."
+                    L "Have you had sex with anyone else?"
+                    n "I-"
+                    if fuckedlydia:
+                        n "Yes."
+                        n "The girl at the front door."
+                        g "Big Titty Goth Girl?"
+                        g "Fucking really?"
+                        a "Woooow."
+                        if britside:
+                            l "He also fucked my sister."
+                            n "Really, bitch?"
+                            n "Can't you just be cool for one second?"
+                            a "Woooow."
+                    else:
+                        if britside:
+                            l "He also fucked my sister."
+                            n "Really, bitch?"
+                            n "Can't you just be cool for one second?"
+                            a "Woooow."
+                        else:
+                            if fuckedbailey:
+                                n "Hottie Bartender."
+                                n "But that's it."
+                                a "Woooow."
+                            else:
+                                n "No."
+                                n "It was just that one time."
+                                j "You haven't had sex with the girl at your front door lobby?"
+                                n "I have not."
+                                j "Still."
+                    j "You should have told us."
+                    if tellgrace:
+                        g "He told me."
+                        g "I told him to keep it to himself."
+                        g "It was just the one time."
+                        g "Laura offered him revenge sex."
+                        g "Can you blame him?"
+                        L "Well, it was enough, apparently."
+                        l "Don't I know it."
+
+                        a "And it looks like Laura has the last revenge."
+                        label lauraschance:
+                        g "Laura, would you mind if we talked alone for a moment?"
+                        l "Of course."
+                        scene bg black
+                        image gradani2 = Movie(play="gradani2.webm")
+                        scene gradani2
+                        with fade
+                        g "Alright, everyone, I'm going to say it."
+                        g "You're going to hate me for this, but I need to say it."
+                        g "I think we should give Laura a chance."
+                        a "What!"
+                        j "Hell no!"
+                        L "Really, Grace?"
+                        L "I know she used to be your friend."
+                        L "But you don't owe her anything."
+                        if tellgrace:
+                            g "I know she hypnotized you and Ashley to hate [n]."
+                            g "But it didn't work."
+                            g "And besides being the reason we could all be in the Hooters Girls calendar, is she really all that unforgivable?"
+                            g "Jenn, I understand why you hate her. She was mean to you on multiple occasions."
+                            g "But I think she's being sincere now."
+                            g "Plus, like it or not, Laura wormed her way into our lives already."
+                            g "It's not like [n] is going to abandon his child."
+                            g "Right?"
+                            n "Not if I can help it."
+                            a "I don't like it."
+                            L "What do you think, [n]?"
+                            menu:
+                                "We should abandon her [gr]\[Harem ending w/o Laura\]":
+                                    n "I've had enough Laura to last a lifetime."
+                                    n "I wouldn't ask you girls to include her."
+                                    g "Oh."
+                                    g "Okay."
+                                    g "I retract my request."
+                                    n "I appreciate you girls being good people."
+                                    n "And I appreciate you being understanding with me even more."
+                                    n "From now on, you have my word."
+                                    n "I'm only with you."
+                                    a "Don't tell us."
+                                    a "Show us."
+                                    n "Deal."
+                                    jump lauraccepted
+
+                                "We should include her [gr]\[Harem ending w/ Laura\]":
+                                    n "I don't think we should welcome Laura unconditionally."
+                                    n "But maybe she deserves a chance."
+                                    j "Why? It's not like she would give us one."
+                                    h "But we are better than that."
+                                    a "Are we?"
+                                    h "What if the best way to beat Laura..."
+                                    h "Is to do it like this?"
+                                    h "We give her a chance."
+                                    h "If she messes it up, that's on her."
+                                    g "At least we could say we tried."
+                                    a "Huh."
+                                    L "You really think she has a chance?"
+                                    g "Only if we give her one."
+                                    a "You really think we should, [n]?"
+                                    n "We should take it to a vote."
+                                    j "It's a no from me, dawg."
+                                    h "I don't think we need to decide now-"
+                                    a "If we don't, I'm going to say no."
+                                    n "So that's a yes?"
+                                    a "Aye."
+                                    a "Leah?"
+                                    L "..."
+                                    L "One chance."
+                                    L "Aye."
+                                    h "Aye."
+                                    g "Aye."
+                                    n "Aye."
+                                    g "Okay."
+                                    g "I got this."
+                                    g "Laura!"
+                                    pause
+                                    scene bg black
+                                    image gradani3 = Movie(play="gradani3.webm")
+                                    scene gradani3
+                                    with fade
+                                    l "Yes?"
+                                    g "We took a vote."
+                                    l "A vote?"
+                                    g "We all decided that we want to give you a chance."
+                                    l "What?"
+                                    l "Are you... {w}are you serious?"
+                                    g "I'm not saying you are {i}one of us{/i}."
+                                    g "But we want to give you the chance to earn that shit."
+                                    g "You were my best friend, Laura."
+                                    g "And I know how good of a friend you can be."
+                                    g "Show it to the rest of these girls."
+                                    g "But there's a big condition."
+                                    g "We can vote you out at any time."
+                                    l "I..."
+                                    l "I can't believe it!"
+                                    l "Thank you so much!"
+                                    l "I never expected..."
+                                    l "You girls are incredible."
+                                    j "Don't forget it."
+                                    scene bg black
+                                    scene gradani6
+                                    with dissolve
+                                    l "[n]?"
+                                    l "You voted on this too?"
+                                    n "I did."
+                                    l "You..."
+                                    l "You are willing to forgive me?"
+                                    n "I'm willing to give you a chance."
+                                    l "Thank you!"
+                                    l "You all can't..."
+                                    l "I've felt more alone this past month than I ever knew was possible."
+                                    l "And I accepted it."
+                                    l "Because it's what I deserved."
+                                    l "But if you are really giving me the chance to have you all in my life again..."
+                                    l "I missed you so much."
+                                    l "I'll do anything I can to keep you."
+                                    a "Like the laundry?"
+                                    l "Anything."
+                                    a "Welcome aboard, Laura."
+                                    l "Thank you."
+                                    $ lauraccepted = True
+                                    jump lauraccepted
+
+
+                    l "Sorry to ruin your night."
+                    j "I'm sure you are."
+                    scene bg black
+                    scene gradani1
+                    with fade
+                    L "Alright."
+                    L "Bye, [n]."
+                    n "Wait-"
+                    L "Choose your words wisely."
+                    n "But I was honest."
+                    L "Honest about admitting that you've been fucking other girls behind our backs after being cornered into doing so?"
+                    L "The honesty I was looking for was when I asked if you would be loyal to us."
+                    n "And if I had been honest then?"
+                    L "If you told me you still wanted to stick your dick in other girls?"
+                    n "Yes."
+                    L "You would have saved me two months of my life dating a cheating asshole."
+                    label ruinedlife:
+                    scene bg black
+                    scene gradani2
+                    with dissolve
+                    a "Seriously, [n]."
+                    n "I thought you wouldn't mind other girls?"
+                    a "Were you sharing them with me, [n]?"
+                    a "Or were you hiding them and fucking them behind my back?"
+                    if tellgrace:
+                        L "You had all of us."
+                        L "Now you have zero."
+                    else:
+                        g "You had five fucking girls, dude."
+                        g "Now you have zero."
+                    a "Alright, I'm out of here."
+                    a "Are you coming, Leah?"
+                    L "Yep."
+                    scene bg black
+                    scene graday4
+                    with dissolve
+                    n "What?"
+                    L "I'll see you girls later."
+                    L "[n], you can fuck right off."
+                    g "I'll come with."
+                    scene graday5
+                    with dissolve
+                    pause
+                    n "Bye?"
+                    pause
+                    n "Jenn?"
+                    j "Fuck."
+                    j "You."
+                    scene graday6
+                    with dissolve
+                    pause
+                    n "Holy shit."
+                    pause
+                    scene graday7
+                    with dissolve
+                    pause
+                    n "Looks like it's just me and you, Haley."
+                    pause
+                    scene graday8
+                    with dissolve
+                    h "Me or her."
+                    n "What?"
+                    h "Decide."
+                    h "Right now."
+                    h "Are you going to take care of me, or are you going to go run off with Laura?"
+                    n "You, of course."
+                    h "Really?"
+                    n "Yes."
+
+                    h "Okay."
+                    h "I feel lame being the last one standing."
+                    n "Don't."
+                    n "Maybe all this bad shit ended up being a good thing."
+                    n "It helped me find out who would really stand by my side."
+                    h "Cheating on me didn't win me."
+                    h "I'm here inspite of that."
+                    n "I know."
+                    n "I was just trying to make light of the situation."
+                    n "But it's too soon, I'm guessing?"
+                    h "You would guess correctly."
+                    n "Haley, will you be my girl?"
+                    h "By default."
+                    n "No..."
+                    n "By winning."
+                    scene graday9
+                    with dissolve
+                    h "Alright."
+                    h "I'll take any win I can get right now."
+                    n "Want to come home with me?"
+                    h "Yes please."
+                    scene bg black
+                    with fadeout
+                    "To be continued."
+                    jump end
+
+                    h "Forgive me if I'm not taking you at your word."
+                    h "Come on."
+                    n "Where are we going?"
+                    h "We are going to tell Laura that you are not going to be there for her."
+                    n "Haley-"
+                    h "Now."
+
+                    l "Hello."
+                    h "[n] has something to tell you."
+                    $ hgEnding = "[gr]\[Haley ending (w/ or w/o Grace\]" if tellgrace else "[gr]\[Haley ending\]"
+                    $ lgEnding = "[gr]\[Laura ending (w/ or w/o Grace\]" if tellgrace else "[gr]\[Laura ending\]"
+                    menu:
+                        "Choose Haley [hgEnding]":
+                            $ choosehaley = True
+                            n "I choose Haley."
+                            l "Okay?"
+                            n "That's all."
+                            l "I thought you chose all of the girls?"
+                            n "They all left me."
+                            n "But I wanted you to know."
+                            l "Okay."
+                            l "You choose her."
+                            l "Goodbye, Haley."
+                            l "I hope he makes you very happy."
+                            l "And goodbye, [n]."
+                            l "I really wish you chose me."
+                            l "But, for the record... I'd rather share you than not have you at all."
+                            "She walked away."
+                            h "Wow."
+                            h "So this is us?"
+                            "I put my arm around her."
+                            n "Thank you."
+                            h "You're welcome."
+                            if tellgrace:
+                                g "Hey."
+                                g "So you chose Haley?"
+                                n "Over Laura?"
+                                n "That was never an option."
+                                g "Good work."
+                                g "But for the record..."
+                                g "I don't know how to put this."
+                                g "Because I don't want to come between you two."
+                                g "But [n], you were honest with me."
+                                g "At least about Laura."
+                                g "I know I walked away from you."
+                                g "But I wasn't trying to break up with you."
+                                g "I was only pissed off with you for lying to us."
+                                g "So... if you only want to be with Haley, that's totally fine."
+                                g "I won't get in the way."
+                                g "But..."
+                                h "What do you think, [n]?"
+                                menu:
+                                    "Include Grace [gr]\[Haley + Grace ending\]":
+                                        "I turned to Haley."
+                                        n "I never broke up with her either."
+                                        h "I know."
+                                        n "What do you think?"
+                                        h "I..."
+                                        h "I don't want you hooking up with any of the other girls."
+                                        h "But I don't consider Grace an other."
+                                        n "So... the three of us?"
+                                        g "Only the three of us."
+                                        g "For real this time."
+                                        g "If you want to go fuck other girls, go do it without us."
+                                        g "Right?"
+                                        h "Right."
+                                        g "If you promise loyalty to us, you need to honor your word."
+                                        g "What do you say?"
+                                        scene bg black
+                                        with fade
+                                        "To be continued."
+                                        "This will be the Grace and Haley ending."
+                                        jump end
+                                    "Reject Grace [gr]\[Haley ending\]":
+                                        n "Thank you, Grace."
+                                        n "But I still have to choose Haley."
+                                        g "Oh."
+                                        g "Fuck."
+                                        n "But thanks for sharing-"
+                                        g "Yeah, yeah."
+                                        g "Now I feel like the biggest loser ever."
+                                        g "Bye, I guess."
+                                        scene bg black
+                                        with fade
+                                        "To be continued."
+                                        "This will be one of Haley's endings."
+                                        jump end
+                        "Choose Laura [lgEnding]":
+                            $ choosehaley = False
+                            n "I..."
+                            h "Tell her."
+                            n "I can't."
+                            h "What?"
+                            h "Why not?"
+                            h "It's me or her, [n]."
+                            h "If you don't choose me, you at least need to be man enough to take care of Laura."
+                            n "I-"
+                            h "Goodbye."
+                            h "Don't call me."
+                            n "Shit."
+                            l "So..."
+                            l "I have a hell of a lot to make up for."
+                            l "Come on, let's talk."
+
+                            n "I think I'm just going to go home."
+                            l "I wouldn't have blown your cover if you had just kept fucking me."
+                            n "What?"
+                            l "I would have been okay with sharing you."
+                            n "I'm sure you would have."
+                            l "I would."
+                            l "I can't prove it to you."
+                            l "But I would."
+                            if tellgrace:
+                                g "Hold up."
+                                l "Grace?"
+                                g "You chose Laura?"
+                                n "I guess so."
+                                l "Looks like I have my chance after all."
+                                l "Grace, I'm totally okay with you continuing to date [n]."
+                                g "Umm..."
+                                g "Thanks?"
+                                l "What were you going to say?"
+                                g "Well..."
+                                g "All the other girls are pissed off at [n] for lying to them."
+                                g "But at least he was honest with me about you."
+                                l "So..."
+                                l "Want to be a throuple?"
+                                g "That sounds a bit more official than I'm ready for."
+                                g "But..."
+                                g "We'll see."
+                                menu:
+                                    "Include Grace [gr]\[Grace + Laura ending\]":
+                                        n "I hope you decide to join us, Grace."
+                                        g "Thanks."
+                                        $ bwending = True
+                                        $ lifeboat = True
+                                        jump toots
+                                    "Turn her down [gr]\[Laura ending\]":
+                                        n "Grace, I love you."
+                                        n "But you deserve better than me."
+                                        g "Yeah?"
+                                        g "That's how it is?"
+                                        n "I'm serious."
+                                        n "You're an amazing girl."
+                                        g "Yeah, yeah."
+                                        g "Alright."
+                                        g "Bye, I guess."
+                                        scene bg black
+                                        with fade
+                                        "To be continued."
+                                        "The Laura Ending"
+                                        jump end
+                            l "But you cut me off."
+                            l "Just like that."
+                            l "So I understand that you're pissed off at me."
+                            l "And that telling the girls was not a cool thing to do."
+                            l "But this was the only way I could be with you again."
+                            l "And, honestly, did you expect any less?"
+                            scene bg black
+                            with fade
+                            "To be continued"
+                            "The Laura Ending"
+                            jump end
+
+
+    else:
+        a "So, no Laura?"
+        g "I guess not."
+        a "She has barely been to classes in the past month."
+        a "I'm surprised they let her graduate."
+        g "I'm not."
+        g "Giving money to a school to keep your kids from failing out is a time honored tradition."
+        a "Still. I'm kind of surprised she isn't going to show up to the grad party."
+        g "She knows she doesn't have any friends here."
+        a "True."
+        a "But I was kind of expecting some grand showdown where she appears and insults us all or something."
+        L "She wishes."
+
+label lauraccepted:
+    scene bg black
+    with fade
+    pause
+    "Two Weeks Later"
+    with fade
+    n "Holy shit, Haley!"
+    scene aptpool1
+    with fadein
+    n "How are you fitting into that shirt still?"
+    g "Very well."
+    g "She's looking tasty."
+    scene aptpool2
+    with dissolve
+    a "Hell yeah."
+    a "Plus, in that green, I kind of want to see you hulk out."
+    h "Hulk out?"
+    a "Rip through that green top as you grow all big and strong."
+    scene aptpool5
+    with dissolve
+    g "More like big and busty."
+    a "Exactly!"
+    a "Do me a favor, Haley?"
+    h "Yeah?"
+    scene aptpool4
+    with dissolve
+    a "Can you stand up straight, flex your muscles and say, 'Haley smash!'"
+    h "Yeah, no."
+    h "But thanks for playing."
+    a "Aww."
+    a "Worth a try."
+    if lauraccepted:
+        scene aptpool6
+        with dissolve
+        l "Give her a break."
+        l "She looks great."
+        a "Oh, absolutely! No one is saying otherwise."
+    scene aptpool3
+    with dissolve
+    a "I just get excited at the possibility of anyone wearing a costume."
+    a "Speaking of, does anyone want to join me for another photoshoot?"
+    g "With costumes?"
+    a "Sadly, no."
+    scene aptpool2
+    with dissolve
+    a "All these people seem to like is bikini photos."
+    g "Another bikini shot?"
+    g "No thanks."
+
+    a "Haley?"
+    scene aptpool4
+    with dissolve
+    h "I'm going to start dinner."
+    a "But you two are the VIPs!"
+    a "You're the ones that get all the likes and comments."
+    a "What if you just wear that shirt?"
+    h "I'm not wearing a bra."
+    scene aptpool2
+    with dissolve
+    a "Perfect!"
+    a "We'll make use of your J cups."
+    h "Am I really that big?"
+    a "Yes you are."
+    scene aptpool3
+    with dissolve
+    g "Aww! I wish I had a bra size guessing superpower!"
+    a "Your superpower is that you can give us more subscribers with your giant breasts."
+    g "I'm pretty sure we all have that one."
+    a "Alright, I'll give you two the day off."
+    g "Have we made any money off the Twitter account yet?"
+    a "I did a post for eyeliner."
+    a "We get paid on the number of people that purchase it from the link."
+    g "How much money so far?"
+    a "We have made almost a hundred bucks."
+    g "Score!"
+    g "Let's take our earnings and go to Taco Bell!"
+    a "That would only feed you."
+    g "...shut up."
+    if lauraccepted:
+        scene aptpool6
+        with dissolve
+        l "We should just start an OnlyFans account."
+        a "This again?"
+        l "We've graduated now."
+        l "We don't have to worry about being expelled."
+        a "That wasn't my hesitation."
+        scene aptpool7
+        with dissolve
+        a "Once you put your photos out there, you can never get them back."
+        l "But what's the difference?"
+        l "We're already taking bikini photos."
+        l "We could still do that, we would just charge for them."
+        scene aptpool6
+        with dissolve
+        g "You can do non-nudes?"
+        l "You can do whatever you want."
+        g "Hmm."
+    else:
+        n "How much would you make with charging for the pictures themselves?"
+        a "This again?"
+        g "Like what?"
+        n "I don't know."
+        scene aptpool8
+        with dissolve
+        n "Don't they have sites where dudes pay twenty bucks a month to see pictures of girls in their underwear?"
+        g "You have to get naked for that."
+        a "Not necessarily."
+        g "Really?"
+        a "Yeah, some girls are making a hundred grand a year off OnlyFans."
+        g "You mean celebrities?"
+        scene aptpool2
+        with dissolve
+        a "No, like normal girls."
+        a "Celebrities are making millions."
+        g "Could we make a lot?"
+        n "I don't see why not."
+        scene aptpool9
+        with dissolve
+        n "Some dudes find it really sexy to watch a girl get bustier over time."
+        g "Perverts, you mean."
+        n "Like you?"
+        g "Guilty."
+        if huge:
+            a "And [n]."
+
+    a "Jenn!"
+    scene aptpool10
+    with dissolve
+    j "Yeah?"
+    a "Do you have that cow print bikini?"
+    j "Yeah!"
+    a "Can you put it on and come down here?"
+    j "Is it for a photoshoot?"
+    a "Yeah!"
+    j "Okay."
+    scene aptpool3
+    with fade
+    a "See? Jenn is down."
+    a "What about you, Leah?"
+    scene aptpool11
+    with dissolve
+    pause
+    "{i}Pop.{/i}"
+    scene aptpool12
+    with dissolve
+    pause
+    L "Oh, no, you go ahead."
+    L "I'll join you later."
+    L "Need me for anything else before I go back under?"
+    scene aptpool11
+    with dissolve
+    pause
+    g "You keep working on your record, babe."
+    a "By the way, no one is impressed, Leah!"
+    g "Speak for yourself!"
+    scene aptpool13
+    with dissolve
+    pause
+    g "That shit is impressive as shit!"
+    g "I keep wondering if she has suffocated under there."
+    a "I'm sure [n] would notice the loss of suction."
+    scene aptpool14
+    with dissolve
+    pause
+    n "Hey, Jenn!"
+    j "Hey!"
+    scene aptpool15
+    with dissolve
+    pause
+    j "How do I look?"
+    n "Uhhhh!"
+    with vpunch
+    n "Fuck!"
+    with vpunch
+    scene aptpool16
+    with dissolve
+    n "Good enough to send another load down Leah's throat."
+    with vpunch
+    j "You flatter me."
+    scene aptpool17
+    with dissolve
+    a "If I didn't know any better, I'd start to think someone is playing favorites!"
+    g "Leah is still down there."
+    g "There's no way she could swallow a load and still hold her breath."
+    scene aptpool18
+    with dissolve
+    a "Damn it."
+    a "Now we'll never get [n] out of the pool and I don't want him ruining our shoot."
+    a "I guess we could go out on the balcony."
+
+    g "If you want to hop in this one, I can be the photographer."
+    a "Actually, you have a really good eye."
+    a "That sounds good!"
+    if lauraccepted:
+        scene aptpool19
+        with dissolve
+        l "Jenn! Have I told you that your hair looks sexy as fuck?"
+        l "Would you be mad if I copied you?"
+        j "Not at all."
+        j "We could be twins."
+        scene aptpool6
+        with dissolve
+        l "Does that make me the evil one?"
+        j "Definitely."
+        j "But we could be the blonde bimbo twins."
+        l "Perfect!"
+    scene aptpool19
+    with dissolve
+    g "So we are going to sell this photo set, right?"
+    j "I don't know..."
+    g "You'll be wearing the exact same outfit as you did for social media."
+    j "Oh."
+    j "What do you think, [n]?"
+    n "I don't see the harm."
+    j "So, should I pose any different for this set?"
+    g "Yep."
+    j "How?"
+    g "I want you to give me the look that says 'pay me twenty dollars for this picture, bitch.'"
+    j "Okay!"
+
+    if lauraccepted:
+        a "Laura, what about you?"
+        scene aptpool6
+        with dissolve
+        a "Laura, what about you?"
+        l "I don't want to steal the spotlight."
+        a "Sure, babe."
+        a "You tell yourself that."
+        scene aptpool8
+        with dissolve
+        l "Fine! I'll pose with Leah next time."
+
+        g "You'd better!"
+        g "You know the rules."
+        g "Gas, ass or grass!"
+        l "What?"
+        g "No one rides for free!"
+        scene aptpool7
+        with dissolve
+        L "Speaking of Leah..."
+        L "Has she seriously not taken a breath?"
+        a "She did a moment ago."
+        a "I've been watching."
+        scene aptpool19
+        with dissolve
+    a "Are we ready to move this photo shoot to the balcony?"
+    j "What should we be doing?"
+    a "We could open a bottle of champagne and be basic bitches."
+    j "Cool!"
+    scene aptpool20
+    with dissolve
+    j "Haley, you're going to be in this one with me, right?"
+    h "I'm afraid not."
+    j "Please?"
+    g "She's sitting this one out."
+    scene aptpool21
+    with dissolve
+    g "But Haley, before we do..."
+    g "...could you flex so hard that you rip your shirt?"
+    scene aptpool22
+    with dissolve
+    h "That's not how shirts work."
+    g "Not with that attitude."
+    scene aptpool23
+    with dissolve
+    h "...fine."
+    h "But you aren't going to use these for the site, right?"
+    scene aptpool24
+    with dissolve
+    g "Totally."
+    h "Alright."
+    scene aptpool25
+    with dissolve
+    h "See?"
+    g "Now hulk out!"
+    h "Grrrr!"
+    scene aptpool26
+    with dissolve
+    pause
+    h "Ah!"
+    scene aptpool27
+
+    with dissolve
+    g "Yessss!"
+    scene aptpool28
+    with dissolve
+    a "Holy shit!"
+    L "What happened?"
+    a "Haley just ripped her shirt like a badass!"
+    L "Aww! I missed it!"
+    g "Don't worry! I got it on video!"
+    h "Nooo!"
+    scene aptpool31
+    with dissolve
+    a "Don't make her mad!"
+    j "Haley smash!"
+    h "Et tu, Jenn?"
+    scene aptpool28
+    with dissolve
+    "Everyone began giggling."
+    scene aptpool29
+    with dissolve
+    pause
+    scene aptpool30
+    with dissolve
+    pause
+    scene aptpool28
+    with dissolve
+    h "Great."
+    h "Now I'm a joke."
+    g "Hell no!"
+    g "That was the sexiest thing I've ever seen."
+    n "You're amazing, Haley."
+
+    scene aptpool32
+    with dissolve
+    h "Yeah?"
+    n "Now, if you dance, will it finish your shirt off for good?"
+    h "Hmm..."
+    h "Are you still recording, Grace?"
+    g "I could be."
+    h "Do it."
+
+    image haleydanceani1 = Movie(play="haleydanceani1.webm")
+    scene haleydanceani1
+    with dissolve
+    h "Hey Leah, have you really been sucking [n]'s dick this whole time?"
+    L "What? It hasn't been that long."
+    a "Hey, yeah!"
+    a "I bet you stole an extra load, didn't you?"
+    L "Noooo?"
+    g "Whatever, I don't care."
+    g "This is the day we launch our site!"
+    g "What should we be?"
+    g "The Homicide Girls?"
+    a "That's the stupidist thing I've ever heard."
+    g "You have a better idea?"
+    a "The Bra Busters."
+    h "As long as it's not the Shirt Stretchers."
+    L "Oh, that's not bad!"
+    h "Nooo!"
+    j "What about [n]'s Angels?"
+    a "Ohhh."
+    g "I kind of like that."
+    n "Ooo! Can I be [n]?"
+    g "I hate you."
+    h "That means she loves you!"
+    g "Shut up, Haley!"
+    g "I'm just kidding."
+    g "You are making my entire day right now."
+    g "Alright, photo shoot time!"
+    $renpy.end_replay()
+
+    if lauraccepted:
+        if huge:
+            scene bg black
+            with fade
+            "Five Minutes Later"
+            scene hwaffles1
+            with fadein
+            n "Right? I thought that thing would be rags by now-"
+            l "So... what's going on here with you two?"
+            scene hwaffles3
+            with dissolve
+            h "Hmm?"
+            l "Do the other girls realize that you're conspiring to make them all grow bigger?"
+            n "Dear Laura, whatever could you mean?"
+            scene hwaffles2
+            with dissolve
+            l "You have delicious food out at all times."
+            l "And you're both always encouraging the girls to eat more."
+            scene hwaffles3
+            with dissolve
+            h "I'm just a good cook."
+            l "Uh huh."
+            image hwafflesani1 = Movie(play="hwafflesani1.webm")
+            scene hwafflesani1
+            with dissolve
+            l "You know what I think?"
+            l "You're playing good cop bad cop."
+            l "Haley, you're letting [n] blame all this on you as he claims to be the good guy so the other girls don't call him out on it."
+            l "But what I don't understand is, why bother?"
+            h "They got mad when they thought [n] was trying to make them bigger."
+            l "Ha! Really?"
+            l "So I'm right?"
+            l "Damn, I was just kind of throwing it out there."
+            l "This is official, then?"
+            l "You planned this?"
+            h "Maybe."
+            l "Wow."
+            h "Are you going to blackmail us?"
+            l "Hell no!"
+            l "I want in!"
+            l "How do I help?"
+            h "Really?"
+            n "You could be our hype girl."
+            n "Haley has been good at it, but it's hard to do while she's always in the kitchen cooking something fattening."
+            h "Yeah it is."
+            h "Actually, that would be awesome."
+            l "So what would I do, exactly?"
+            h "Just compliment the girls on how great they look, that kind of thing."
+            l "What if I'm competitive?"
+            l "I could always be comparing myself to them."
+            h "That works on Grace, but Leah and Ashley are too chill to really take the bait."
+            l "What about Jenn?"
+            h "Jenn might really respond to you."
+            l "This is going to be fun!"
+            l "So... how big are we going?"
+            h "As big as possible."
+            l "Really?"
+            l "So... until we all have beach balls on our chests?"
+            h "Bigger."
+            l "Until we can barely walk?"
+            h "As big..."
+            h "...as possible."
+            l "Huh."
+            l "That's what you want, [n]?"
+            menu:
+                "Yes":
+                    n "Fuck yeah."
+                    l "Ha!"
+                    l "Alrighty then."
+                    l "In that case, I'd better start eating if I want to beat Haley."
+                "No":
+                    n "I like 'em big, sure."
+                    n "But there's a limit."
+                    l "And that is?"
+                    n "I don't know, once you can't see your own belly button in the mirror?"
+                    l "Gotcha."
+                    h "So... where I'm at now?"
+                    n "Variety is the spice of life."
+                    h "Damn right."
+                    l "But I can go bigger than that."
+            h "Save it, Laura."
+            h "I'm already onboard."
+            l "Oh."
+            l "Right."
+            l "But I like to practice."
+            h "Bring it, bitch."
+            h "I could eat you under the table."
+            l "What about weight gainer shakes?"
+            h "Why do you think the smoothies were so thick?"
+            l "I know a good cheese cake recipe."
+            l "I bet we could add the powder and call it low fat."
+            l "What about weed brownies?"
+            l "I bet Grace would destroy this kitchen if she had the munchies."
+            h "I think we should keep her."
+            L "Ahem!"
+            scene hwaffles4
+            with fade
+            h "Leah!"
+            l "How long have you been there?"
+            L "Just now."
+            L "But you do realize I could hear everything upstairs, right?"
+            h "Umm..."
+            image hwafflesani2 = Movie(play="hwafflesani2.webm")
+            scene hwafflesani2
+            with dissolve
+            L "So."
+            L "You and [n] really have been trying everything you can to get us to eat more?"
+            h "Umm..."
+            h "No?"
+            n "Are you mad?"
+            L "Your efforts haven't been lost on me."
+            L "Although I didn't realize you were sneaking in the extra calories."
+            h "Are you going to tell the others?"
+            L "Depends."
+            h "What do you want?"
+            L "I'll take your day."
+            l "Hold the fuck on!"
+            l "Is it lost on anybody that I didn't try to blackmail, but Leah jumped right into it?"
+            h "I did catch that, yes."
+            L "I'm just fucking with you."
+            L "I wanted to prove that I'm not always that chill."
+            l "Suuuure."
+            h "Wait! We need to back up one more step."
+            h "What the hell are you wearing?"
+            L "Oh, this ol' thing?"
+            L "You don't like it?"
+            h "I'm walking around in a shirt that is halfway torn."
+            h "And yet you are making that top look far more scandalous."
+            L "Yep."
+            n "So, Leah... are you mad?"
+            L "That you love my tits and want to see them bigger?"
+            L "I've known that since I saw the way you looked at me when they first grew."
+            n "Guilty."
+            L "Relax."
+            L "I'll let you three continue to conspire."
+            L "As long as I get some of that waffle."
+            l "You got it!"
+            l "Besides, I have something to compete against the two of you."
+            h "What's that?"
+            l "I asked [n] to make my ass grow right along with these tits."
+            h "Aww, honey!"
+            h "You think you're the only one?"
+            l "Haley, no!"
+            scene hwaffles5
+            with dissolve
+            h "You think I grew this thing all by myself?"
+            h "I'm flattered."
+            l "Who else?"
+            scene hwaffles6
+            with dissolve
+            l "Oh, no."
+            L "This caboose has been backin' up almost as long as this rack, girl."
+            l "[n]!"
+            l "Damn it!"
+            n "Spin for me, girl."
+            scene hwaffles7
+            with dissolve
+            l "Fine!"
+            n "This is a great sight right here."
+            scene hwaffles8
+            with dissolve
+            h "Hell yeah."
+            h "You're going down, bitch."
+            l "Hey, [n]?"
+            n "Yeah?"
+            scene hwafflesani2
+            with dissolve
+            l "How am I doing for starting up competition?"
+            h "Laura!"
+            L "Damn, girl!"
+            n "Good work."
+
+    if lauraccepted:
+        scene bg black
+        with fade
+        "Two Hours Later"
+        image hwafflesani3 = Movie(play="hwafflesani3.webm")
+        scene hwafflesani3
+        with fadein
+        a "Alright, now that Laura is gone, what do you think?"
+        L "It was pretty weird."
+        a "Right?"
+        h "I really couldn't tell when she was being fake nice, and I can usually pick up on that right away."
+        h "What do you think, Grace?"
+        g "I really don't know."
+        g "I was trying to figure it out the entire time."
+        a "[n]?"
+        menu:
+            "She seemed genuine":
+                n "She seemed genuine."
+                g "Right?"
+                g "How is it possible we could get along with her and let her in our group in only two weeks?"
+                n "True."
+            "I don't trust her":
+                n "I don't trust her."
+                g "She's been consistently cool for two weeks now."
+        g "I keep expecting her to try to pull out a spinning spiral from somewhere and try to chase us around."
+        a "It's a trip, for sure."
+        a "What do you think, Jenn?"
+        j "I think she's genuine."
+        h "How the hell does someone do a one-eighty like that?"
+        j "I know she's changed in how she treats us."
+        j "But I don't know that she's necessarily a different person."
+        h "What do you mean?"
+        j "I think she's had the same goal this entire time: To get with [n]."
+        j "Now that she accepts us to be a necessary part of that, she's starting to see us as allies instead of enemies."
+        h "Huh."
+        h "It kind of makes sense."
+        j "I mean, aren't all of us that way, a bit?"
+        if both:
+            a "Not me."
+            a "I'm just here for Leah."
+            a "[n] is just a third wheel to me."
+            n "That's not what you said this morning."
+            a "Relax, [n]. Everyone knows I'm kidding."
+            n "You'd better be."
+            n "Or I'll have to dick you down until you forget Leah's name."
+            a "Not going to happen."
+        else:
+            g "Kind of, yeah."
+
+        j "My point is, we were all friends before this, and that's why we generally trust each other."
+        j "And all of you were friends with Laura at some point except for Haley and I."
+        j "And she has really gone out of her way to apologize to us and try to make it up to us."
+        j "So I could totally be wrong."
+        j "But I hope I'm not."
+        h "Wow, Jenn."
+        h "You're kind of a sweetheart."
+        a "Yeah she is."
+        n "So... we continue to give her a chance?"
+        L "We do indeed."
+    if lydiaside:
+        scene bg black
+        with fade
+        "A Week Later"
+        with fade
+        if fuckedlydia:
+            image fucklydiani1 = Movie(play="fucklydiani1.webm")
+            scene fucklydiani1
+            with fadein
+            pause
+            lyd "FUCK YES!"
+            lyd "TAKE THAT PUSSY!"
+            n "Hey, did you hear that knock?"
+            lyd "Who cares?"
+            lyd "Just KEEP FUCKING ME!"
+            n "Shit!"
+            pause
+            scene bg black
+            with fade
+            "Ten Minutes Later"
+            scene lydiacaught1
+            with fade
+            lyd "Thanks, fuck buddy."
+            n "My pleasure."
+            n "Now get out of here!"
+            scene lydiacaught2
+            with dissolve
+            lyd "Bye now."
+            scene lydiacaught3
+            with dissolve
+            lyd "Oh! Hi there."
+            g "Sup."
+            scene lydiacaught4
+            with dissolve
+            pause
+            g "Hey."
+            n "Hey!"
+            n "What are you doing here?"
+            g "My dad kicked me out."
+            scene lydiacaught5
+            with dissolve
+            n "Why?"
+            g "Because I told him I wouldn't break things off with you."
+            n "Shit, I'm sorry."
+            g "It's cool."
+            g "You don't have to worry about me now."
+            n "Wait-"
+            scene lydiacaught6
+            with dissolve
+            g "Now he'll be happy that I dumped your ass for being a lying piece of shit."
+            n "Wait!"
+            n "Let's talk about this?"
+            g "Oh, you want me to call you more names?"
+            g "Honestly, [n], I'm too fucking mad to even do that right now."
+            n "So..."
+            n "Angry sex?"
+            scene lydiacaught5
+            with dissolve
+            g "Wow."
+            g "I've never been this pissed off before."
+            g "Thanks for helping me realize that I can still act calm and collected when I'm furious."
+            n "Then walk it off."
+            g "No, [n]."
+            g "I'm not coming back."
+            scene lydiacaught6
+            with dissolve
+            g "You cheated on me."
+            g "I had to stand outside your door and listen to it."
+            g "I hoped like hell it was Jenn sneaking over or something."
+            g "But the front door slut?"
+            scene lydiacaught5
+            with dissolve
+            g "Really?"
+            g "You can have a different combination of girls every day of the week and you still can't keep your dick in your pants?"
+            g "Go suck a dick."
+            scene lydiacaught7
+            with dissolve
+            g "Don't call me."
+            scene lydiacaught3
+            with dissolve
+            pause
+            g "He's all yours."
+            n "Grace!"
+            n "Shit."
+            scene lydiacaught1
+            with dissolve
+            lyd "Huh."
+            n "What?"
+            lyd "I must have a thing for unavailable men."
+            n "How did you figure?"
+            lyd "Now that you aren't taken, you kind of lose the appeal for me."
+            n "What happened to you being addicted to dick?"
+            lyd "Well, yeah, I obviously want to keep boning you."
+            lyd "But I'm not going to let you move in with me and shit."
+            n "Cooool."
+            lyd "Anyway."
+            lyd "Gotta get back to work."
+            scene lydiacaught2
+            with dissolve
+            lyd "See ya."
+            scene lydiacaught3
+            with dissolve
+            pause
+            n "Guess I'll try to do damage control."
+            "I called Leah."
+            n "Hey, so something happened, and I want you to hear it from me first..."
+            L "What?"
+            scene bg black
+            with fade
+            "And just like that, I was single again."
+            jump end
+
+        else:
+            scene lydiacaught1
+            with dissolve
+            lyd "Thanks for the cum, bud!"
+            n "Good blowjob."
+            n "Top notch!"
+            lyd "My pleasure."
+            scene lydiacaught2
+            with dissolve
+            lyd "See you tomorrow, stud."
+            scene lydiacaught3
+            with dissolve
+            pause
+            lyd "Oh! Hi, Grace!"
+            g "Hey!"
+
+            scene lydiacaught4
+            with dissolve
+            pause
+            g "Hi boyfriend."
+            g "Can I ask why she was just here?"
+            n "She wanted to come check out the place."
+            g "ASo... why are you in the pool?"
+            scene lydiacaught5
+            with dissolve
+            n "That's what she asked also."
+            g "And your answer?"
+            n "Chillin'."
+            g "Fair enough."
+            n "Anyway..."
+            n "What brings you by?"
+            g "My dad kicked me out."
+            n "Really?"
+            g "Yeah, he found the Twitter account and saw all the pictures on there of you and me."
+            g "Said I needed to break up with you."
+            n "And your response?"
+            g "I told him to suck my dick."
+            g "So..."
+            g "Can I stay here with you?"
+            n "As long as you need."
+            g "Thanks!"
+    else:
+        scene bg black
+        with fade
+        "A Week Later"
+        scene gracestay1
+        with fade
+        g "Hey, handsome!"
+        n "Hey!"
+        n "What brings you by?"
+        scene gracestay2
+        with dissolve
+        g "My dad kicked me out."
+        n "Really?"
+        g "Yeah, he found the Twitter account and saw all the pictures on there of you and me."
+        g "Said I needed to break up with you."
+        n "And your response?"
+        scene gracestay3
+        with dissolve
+        g "I told him to suck my dick."
+        g "So..."
+        g "Can I stay here with you?"
+        n "As long as you need."
+        g "Thanks!"
+    scene bg black
+    with fade
+    "Two Weeks Later"
+    with fade
+    "Sunday Morning"
+    with fade
+    "A voice woke me from downstairs."
+    with fade
+    if lauraccepted:
+        scene uncle1
+        with fadein
+    "..." "Hey!"
+    "..." "Who the hell are you?"
+
+    scene uncle2
+    with fade
+    g "Ahh!"
+    g "Who are you?"
+    scene uncle2
+    with dissolve
+    "..." "This is my house!"
+
+    "{i}Shit!{/i}"
+
+    scene uncle3
+    with dissolve
+    g "Oh!"
+    g "You must be [n]'s uncle."
+    scene uncle4
+    with dissolve
+    k "That's right."
+    g "I'm Grace."
+    g "[n]'s girlfriend."
+    scene bg black
+    with fade
+    "I threw on some shorts and ran over to Ashley and Leah's sleeping pad in the loft."
+    scene uncle5
+    with fade
+    pause
+    n "Hey!"
+    scene uncle6
+    with dissolve
+    L "Hmm?"
+    n "Put on some clothes!"
+    n "My uncle is home!"
+    scene uncle7
+    with dissolve
+    pause
+    n "Hey, Uncle Kenny!"
+    scene uncle8
+    with dissolve
+    k "Hey, [n]."
+    n "How was the trip?"
+    k "Exhausting."
+    k "I didn't sleep the entire flight."
+    n "That sucks."
+    k "I met your girlfriend."
+    k "She seems like she has a nice..."
+    k "...personality."
+    n "Totally."
+    k "Alright, I need a shower."
+    n "Umm..."
+    n "There's someone upstairs too."
+    k "Wait, what was that?"
+    n "Umm..."
+    scene uncle9
+    with dissolve
+    pause
+    k "Oh!"
+    k "Hi, ladies."
+    k "Friends of yours, [n]?"
+    scene uncle10
+    with dissolve
+    pause
+    n "You could say that."
+    n "This is Leah in the red."
+    L "Hello! I'm [n]'s girlfriend."
+
+    n "And Ashley in the... {w}tits."
+    k "How many girlfriends does he have?"
+    if lauraccepted:
+        L "Umm... there are six of us."
+    else:
+        L "Umm... there are five of us."
+    k "What the hell?"
+    n "When you said to only have your girlfriend over, I made sure to follow your instructions."
+    scene uncle12
+    with fade
+    k "Well, you're going to need to buy me new sheets."
+    pause
+    if lauraccepted:
+        scene uncle13
+        with dissolve
+    else:
+        scene uncle14
+        with dissolve
+
+    k "Because I am burning these."
+    n "Fair enough."
+    n "Sorry, sir."
+    if lauraccepted:
+        scene uncle15
+        with dissolve
+    k "Don't apologize to me."
+    k "It's your aunt that is going to be pissed."
+    n "I understand."
+    k "The place honestly doesn't look that bad."
+    k "Once you girls pick up all your swimsuits and bras everywhere you can head home."
+    k "I assume you can stay with one of them, [n]?"
+    n "That shouldn't be a problem."
+    k "Good."
+    scene uncle17
+    with fade
+    k "Thanks for watching over the place, I guess."
+    k "But let me ask you this, [n]"
+    k "When did you become a player?"
+    n "Must have been your genes."
+    k "Maybe if we were actually related I could take that as a compliment."
+    scene uncle16
+    with dissolve
+    k "I will, however, take credit for being a bad influence."
+    L "Well then!"
+    L "Thanks, Uncle Kenny!"
+    L "[n] does his best to keep all of us satisfied."
+    k "..."
+    k "Glad to be of service."
+    scene bg black
+    with fade
+    "That Night"
+    scene bethentrance2
+    with fade
+    B "Welcome back!"
+    B "How long will you be staying this time?"
+    a "A while."
+    a "But don't worry, [n] won't be here every night."
+    B "Remember what we talked about earlier."
+    B "I love having Leah over, but I don't want any other girls staying the night here."
+    B "I don't want to turn my home into [n]'s personal sex dungeon."
+    a "I remember."
+    a "Now if you'll excuse us, we're going to finish unpacking."
+    a "And I shouldn't have to say anything, but same rules as before."
+    scene 13ashcouch6
+    with fade
+    n "Do as your mom says?"
+    a "No, the opposite."
+    n "Really?"
+    a "Don't fuck my mom."
+    n "Oh! Forgot that one."
+    a "Not funny."
+    n "What about in another timeline?"
+    a "You need to stop watching Rick And Morty, I swear."
+
+    scene bg black
+    with fade
+    "A Week Later"
+    scene redhouse1
+    with fade
+    "Realtor" "Now, tell me how you feel about a red kitchen."
+    if huge:
+        a "Isn't red supposed to make you hungry?"
+        "Realtor" "I believe so."
+        a "Not a deal breaker then."
+    a "What do you think, [n]?"
+    n "I'm not sure it fits our aesthetic."
+    n "But we could always change it."
+    "Realtor" "Exactly. Painting is one of the easiest changes you can make."
+    "Realtor" "Now, what do you think about this staircase?"
+    scene redhouse2
+    with fade
+    a "I'm not going to lie."
+    a "It reminds me of The Brady Bunch."
+    "Realtor" "That's what it is!"
+    "Realtor" "Would you like to check out the upstairs?"
+    a "Sure!"
+    "Realtor" "You go ahead. I'll give you some time to talk."
+    image redhouseani1 = Movie(play="redhouseani1.webm")
+    scene redhouseani1
+    with fade
+    n "So how many houses will she take us to before she realizes that we're full of shit."
+    a "We're not."
+    n "Come on, Ashley."
+    n "I love to dream big as much as you do."
+    n "And I know you are starting to make great money-"
+    a "We."
+    n "-but there is no way they are loaning money to a couple of kids still going to college with zero credit."
+    a "Maybe not."
+    a "But we could buy something outright."
+    n "When?"
+    n "In five years?"
+    a "Sooner."
+    n "Making this a game, are we?"
+    n "Alright, I'll play."
+    n "Let's say we find a three bedroom condo that needs to be fixed up for two hundred thousand."
+    n "How long?"
+    a "Hmm..."
+    a "Let's make it more fun."
+    a "How about this place?"
+    n "This seven bedroom mini mansion that costs half a million?"
+    a "Mmm hmm."
+    n "You tell me."
+    a "If we offered cash..."
+    a "We could buy it today."
+    n "Fuck off!"
+    a "I prefer to take you with me when I fuck, thank you!"
+    n "How much fucking money is that OnlyFans account pulling in?"
+    n "I mean, it hasn't even been a month."
+    a "We're already at seven hundred thousand dollars."
+    n "What the fuck!"
+    n "How have you been keeping this from me?"
+    a "Surprise!"
+    n "Holy..."
+    n "Wow!"
+    a "I know!"
+    a "And we haven't even shown nips."
+    a "It seems the before and after photos have really been selling."
+    a "So... what do you think of this place?"
+    n "It's big enough."
+    n "A bit off the beaten path though."
+    a "Still forty minutes from the university."
+    n "True."
+    n "Should we bring the others?"
+    a "You like it?"
+    n "Sure."
+    a "It has that weirdness to it that would make great backgrounds for our photoshoots."
+    a "Plus the pool."
+    a "But is it big enough though?"
+    n "We could always upgrade."
+
+
+    scene bg black
+    with fade
+    "The Next Day"
+    image redhouseani2 = Movie(play="redhouseani2.webm")
+    scene redhouseani2
+    with fade
+    a "What did you think?"
+    L "This is perfect."
+    a "I thought you'd like it."
+    L "When can we move in?"
+    a "Monday."
+    L "What? How?"
+    L "I thought escrow took... forever."
+    a "Cash offer."
+    L "Holy shit."
+    L "Who knew showing a little skin could pay for this?"
+    a "Your skin?"
+    a "I could have told you."
+    n "Damn, Ash!"
+    n "Stealing all the good lines."
+    a "Sorry, sir."
+    a "I'm just excited."
+    a "Punish me later?"
+    n "Just this once."
+    L "Hey [n]?"
+    n "Yeah?"
+    L "I kind of like being a step above you."
+    scene redstep
+    with dissolve
+    n "Oh yeah?"
+    scene redhouseani2
+    with dissolve
+    L "Now I can surprise kiss you."
+    n "You wouldn't dare!"
+    scene bg black
+    with fade
+    "Monday"
+    scene housepool1
+    with fadein
+
+    g "We get a POOL?"
+    g "Hell yes!"
+    g "We're skinny dipping, right now!"
+    a "Sure we are."
+    g "Who's with me?"
+    n "Don't you want to see the rest of the house?"
+    g "Fiiiine."
+    scene bg black
+    with fadeout
+    "To Be Continued..."
+    if lauraccepted:
+        scene housepool2
+    else:
+        scene housepool3
+    with fadein
+    "You guys are going to fucking kill me."
+    "But this ending still needs a few epilogues."
+    "Three, to be exact."
+    "But don't worry. They will be short."
+    scene bg black
+    with fade
+    jump end
+
+    a "Oh, she's really doing it."
+    g "Come on!"
+    g "No one?"
+    g "What about you, [n]?"
+    menu:
+        "Sure":
+            n "Nahhh."
+            g "Why-"
+            a "Oh, I guess he's doing it too?"
+            g "My man."
+            a "Oh."
+            L "I guess we can consider the pool broken in."
+
+        "You're on your own":
+            n "Ask me again later."
+            n "But you're on your own for now."
+            g "Hey!"
+            g "You're all going to leave me here?"
+
+
+    n "How's it going?"
+    a "Almost done with my hour."
+    n "Your last hour of the day, right?"
+    a "Yep!"
+    a "Been watching trash TV of girls yelling at each other to keep myself motivated."
+    n "Just like home, huh?"
+    a "Wouldn't that suck?"
+    n "I appreciate you."
+    n "How about you, Jenn?"
+    n "Still trying to run instead of walk?"
+    g "Yep!"
+    a "I don't know how she does it."
+    a "My boobs would hurt so much if they were bouncing like that."
+    g "The secret is to wear three sports bras."
+    n "Well, you girls look great."
+    a "You aren't sad that we are excercising our tits off?"
+    if bigtits:
+        n "No, I understand."
+        n "I'm not the one who has to walk around with all that weight on my chest."
+        a "He says what he thinks we want to hear, Jenn."
+        a "But do we believe him?"
+        g "Hell no."
+        a "That's the thing, [n]..."
+        a "We aren't doing this because we don't love you."
+        a "It's self preservation."
+        n "Hey, I'm not here to complain."
+        n "I'm here to cheer you on."
+        n "Can I get you any garoraids?"
+        g "You mean calorie water?"
+        a "'But there's electrolytes!'"
+        a "That's what you were going to say, am I right?"
+        n "Beat me to it."
+
+    else:
+        n "I have all the titty a guy could ask for."
+        a "Glad to hear it."
+
+    n "How's business?"
+    a "Decent!"
+    n "Enough to pay the bills?"
+    a "We aren't going to have to make you whore yourself out this month."
+    a "But we also aren't going to go out for retail therapy this month either."
+    n "Need me help for anything?"
+    a "Like what?"
+    n "I'm decent with a camera."
+    a "Yeah but Grace is a wizard with it."
+    n "Maybe so, but we need to get her in front of it more."
+    g "Trying to make money off my sweet ass, [n]?"
+    n "Without question."
+    g "Hmm."
+    a "Hey, at least he admits it."
+    g "What are you going to do for your night, Ashley?"
+    a "I was thinking of surprising [n] with my cute leather outfit."
+    g "Yeah?"
+    g "Time to finally dominatrix his ass?"
+    a "I don't think so."
+    a "I like it was too much when he handcuffed me last week."
+    g "Oof!"
+    g "I need to try that."
+    a "Highly recommended."
+    n "Am I expected to leave here orrr..."
+    a "Would you want to play dom sometime, Grace?"
+    g "I think so."
+    g "But I also love playing submissive, so I know how you feel."
+    g "Back when we first started out, [n] used to full on abuse my ass..."
+    n "You guys used to at least give me the courtesy of talking about me behind my back..."
+    g "But you still haven't tried anal, Ash?"
+    a "I'm scared."
+    a "I wish we still had the watch so we could make it feel good."
+    n "You don't have to worry about that."
+    a "What do you mean?"
+    g "You found a new watch?"
+    n "No!"
+    n "I think I already commanded your ass to feel great."
+    a "When!"
+    a "Did I know about this?"
+    n "Didn't you?"
+    n "Hmm..."
+    n "Am I thinking about someone else?"
+    a "Asshole!"
+
+    scene bg black
+    with fade
+    n "Hey, Jenn?"
+    n "Are you happy?"
+    j "I'm with you."
+    n "Not going to answer the question?"
+    j "I just did."
+    n "You're a tough nut to crack."
+    n "But I'm going to do it."
+    j "Right now?"
+    n "Aren't you sore?"
+    j "That's okay."
+    n "I'm going to give your pussy a break."
+    j "Aww."
+    j "Fine."
+
+    if lauraccepted:
+        n "How's it going in here?"
+        l "I'd kill a kitten to get one of your loads."
+        n "So, usual?"
+        l "Great as always."
+        l "Hey, remember how you said Brittany was always welcome here?"
+        n "Yeah?"
+        l "Well, it's official."
+        l "She left him."
+        n "Really?"
+        l "She's moving back in with my parents."
+        l "Unless..."
+        l "Would you want her to move in here?"
+        n "You'd let me fuck your sister?"
+        l "I already do."
+        n "Shhh."
+        n "Well, yeah."
+        n "But not in the room next to you."
+        l "What can I say?"
+        l "I wouldn't mind having my sister around."
+        n "Even at the cost of less loads for you?"
+        l "Good point."
+        l "I changed my mind."
+
+
+    n "Hey!"
+    n "How's the water?"
+    L "Perfect."
+    L "I can't believe we live here."
+    n "Right?"
+    a "Did [n] and I do alright?"
+    L "It's... too good to be true."
+    a "Anything for you, babe."
+    n "Do you like this pool over the one at the apartment, Grace?"
+    g "Yeah, I'm thinking I would have outgrown that one."
+    g "This pool gives much more room to expand."
+    n "Glad you like it."
+    L "I like the high walls for privacy."
+    a "Actually, we had those put in."
+    L "Really?"
+    L "Nice touch."
+
+
+
+
+
+    jump end
 
 
 
@@ -6910,7 +15228,7 @@ label beending:
 
 
 
-
+    # ------------------------------------------Laura's backstory------------------------------------------
 
     "Three Years Ago"
     with fade
@@ -6927,7 +15245,7 @@ label beending:
     n "I recognize you."
     n "I've seen you bully girls before."
     n "Charlotte, don't take this situation personally."
-    n "This is about Laura and her friend being a bitch, not about you deserving it."
+    n "This is about Laura and her friend being bitches, not about you deserving it."
     "Charlotte" "Oh- okay."
     n "Laura, what's wrong with your life?"
     l "What?"
@@ -7187,3 +15505,4 @@ label beending:
 
 
     stop sound fadeout 5.0
+

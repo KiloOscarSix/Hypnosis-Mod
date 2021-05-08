@@ -39,6 +39,7 @@ init python:
     GalleryItem("Leah", "galleryscene37", "Episode 12/leahapartment4.webp")
     GalleryItem("Leah", "nojennep12", "Episode 12/leahtwelvebr1.webp")
     GalleryItem("Leah", "galleryScene47", "bg bedroom3.webp")
+    GalleryItem("Leah", "galleryScene65", "Endings/lapt5.webp")
 
     GalleryItem("Ashley", "galleryScene1", "ashley tf1.webp")
     GalleryItem("Ashley", "galleryScene4", "al beda20.webp")
@@ -53,6 +54,8 @@ init python:
     GalleryItem("Ashley", "galleryScene40", "Episode 13/locker1.webp", {"beth":True})
     GalleryItem("Ashley", "galleryScene41", "Episode 13/13ashcouch1.webp", {"badass":True})
     GalleryItem("Ashley", "nextday13", "Episode 13/13ashroom3.webp", {"badguy":True, "addictive":True})
+    GalleryItem("Ashley", "galleryScene65", "Endings/lapt5.webp")
+    GalleryItem("Ashley", "galleryScene70", "Endings/aptv4.webp")
 
     GalleryItem("Grace", "threesome", "gl tubf10.webp", {"grace":False, "jennmean":True})
     GalleryItem("Grace", "throwintowel", "grace couchstand9.webp", {"jennmean":True})
@@ -71,6 +74,8 @@ init python:
     GalleryItem("Grace", "galleryscene24", "Episode 11/glbath3.webp", {"hatelaura":True, "callcory":False})
     GalleryItem("Grace", "galleryScene33", "Episode 13/13gracehouse10.webp", {"preg":True, "lauretoldyou":False})
     GalleryItem("Grace", "triochoice", "Episode 13/hlocker2.webp", {"gracerom":True, "hcum":True, "jenn":True, "jennice":False, "beth":True})
+    GalleryItem("Grace", "galleryScene66", "Endings/apt8.webp")
+    GalleryItem("Grace", "galleryScene74", "Endings/gracestrip2.webp", {"huge":True})
 
     GalleryItem("Laura", "didntlaura", "lk10.webp", {"laurarom":True})
     GalleryItem("Laura", "threesome", "gl tubf10.webp", {"grace":False, "jennmean":True})
@@ -88,6 +93,8 @@ init python:
     GalleryItem("Laura", "toots", "laurabra2.webp")
     GalleryItem("Laura", "galleryScene46", "lcock1.webp")
     GalleryItem("Laura", "galleryScene48", "laurahoteltf4.webp")
+    GalleryItem("Laura", "galleryScene69", "Endings/laurabwe7.webp")
+    GalleryItem("Laura", "galleryScene73", "Endings/laurafuckable1.webp")
 
     GalleryItem("Jenn", "admitjennsexy", "jenn onknees6.webp")
     GalleryItem("Jenn", "smart2", "jenn day12.webp", {"jenn":True})
@@ -98,6 +105,8 @@ init python:
     GalleryItem("Jenn", "preview", "Episode 12/hjclass24.webp", {"jennpreg":True})
     GalleryItem("Jenn", "galleryScene32", "Episode 12/japartment10.webp", {"jennpreg":True})
     GalleryItem("Jenn", "triochoice", "Episode 13/hlocker2.webp", {"gracerom":True, "hcum":True, "jenn":True, "jennice":False, "beth":True})
+    GalleryItem("Jenn", "galleryScene66", "Endings/apt8.webp")
+    GalleryItem("Jenn", "galleryScene71", "Endings/jennbath10.webp", {"hpregs":True, "huge":True, "lactation":True, "preg":True})
 
     GalleryItem("Brittany", "icmi", "b br13.webp", {"grace":True})
     GalleryItem("Brittany", "galleryScene6", "bdark3.webp", {"bcum":True})
@@ -109,6 +118,7 @@ init python:
     GalleryItem("Brittany", "galleryScene28", "backseat.webp", {"brittany":True, "preg":False})
     GalleryItem("Brittany", "britend", "Episode 12/backalley6.webp", {"preg":True})
     GalleryItem("Brittany", "galleryScene42", "britpreg5.webp", {"hypbrit":True, "bcum":True})
+    GalleryItem("Brittany", "okaybrit", "Endings/bapt3.webp")
 
     GalleryItem("Rachel", "gorachel", "rachdown5.webp")
     GalleryItem("Rachel", "fuckrachel", "rachair6.webp", {"rachdrunk":False})
@@ -132,6 +142,16 @@ init python:
     GalleryItem("Other", "galleryScene36", "Episode 13/tifhome17.webp", {"tifriendzone":True})
     GalleryItem("Other", "galleryScene45", "Episode 13/bailey13.webp")
     GalleryItem("Other", "triochoice", "Episode 13/hlocker2.webp", {"gracerom":True, "hcum":True, "jenn":True, "jennice":False, "beth":True})
+    GalleryItem("Other", "galleryScene64", "Endings/hapt6.webp", {"hcum":True, "preg":True})
+    GalleryItem("Other", "galleryScene67", "Episode 13/btgg3.webp")
+    GalleryItem("Other", "galleryScene68", "Endings/haleybwe4.webp")
+    GalleryItem("Other", "fucktiffanyapt", "Endings/aptv1.webp")
+    GalleryItem("Other", "onbailey", "Episode 13/bailey6.webp")
+    GalleryItem("Other", "galleryScene72", "Endings/haleyjd8.webp")
+    GalleryItem("Other", "galleryScene75", "Episode 13/btgg3.webp")
+    GalleryItem("Other", "galleryScene76", "Endings/ghcouch9.webp")
+    GalleryItem("Other", "tifanending", "Endings/tifkitchen1.webp")
+    GalleryItem("Other", "lauraccepted", "Endings/aptpool30.webp")
 
 define galleryMenu = [
     ["Leah", "/images/leah hotel1.webp"],

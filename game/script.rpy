@@ -1,4 +1,4 @@
-﻿init -20 python:
+init -20 python:
     import discord_rpc
     import time
 
@@ -93,22 +93,31 @@ default ashleymomtruth = False
 default lactation = False
 default tiffany = False
 default bethbj = False
-default honest = True
 # initially you walked past her in the hall, but she gave you a beej the next day.
-
+default honest = True
+default cumhaley = True
 default fuckedtif = False
 default fuckedbailey = False
 default addictive = True
 default bethcreamed = False
+# you came inside the creamer for Beth when she asked in Episode 13
 default goback = True
 default fuckedbeth = False
-# you came inside the creamer for Beth when she asked in Episode 13
+default jennlactate = True
+default growth = True
+default almaster = False
+default finished = False
+default ashleygay = True
+default callme = False
+default lydiaside = False
+
 
 
 # The script of the game goes in this file.
 
 image slideshow:
-
+    "dancer1" with fadein
+    pause 3.0
     "13ashcouch8" with fade
     pause 3.0
     "13beth6" with fade
@@ -161,7 +170,7 @@ define mod = Character("OscarSix", color="#0f0")
 define L = Character("Leah", color="#f44336")
 define n = Character("[name]", color="#81d4fa")
 define a = Character("Ashley")
-define g = Character("Grace", color="#FD8025")
+define g = Character("Grace", color="#d35400")
 define l = Character("Laura", color="#1EE645")
 define j = Character("Jenn", color="#ffee58")
 define C = Character("Cory", color="#F9C058")
@@ -181,7 +190,7 @@ define M = Character("Michelle", color="#F9FB64")
 define ba = Character("Bailey", color="#F9FB64")
 define hb = Character("Hottie Bartender", color="#F9FB64")
 define gg = Character("Girl In Green", color="#00DC7D")
-define A = Character("Aera", color="#F9C058")
+define A = Character("Aera", color="#2980b9")
 define lyd = Character("Lydia", color="#FFFFFF")
 # The game starts here.
 
@@ -197,9 +206,17 @@ label splashscreen:
     $ renpy.pause(0.1)
 
     $ renpy.movie_cutscene("intro.webm")
+    scene brokenwatch
+    with fadein
+    pause 4.0
+    scene testingversion
     with fade
+    pause 4.0
+    scene disclaimer
+    with fade
+    pause 4.0
     scene bg black
-    with fade
+    with fadeout
     return
 
 label start:
@@ -215,8 +232,8 @@ label start:
         discord_rpc.run_callbacks()
         discord_rpc.update_presence(
             **{
-                'details': 'Taking Ass and Kicking Names!',
-                'state': 'Chillin',
+                'details': 'Prologue',
+                'state': 'Taking Ass and Kicking Names',
                 'large_image_key': 'Hypnosis',
                 'start_timestamp': start
             }
@@ -224,17 +241,13 @@ label start:
 
         discord_rpc.update_connection()
         discord_rpc.run_callbacks()
-    # Show a background. This uses a placeholder by default, but you can
-    # add a file (named either "bg room.png" or "bg room.jpg") to the
-    # images directory to show it.
 
     scene bg room
-
-    # This shows a character sprite. A placeholder is used, but you can
-    # replace it by adding a file named "eileen happy.png" to the images
-    # directory.
-
-    "Every character in this game is over the age of 18. Are you?"
+    with dissolve
+    pause
+    "Every character in this game is over the age of 18."
+    "Are you?"
+    with dissolve
     menu:
         "Yes":
             jump over18
@@ -254,7 +267,7 @@ label start:
     c "Thanks for downloading and playing the game Hypnosis!"
     c "I believe a big part of enjoying a good story is to feel confident that the author is leading you in the right direction."
 
-    c "I’d like to help set expectations for the game to give you a better glimpse of what lies ahead."
+    c "I’d like to help set expectations for the game to give you a glimpse of what lies ahead."
     c "But if you would rather skip my introduction, feel free."
     menu:
 
@@ -263,8 +276,7 @@ label start:
             c "Cool! So I obviously am the developer of this game!"
             c "Hypnosis is my first game and I've had a ton of fun making it."
             c "Because of this, you will see the quality of the game increase as you go."
-            c "This is especially true of the quality of renders and animations."
-            c "I try to come out with a new episode every month."
+            c "This is especially true of renders and animations."
             c "The game has multiple paths and attempts to explore the opportunies of a magic watch that can cause changes to physical attributes."
             c "It's mostly an excuse to make boobs bigger."
             c "And asses, of course."
@@ -282,13 +294,13 @@ label start:
             c "First I'll address the perverts. Because the gentlemen are good at waiting."
             c "I tried to go big with the broad premise of the game and to push past my own comfort zone."
             c "But everything has its limits."
-            c "In particular, you won't find anyone under the age of 18, NTR, incest or anything non-consensual."
+            c "In particular, you won't find anyone under the age of eighteen, NTR, incest or anything non-consensual."
             c "Or necrophilia. Sorry guys."
             c "I mention this because you may have assumed a game titled Hypnosis to be about mind controlling girls against their will to start an evil empire."
             c "And if so, I don't want to let you down. This isn't that game."
             pause
             c "Now, to the Gentlemen."
-            c "Thanks for waiting."
+            c "Thanks for waiting!"
             c "Here's a present for you."
             image kassieintro3 = Movie(play="kassieintro3.webm")
             show kassieintro3
@@ -305,8 +317,8 @@ label start:
             c "So go crazy, date every girl you see, there is no penalties for doing so."
             c "You can avoid most of the girls if you want to, but I went back and added the option late in the game and am still finding inconsistencies with scenes and dialogue."
             c "Alright, thanks for listening!"
-            c "And before I let you go, I have a confession."
-            c "I'm not the developer."
+            c "But before I let you go, I have a confession."
+            c "I'm not really the developer."
             c "I said that as a public service announcement."
             c "Catfishing is real, guys. It happened to my friend."
             c "Here, I'll make it up to you."
@@ -315,65 +327,40 @@ label start:
                 "Yes":
                     c "Well you can fuck right off."
                     c "I am a lady!"
-                    c "And I'm also a teaser for a new game coming out called Endowed."
+                    c "And I'm also a teaser for a new game called Endowed."
                 "No":
                     c "Wow. You must be one of the Gentlemen."
                     c "Remind me to suck your dick later."
-                    c "Anyway, I'm also a teaser for a new game coming out called Endowed."
+                    c "Anyway, I'm also a teaser for a new game called Endowed."
                 c "Want to see my tits?"
 
-            c "It will be coming out in October and is the second visual novel by Expanding Universe Games."
-            c "In the new game your uncle dies and leaves you his strip club."
+            scene endowed2
+            with fadehold
+            pause
+            c "It is the second visual novel by Expanding Universe Games and it's available now."
+            c "In the game your uncle dies and leaves you his strip club."
             c "I help you run the place."
-            c "But you can't fuck me because I'm a lesbian."
-            c "Shit, that wasn't a very good tease, was it?"
-            c "Shit."
-            c "Alright, fine. You know what I'm going to do?"
-            c "I'll take off my bra."
-            pause
-            c "But not while you're looking!"
-            c "Close your eyes."
-            scene bg black
-            with fadeout
-            pause
-            c "Here's another cup size too, fuck it."
-            c "Okay."
-            c "You can open them now."
+            c "You can't fuck me because I'm a lesbian."
+            c "But I'm a great wingman and I'll hook you up with some top shelf ladies."
+            c "You can find it free (along with news and the latest updates for Hypnosis) over on {a=https://patreon.com/expandinguniverse}Patreon{/a}."
             scene kassiepose1
             with fadein
-            c "Alright guys, welcome to Hypnosis!"
+            c "Alright, welcome to Hypnosis!"
             c "Enjoy the game."
-            pause
-            c "Why don't you take a picture? It'll last-"
-            scene kassiepose2
-            with dissolve
-            c "Hey!"
-            c "Hold on."
-            scene kassiepose3
-            with dissolve
-            c "Give me that motherfucking camera!"
-            pause
             scene bg black
             with fadeout
-            c "Fucking men!"
-            with fade
-            "If you ever need help with the game, check out the {a=https://docs.google.com/document/d/e/2PACX-1vRb7T2PQcStj74PvxIpczf_tzpr6FpWj6imHC3uqtkZpKhnbB0_6Lmi-QLyELt2xW3YFfAxmrCekoMJ/pub}walkthrough{/a}."
             pause
+            "If you ever need help, check out the {a=https://docs.google.com/document/d/e/2PACX-1vRb7T2PQcStj74PvxIpczf_tzpr6FpWj6imHC3uqtkZpKhnbB0_6Lmi-QLyELt2xW3YFfAxmrCekoMJ/pub}walkthrough{/a}."
             pause
         "Skip Introduction":
-            c "Hey! You just clicked your first button."
-            c "Not your first game, huh?"
-            c "Hey, so what are you doing after this?"
-            c "Want to grab a drink?"
-            c "Maybe check out a strip club with me?"
-            c "Aw, shit. We can't."
-            c "Fucking covid!"
+            c "Alright, welcome to Hypnosis!"
+            c "Enjoy the game."
             scene bg black
             with fadeout
             pause
 
         c "I won't be offended."
-    stop sound fadeout 5.0
+    stop music fadeout 5.0
     scene bg black
     with fade
     centered "Prologue"
@@ -9652,9 +9639,9 @@ label jenncuminside:
     scene jenn fuck8
     with dissolve
 menu:
-    "Yes.":
+    "Yes. [red]\[Pregnant\]":
         jump jennplanb
-    "No.":
+    "No. [gr]\[Pregnant\]":
         jump jennnoplanb
 label jennplanb:
     $ jennpreg = False
@@ -19727,6 +19714,7 @@ label galleryScene17:
     scene bg house2
     with fade
     pause
+    $ cumhaley = False
     $ brittany = False
     $ haley = False
     $ rachel = False
@@ -24779,6 +24767,7 @@ menu:
         jump cumhaley
 
 label cumhaley:
+    $ cumhaley = True
     $ hcum = True
     with vpunch
     "I burst inside her, filling the girl as we continued to kiss."
@@ -26268,6 +26257,7 @@ label followlaura:
                     centered "Check back for the completed version in the next few days."
                     centered "Meanwhile..."
                 "Leave":
+                    label backtosmallness:
                     n "I'll keep that in mind."
                     n "Alright."
         "Leave":
@@ -43603,18 +43593,59 @@ label backtoreality:
     with fade
     centered "Lucky"
     jump epthirteen
-label end:
-
+label fakeend:
 label realend:
     scene bg black
     with fadeout
-    centered "Save your game before this to continue when the next episode is released."
+    if goback:
+        "It looks like you played the beta testing version of this game last update."
+        "My apologies, as that version was not meant to be played by anyone besides the beta testers, as it was missing a lot of content and incomplete."
+        "I will take precautions in the future to avoid future leaks."
+        "Now, I recommended that you go back to the beginning to replay the update."
+        "There are several flags and markers that were added in the finished version that will be needed to play future updates."
+
+        "Do you want to go back to the beginning of the update to play the completed version?"
+        menu:
+            "Skipping this step will likely cause several game errors for you."
+            "Yes":
+                jump nightnight13b
+            "No":
+                "Good luck."
+
     with fade
-    centered "Also, check out the newest addition to Expanding Universe Games:"
+    centered "This update is for the ending titled The Broken Watch."
+    centered "Would you like to play it now?"
+    menu:
+        "Yes":
+            "You got it."
+            scene bg room
+            with fade
+            jump skiptobending
+        "No":
+            "In that case, see you next time!"
+
+
+label end:
+    scene bg black
+    with fadeout
+    centered "Please save your game before this."
+label afterend:
+    scene bg black
+    with fade
+    centered "Dedicated to Deamonmaster"
+
+    centered "1990 - 2021"
+    centered "Rest in peace, Chris."
+
+    centered "Thanks for all the feedback and support."
+    centered "Coming soon - the Deamonmaster Ending"
+    with fade
+    centered "Also available from Expanding Universe Games"
+    with fade
     scene endowed2
     with fadein
     pause
-    "All four chapters are currently available free on Patreon, with chapter five expected at the end of February."
+    "All four chapters are currently free on Patreon, with Chapter Five expected in March."
     pause
     scene bg black
     with fadeout
@@ -43639,9 +43670,35 @@ label realend:
     centered "Possibly you!"
     centered "Thanks for playing!"
 
-    return
-    scene survivethenight
+    $ finished = True
+label endings:
+    pause
+    scene bg room
     with fade
+    "Was there an ending you missed?"
+    "Here are the three main endings currently available."
+    menu:
+        "Here are the three main endings currently available."
+        "The Big Dick Ending":
+            "This ending takes place in Episode Eight."
+            "At the beginning of Laura's pool party, you went upstairs with her and attempt to fuck her brains out."
+            "She mentioned that she would enjoy it if your dick was even bigger."
+            "When you agreed, you offer her the watch."
+            jump lauraendone
+        "The Cruise Ending":
+            "This ending takes place in Episode Nine."
+            "After Laura's pool party, you and the girls searched for the missing watch."
+            "Coming up empty, you went to see Laura and found yourself feeling like you only wanted to date her."
+            "Laura suggested that you run off together and go on a trip."
+            "You pulled out your phone and tried to find something last minute."
+            jump cruisending
+        "The Broken Watch Ending":
+            jump skiptobending
+        "Return to the main menu":
+
+
+            scene survivethenight
+            with fade
     pause
     "Also, I would like to introduce you to the new board game I have created."
     "It's called Survive The Night."
@@ -43649,9 +43706,6 @@ label realend:
     "More info to come on future updates."
     "Launching soon on Kickstarter!"
 
-    pause
-    scene bg room2
-    with fade
     pause
     return
 
